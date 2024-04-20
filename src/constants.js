@@ -1,10 +1,6 @@
-export const BASE_CLIENT_URL = "https://yedyni-platform.onrender.com"
-// export const BASE_CLIENT_URL = "http://localhost:3000/bonus-programm-react"
-
-export const BASE_NAME = "/yedyni-platform";
+export const BASE_CLIENT_URL = "https://yedyni-platform.onrender.com";
 
 export const AXIOS_BASE_URL = 'https://yedyni-platform-backend.onrender.com';
-// export const AXIOS_BASE_URL = 'http://localhost:3000';
 
 export const API_PAY_ENDPOINT = 'https://www.liqpay.ua/api/3/checkout';
 
