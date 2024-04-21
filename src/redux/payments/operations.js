@@ -68,13 +68,13 @@ export const getSubscriptions = createAsyncThunk(
     }
   );
 
-  export const getAccount = createAsyncThunk(
-    "payments/getAccount", 
+  export const getMark = createAsyncThunk(
+    "payments/getMark", 
       async (params, thunkAPI) => {
         const searchParams = new URLSearchParams(params);
         try {
           const response = await axios.get(
-            `/api/payments/account?${searchParams.toString()}`
+            `/api/payments/mark?${searchParams.toString()}`
           ); 
           return response.data;
         } 

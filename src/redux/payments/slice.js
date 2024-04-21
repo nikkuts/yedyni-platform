@@ -4,7 +4,7 @@ import {
     getSubscriptions,
     getByIdSubscription,
     cancelSubscribe,
-    getAccount, 
+    getMark, 
 } from "./operations";
 
 const handlePending = state => {
@@ -21,7 +21,7 @@ const paymentsSlice = createSlice({
   initialState: {
     donats: [],
     subscriptions: [],
-    account: [],
+    mark: [],
     totalPages: null,
     subscription: null,
     isLoading: false,
@@ -65,14 +65,14 @@ const paymentsSlice = createSlice({
       }
     })
     .addCase(cancelSubscribe.rejected, handleRejected)
-    .addCase(getAccount.pending, handlePending)
-    .addCase(getAccount.fulfilled, (state, action) => {
+    .addCase(getMark.pending, handlePending)
+    .addCase(getMark.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.account = action.payload.account;
+      state.mark = action.payload.mark;
       state.totalPages = action.payload.totalPages;
     })
-    .addCase(getAccount.rejected, handleRejected)
+    .addCase(getMark.rejected, handleRejected)
 });
 
 export const paymentsReducer = paymentsSlice.reducer;

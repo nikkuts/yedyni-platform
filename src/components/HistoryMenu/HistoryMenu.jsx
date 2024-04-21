@@ -30,10 +30,10 @@ export const HistoryMenu = () => {
             <li>
                 <Link 
                     onClick={() => dispatch(setCurrentRange())} 
-                    to="account"
+                    to="mark"
                     className={css.historyLink}
                 >
-                    Бонуси
+                    Укр.слід
                 </Link>
             </li>
         </ul>

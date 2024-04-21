@@ -29,8 +29,8 @@ export default function Indicators () {
           <table className={css.table}>
             <tbody>
               <tr className={css.tr}>
-                  <td className={css.tdChild1}>Бонусний рахунок, гривень</td>
-                  <td className={css.tdChild2}>{indicators.bonusAccount.toFixed(2)}</td>
+                  <td className={css.tdChild1}>Мій українськомовний слід, балів</td>
+                  <td className={css.tdChild2}>{indicators.ukrainianMark}</td>
                   <td className={css.tdChild3}>
                     <button type="button"
                       onClick={() => dispatch(toogleModal())} 
@@ -55,7 +55,7 @@ export default function Indicators () {
                   <td className={css.tdChild1}>
                     <div className={css.level}>
                       <span>
-                        Мій особистий рівень підтримки проєкту
+                        Мій рівень стабільності підтримки проєкту
                       </span> 
                       <div className={css.tooltip}>
                         <Info />

@@ -2,23 +2,23 @@
   import { useSelector, useDispatch } from "react-redux";
   import { DateRange } from '../DateRange/DateRange';
   import { Pagination } from '../Pagination/Pagination';
-  import { getAccount } from "../../redux/payments/operations";
+  import { getMark } from "../../redux/payments/operations";
   import { 
     selectIsLoading, 
-    selectAccount,
+    selectMark,
     selectPage,
     selectStart,
     selectEnd, 
   } from '../../redux/payments/selectors';
   import { formatDate } from "../../service/handleDate";
-  import css from './Account.module.css';
+  import css from './Mark.module.css';
   
   export default function Account () {
     const dispatch = useDispatch();
     const limit = 2;
   
     const isLoading = useSelector(selectIsLoading);
-    const account = useSelector(selectAccount);
+    const mark = useSelector(selectMark);
     const start = useSelector(selectStart);
     const end = useSelector(selectEnd);
     const page = useSelector(selectPage);
@@ -31,42 +31,36 @@
     }), [start, end, page]);
   
     useEffect(() => {
-        dispatch(getAccount(queryParams));   
+        dispatch(getMark(queryParams));   
     }, [dispatch, queryParams]);
   
       return (
         <>
           <div>{isLoading && <b>Завантаження даних...</b>}</div> 
           <div>
-            <h2 className={css.title}>Історія бонусного рахунку</h2>
+            <h2 className={css.title}>Історія українськомовного сліду</h2>
             <DateRange />
             <div className={css.tableHistory}>
                 <table className={css.table}>
                   <thead>
                     <tr>
-                        <th className={css.th}>Дата операції</th>
-                        <th className={css.th}>Баланс на початок</th>
-                        <th className={css.th}>Сума</th>
+                        <th className={css.th}>Дата</th>
+                        <th className={css.th}>Бали</th>
                         <th className={css.th}>Коментар</th>
-                        <th className={css.th}>Баланс на кінець</th>
+                        <th className={css.th}>Підсумкове значення</th>
                     </tr>
                   </thead>
-                  {account.length !== 0 && 
+                  {mark.length !== 0 && 
                   <tbody>
-                  {account.map(item => (           
+                  {mark.map(item => (           
                       <tr 
                         key={item._id}
                         className={css.tr}
                       >
-                        <td className={css.td}>{formatDate(item.dateTransaction)}</td>
-                        <td className={css.td}>{item.initialBalance}</td>
-                        <td className={css.td}>{item.amountTransaction}</td>
-                        <td className={css.td}>
-                          {item.comment === 'бонус' &&
-                            `${item.comment}, рівень ${item.levelBonus}, партнер ${item.emailPartner}`
-                          }
-                        </td>
-                        <td className={css.td}>{item.finalBalance}</td>
+                        <td className={css.td}>{formatDate(item.date)}</td>
+                        <td className={css.td}>{item.points}</td>
+                        <td className={css.td}>{item.comment}</td>
+                        <td className={css.td}>{item.finalValue}</td>
                       </tr>
                   ))}
                   </tbody>

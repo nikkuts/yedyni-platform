@@ -20,7 +20,7 @@ const DonatPage = lazy(() => import('./Donat/Donat'));
 const IndicatorsPage = lazy(() => import('./Indicators/Indicators'));
 const PaymentsPage = lazy(() => import('./Payments/Payments'));
 const SubscriptionsPage = lazy(() => import('./Subscriptions/Subscriptions'));
-const AccountPage = lazy(() => import('./Account/Account'));
+const MarkPage = lazy(() => import('./Mark/Mark'));
 const ToolsPage = lazy(() => import('./Tools/Tools'));
 const StructurePage = lazy(() => import('../pages/Structure'));
 const RulesPage = lazy(() => import('./Rules/Rules'));
@@ -89,7 +89,7 @@ export default function App () {
             <Route path="" element={<IndicatorsPage />} />
             <Route path="payments" element={<PaymentsPage />} />
             <Route path="subscriptions" element={<SubscriptionsPage />} />
-            <Route path="account" element={<AccountPage />} />
+            <Route path="mark" element={<MarkPage />} />
             <Route path="tools" element={<ToolsPage />} />
             <Route path="team" element={<StructurePage />} />
             <Route path="rules" element={<RulesPage />} />

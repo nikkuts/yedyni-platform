@@ -2,7 +2,7 @@ export const selectDonats = state => state.payments.donats;
 
 export const selectSubscriptions = state => state.payments.subscriptions;
 
-export const selectAccount = state => state.payments.account;
+export const selectMark = state => state.payments.mark;
 
 export const selectTotalPages = state => state.payments.totalPages;
 
