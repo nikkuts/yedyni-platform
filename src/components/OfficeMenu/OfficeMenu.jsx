@@ -1,15 +1,21 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { logOut } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks';
+import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators } from '../../redux/partners/selectors';
 import { ReactComponent as LogOut } from '../../icons/log-out.svg';
 import css from './OfficeMenu.module.css';
 
 export const OfficeMenu = () => {
+  const dispatch = useDispatch();
   const {user} = useAuth();
   const {levelSupport} = useSelector(selectIndicators);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIndicators()); 
+  }, [dispatch]);
 
   return (  
 <>
@@ -19,7 +25,7 @@ export const OfficeMenu = () => {
         <li className={css.userName}>{user.name}</li>
         <li className={css.userEmail}>{user.email}</li>
         <li className={css.userLevel}>
-          Рівень підтримки: 
+          Рівень стабільності підтримки: 
           <span className={css.userLevelNum}> {levelSupport.toFixed(2)}</span>
         </li>
       </ul>
@@ -49,7 +55,7 @@ export const OfficeMenu = () => {
               to="bonus"
               className={css.link}
           >
-              Бонусна програма
+              Програма підтримки
           </Link>
         </li>
         <li>

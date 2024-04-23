@@ -29,7 +29,7 @@ export const BonusMenu = () => {
     return (
         <>
             <div className={css.bonusWrapper}>
-                <h1 className={css.title}>Бонусна програма</h1>
+                <h1 className={css.title}>Програма підтримки</h1>
                 <ul className={css.bonusNav}>
                     <li>
                         <Link 

@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../Navigation/Navigation';
-import { getIndicators } from '../../redux/partners/operations';
 import { OfficeMenu } from '../OfficeMenu/OfficeMenu';
 import { useAuth } from '../../hooks';
 import { ReactComponent as Favicon } from '../../icons/favicon.svg';
@@ -13,7 +11,6 @@ import css from './UserMenu.module.css';
 
 export const UserMenu = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const {user} = useAuth();
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -28,10 +25,6 @@ export const UserMenu = () => {
   const toggleMenu = () => {
     setMenuVisible((prevVisible) => !prevVisible);
   };
-
-  useEffect(() => {
-    dispatch(getIndicators()); 
-  }, [dispatch]);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);

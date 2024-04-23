@@ -1,15 +1,19 @@
-import { Suspense } from 'react';
-import { useSelector } from "react-redux";
+import { useEffect, Suspense } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Outlet } from 'react-router-dom';
+import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
-// import { useAuth } from 'hooks';
 import css from './Home.module.css';
 
 export default function Home () {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-//   const {user} = useAuth();
   const indicators = useSelector(selectIndicators);
   const isLoading = useSelector(selectIsLoading);
+
+    useEffect(() => {
+        dispatch(getIndicators());
+    }, [dispatch]);
 
     return (
       <>
@@ -19,9 +23,9 @@ export default function Home () {
             <h1 className={css.titleHome}>
                 Мій українськомовний слід разом із Єдиними
             </h1>
-            <div className={css.wrapperTrace}>
-                <div className={css.trace}>
-                    {indicators.totalDonat || ''}
+            <div className={css.wrapperMark}>
+                <div className={css.mark}>
+                    {indicators.ukrainianMark || ''}
                 </div>
                 <span className={css.points}>балів</span>
             </div>
@@ -38,7 +42,12 @@ export default function Home () {
                 </thead>
                 <tbody>
                 <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Пройдений курс з отриманням сертифікату від проєкту “Єдині”</span></td>
+                    <td className={css.tdChild1}><span className={css.child1}>Реєстрація на платформі</span></td>
+                    <td className={css.tdChild2}>40</td>
+                    <td className={css.tdChild3}></td>
+                </tr>
+                <tr className={css.tr}>
+                    <td className={css.tdChild1}><span className={css.child1}>Завершений курс з отриманням сертифікату від проєкту “Єдині”</span></td>
                     <td className={css.tdChild2}>400</td>
                     <td className={css.tdChild3}>
                         <button type="button"
@@ -50,13 +59,8 @@ export default function Home () {
                     </td>
                 </tr>
                 <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Проходження тестування</span></td>
-                    <td className={css.tdChild2}>сума набраних балів</td>
-                    <td className={css.tdChild3}></td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Організація розмовного клубу</span></td>
-                    <td className={css.tdChild2}>4000</td>
+                    <td className={css.tdChild1}><span className={css.child1}>Організація зустрічі розмовного клубу</span></td>
+                    <td className={css.tdChild2}>400</td>
                     <td className={css.tdChild3}>
                         <button type="button"
                         onClick={() => navigate("clubs")} 
@@ -67,8 +71,8 @@ export default function Home () {
                     </td>
                 </tr>
                 <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Проведення зустрічі розмовного клубу</span></td>
-                    <td className={css.tdChild2}>400</td>
+                    <td className={css.tdChild1}><span className={css.child1}>Проходження тестувань</span></td>
+                    <td className={css.tdChild2}>сума набраних балів</td>
                     <td className={css.tdChild3}></td>
                 </tr>
                 <tr className={css.tr}>
@@ -96,11 +100,11 @@ export default function Home () {
                     </td>
                 </tr>
                 <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Пройдений курс учасником моєї команди</span></td>
+                    <td className={css.tdChild1}><span className={css.child1}>Завершений курс учасником моєї команди</span></td>
                     <td className={css.tdChild2}>400</td>
                     <td className={css.tdChild3}></td>
                 </tr>
-                <tr className={css.tr}>
+                {/* <tr className={css.tr}>
                     <td className={css.tdChild1}><span className={css.child1}>Отримання винагороди у бонусній програмі</span></td>
                     <td className={css.tdChild2}>сума отриманих бонусів</td>
                     <td className={css.tdChild3}>
@@ -111,7 +115,7 @@ export default function Home () {
                         Детальніше
                         </button>
                     </td>
-                </tr>
+                </tr> */}
                 <tr className={css.tr}>
                     <td className={css.tdChild1}><span className={css.child1}>Участь у олімпіаді</span></td>
                     <td className={css.tdChild2}>сума призових балів</td>

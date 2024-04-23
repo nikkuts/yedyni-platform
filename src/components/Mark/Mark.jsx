@@ -38,7 +38,7 @@
         <>
           <div>{isLoading && <b>Завантаження даних...</b>}</div> 
           <div>
-            <h2 className={css.title}>Історія українськомовного сліду</h2>
+            <h2 className={css.title}>Історія мого українськомовного сліду</h2>
             <DateRange />
             <div className={css.tableHistory}>
                 <table className={css.table}>

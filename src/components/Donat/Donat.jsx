@@ -15,7 +15,8 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
 export default function Donat () {
   const apiPayEndpoint = API_PAY_ENDPOINT;
 
-  const [checkboxSubscription, setCheckboxSubscription] = useState(false);
+  const [checkboxSubscription, setCheckboxSubscription] = useState(true);
+  const [checkboxOnce, setCheckboxOnce] = useState(false);
   const [checkboxOfertaAgreed, setCheckboxOfertaAgreed] = useState(false);
   const [currentAmount, setCurrentAmount] = useState('');
   
@@ -26,8 +27,9 @@ export default function Donat () {
     setCurrentAmount(e.target.value);
   }
 
-  const toggleCheckboxSubscription = () => {
+  const toggleCheckboxType = () => {
     setCheckboxSubscription(!checkboxSubscription);
+    setCheckboxOnce(!checkboxOnce);
   };
 
   const toggleCheckboxOferta = () => {
@@ -136,30 +138,49 @@ export default function Donat () {
       <form onSubmit={handleSubmit} className={css.formDonat}>
         <ul className={css.listForm}>
           <li className={css.checkBox}>
-            <div 
-              onClick={toggleCheckboxSubscription} 
-            >
-              {checkboxSubscription ? <CheckSquare/> : <Square/>} 
-            </div>
-            <label className={css.text}>
-              Я погоджуюсь на щомісячний внесок 
-            </label>
+            <ul>
+              <li className={css.checkBox}>
+                <div 
+                  onClick={toggleCheckboxType} 
+                >
+                {checkboxSubscription ? <CheckSquare/> : <Square/>} 
+                </div>
+                <label className={css.text}>
+                  Щомісячний внесок 
+                </label>
+              </li>
+              <li className={css.checkBox}>
+                <div 
+                  onClick={toggleCheckboxType} 
+                >
+                {checkboxOnce ? <CheckSquare/> : <Square/>} 
+                </div>
+                <label className={css.text}>
+                  Разовий внесок 
+                </label>
+              </li>
+            </ul>
           </li>
           <li>
             <label className={css.label}>
               Введіть бажану суму у гривнях кратну 40
             </label>
-            <input className={css.input}
-              type="number"
-              name="amount"
-              value={currentAmount}
-              placeholder='320'
-              onChange={handleCurrentAmount}
-            />
+            <div className={css.wrapperInput}>
+              <input className={css.input}
+                type="number"
+                name="amount"
+                value={currentAmount}
+                placeholder='480'
+                onChange={handleCurrentAmount}
+              />
+              <span className={css.uah}>
+                {checkboxSubscription ? 'грн/міс' : 'грн'}
+              </span>
+            </div>
           </li>
           <li>
             <label className={css.label}>
-              Мій новий рівень підтримки
+              Мій новий рівень стабільності підтримки
             </label>
             <div className={css.levelNum}>
               {currentAmount !== '' && getNewLevelSupport(totalTime, totalDonat, currentAmount).toFixed(2)}

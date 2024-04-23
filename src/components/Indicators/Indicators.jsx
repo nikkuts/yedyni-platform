@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Outlet } from 'react-router-dom';
 import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
-import { toogleModal } from '../../redux/modal/modalSlice';
-import { selectModal } from '../../redux/modal/selectors';
-import { Withdrawal } from '../Withdrawal/Withdrawal';
+// import { toogleModal } from '../../redux/modal/modalSlice';
+// import { selectModal } from '../../redux/modal/selectors';
+// import { Withdrawal } from '../Withdrawal/Withdrawal';
 import { ReactComponent as Info } from '../../icons/info.svg';
 import css from './Indicators.module.css';
 
@@ -14,7 +14,7 @@ export default function Indicators () {
   const navigate = useNavigate();
   const indicators = useSelector(selectIndicators);
   const isLoading = useSelector(selectIsLoading);
-  const isModalOpen = useSelector(selectModal);
+  // const isModalOpen = useSelector(selectModal);
 
     useEffect(() => {
         dispatch(getIndicators());
@@ -33,6 +33,12 @@ export default function Indicators () {
                   <td className={css.tdChild2}>{indicators.ukrainianMark}</td>
                   <td className={css.tdChild3}>
                     <button type="button"
+                      onClick={() => navigate("mark")}  
+                      className={css.button}
+                    >
+                      Детальніше
+                    </button>
+                    {/* <button type="button"
                       onClick={() => dispatch(toogleModal())} 
                       className={css.button}
                     >
@@ -40,7 +46,7 @@ export default function Indicators () {
                     </button>
                     { isModalOpen && 
                     <Withdrawal />
-                    }  
+                    }   */}
                   </td>
               </tr>
               <tr className={css.tr}>

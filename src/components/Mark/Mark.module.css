@@ -27,23 +27,18 @@
 
 .table th:nth-child(1),
 .table td:nth-child(1),
-.table th:nth-child(3),
-.table td:nth-child(3) {
+.table th:nth-child(2),
+.table td:nth-child(2) {
   /* Стилі для стовпців 1, 2, 5 та 6 */
   width: auto; /* Ширина встановлюється автоматично згідно з контентом */
 }
 
-.table th:nth-child(2),
-.table td:nth-child(2) {
-  width: 100px; /* Фіксована ширина для решти стовпців */
+.table th:nth-child(3),
+.table td:nth-child(3) {
+  width: 200px; /* Фіксована ширина для решти стовпців */
 }
 
 .table th:nth-child(4),
 .table td:nth-child(4) {
-  width: 200px; /* Фіксована ширина для решти стовпців */
-}
-
-.table th:nth-child(5),
-.table td:nth-child(5) {
   width: 100px; /* Фіксована ширина для решти стовпців */
 }
