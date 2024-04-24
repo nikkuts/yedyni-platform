@@ -70,26 +70,27 @@
 }
 
 .button {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
     margin: auto;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 0 20px;
-    width: 200px;
-    height: 50px;
-    text-align: center;
-    text-overflow: ellipsis;
     font-size: 16px;
     font-weight: 700;
     line-height: calc(16/14);
     overflow: hidden;
+    text-overflow: ellipsis;
     outline: none;
     cursor: pointer;
     color: #000000;
-    background-color: rgb(255, 255, 0);
+    background-color: rgb(255, 244, 0);
   }
   
   .button:hover,
   .button:focus {
-    background-color: rgb(228, 228, 0);
+    color: #0d30f5;
+    background-color: rgb(255, 255, 0);
   }

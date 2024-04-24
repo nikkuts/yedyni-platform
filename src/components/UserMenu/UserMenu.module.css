@@ -64,11 +64,11 @@
 
   .button {
     display: inline-block;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 0 20px;
     width: auto;
     height: 50px;
+    padding: 0 20px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
     text-align: center;
     text-overflow: ellipsis;
     font-size: 16px;
@@ -78,11 +78,11 @@
     outline: none;
     cursor: pointer;
     color: #000000;
-    background-color: rgb(255, 255, 0);
+    background-color: rgb(255, 244, 0);
   }
   
   .button:hover,
   .button:focus {
-    /* color: #0d30f5; */
-    background-color: rgb(228, 228, 0);
+    color: #0d30f5;
+    background-color: rgb(255, 255, 0);
   }

@@ -1,8 +1,9 @@
 import { useEffect, Suspense } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Outlet } from 'react-router-dom';
+import { Link, useNavigate, Outlet } from 'react-router-dom';
 import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
+import { setCurrentRange } from "../../redux/payments/rangeSlice";
 // import { toogleModal } from '../../redux/modal/modalSlice';
 // import { selectModal } from '../../redux/modal/selectors';
 // import { Withdrawal } from '../Withdrawal/Withdrawal';
@@ -32,12 +33,19 @@ export default function Indicators () {
                   <td className={css.tdChild1}>Мій українськомовний слід, балів</td>
                   <td className={css.tdChild2}>{indicators.ukrainianMark}</td>
                   <td className={css.tdChild3}>
-                    <button type="button"
+                    {/* <button type="button"
                       onClick={() => navigate("mark")}  
                       className={css.button}
                     >
                       Детальніше
-                    </button>
+                    </button> */}
+                    <Link 
+                        onClick={() => dispatch(setCurrentRange())} 
+                        to="mark"
+                        className={css.button}
+                    >
+                        Детальніше
+                    </Link>
                     {/* <button type="button"
                       onClick={() => dispatch(toogleModal())} 
                       className={css.button}
