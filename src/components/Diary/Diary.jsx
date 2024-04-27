@@ -1,24 +1,29 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import DatePicker, {registerLocale} from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addExercise, updateExercise } from '../../redux/exercises/operations';
-import { selectCurrentLesson, selectExercise } from '../../redux/exercises/selectors';
+import { addDiary, updateDiary } from '../../redux/diary/operations';
+import { selectDiary } from '../../redux/diary/selectors';
+import { selectCurrentLesson } from '../../redux/exercises/selectors';
 import css from './Diary.module.css';
 
-export default function Diary ({courseId, lessonId}) {
+export default function Diary () {
     registerLocale('uk', uk)
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
+  const {courseId, lessonId} = useParams();  
 
-  const {homework} = useSelector(selectExercise);
+  const {date, test, entry, plan} = useSelector(selectDiary);
   const currentLesson = useSelector(selectCurrentLesson);
-  const [textInput, setTextInput] = useState(homework);
+  
+  const [dateInput, setDateInput] = useState(date);
+  const [testInput, setTestInput] = useState(test);
+  const [entryInput, setEntryInput] = useState(entry);
+  const [planInput, setPlanInput] = useState(plan);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
-  const [dateInput, setDateInput] = useState('');
-  const [testInput, setTestInput] = useState('');
 
   const handleDateInputChange = date => {
     setDateInput(date);
@@ -28,9 +33,22 @@ export default function Diary ({courseId, lessonId}) {
     setTestInput(e.target.value);
   };
 
-  const handleTextChange = (e) => {
-    setTextInput(e.target.value);
+  const handleEntryChange = (e) => {
+    setEntryInput(e.target.value);
     setIsActiveTextarea(true);
+  };
+
+  const handlePlanChange = (e) => {
+    setPlanInput(e.target.value);
+    setIsActiveTextarea(true);
+  };
+
+  const isTestValid = (num) => {
+    if (Math.floor(num) !== Math.ceil(num) || num < 0 || num > 10) {
+      alert('Поле "Тест" повинно містити ціле значення від 0 до 10.');
+      return false;
+    }
+    return true;
   };
 
   const isTextValid = (text) => {
@@ -43,24 +61,31 @@ export default function Diary ({courseId, lessonId}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    const formData = new FormData();
-    formData.append('courseId', courseId);
-    formData.append('lessonId', lessonId);
+   
+    const data = {
+      courseId,
+      lessonId,
+    }
 
-    if (!isTextValid(textInput)) {
+    if (!isTestValid(testInput) || !isTextValid(entryInput) || !isTextValid(planInput)) {
       return;
     }
 
-    formData.append('homework', textInput);
+    if (testInput) {
+      data.test = testInput;
+    }
+
+    data.date = dateInput;
+    data.entry = entryInput;
+    data.plan = planInput;
   
-    if (homework === '') {
+    if (!test && entry === '' && plan === '') {
       dispatch(
-        addExercise(formData)
+        addDiary(data)
       );
     } else {
       dispatch(
-        updateExercise(formData)
+        updateDiary(data)
       );
     }
     setIsActiveTextarea(false);
@@ -116,8 +141,12 @@ export default function Diary ({courseId, lessonId}) {
                 Тест:
             </Form.Label>
             <Form.Control 
-            as="input"   
-            value={testInput} 
+            as="input"
+            type="number"   
+            value={testInput}
+            min={0}
+            max={10}
+            step={1}
             onChange={handleTestInputChange}
             className={css.inputTest} 
             />
@@ -136,8 +165,8 @@ export default function Diary ({courseId, lessonId}) {
           <Form.Control 
             as="textarea" rows={4} 
             placeholder="Введіть текст" 
-            value={textInput} 
-            onChange={handleTextChange}
+            value={entryInput} 
+            onChange={handleEntryChange}
             className={css.textarea} 
           />
         </Form.Group>
@@ -151,8 +180,8 @@ export default function Diary ({courseId, lessonId}) {
           <Form.Control 
             as="textarea" rows={4} 
             placeholder="Введіть текст" 
-            value={textInput} 
-            onChange={handleTextChange}
+            value={planInput} 
+            onChange={handlePlanChange}
             className={css.textarea} 
           />
         </Form.Group>

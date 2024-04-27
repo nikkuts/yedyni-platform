@@ -4,6 +4,7 @@ import courses from "../courses.json";
 import css from './Course.module.css';
 import { useDispatch } from "react-redux";
 import { getExercise } from '../../redux/exercises/operations';
+import { getDiary } from '../../redux/diary/operations';
 import { getDifferenceInDays } from '../../service/handleDate';
 import { changeLesson } from '../../redux/exercises/lessonSlice';
 
@@ -18,7 +19,8 @@ export default function Course () {
 
     useEffect(() => {
         dispatch(changeLesson(initialLesson));
-        dispatch(getExercise({courseId, lessonId: initialLesson.day}));      
+        dispatch(getExercise({courseId, lessonId: initialLesson.day}));
+        dispatch(getDiary({courseId, lessonId: initialLesson.day}));      
     }, [dispatch, courseId, initialLesson]);
 
     if (!currentCourse) {
@@ -62,7 +64,8 @@ export default function Course () {
                             <Link
                                 onClick={() => {
                                     dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}))
+                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
+                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
                                 }}
                                 to={`${lesson.day}`}
                                 className={css.link}
@@ -79,7 +82,8 @@ export default function Course () {
                             <Link
                                 onClick={() => {
                                     dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}))
+                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
+                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
                                 }}
                                 to={`${lesson.day}`}
                                 className={css.link}
@@ -96,7 +100,8 @@ export default function Course () {
                             <Link
                                 onClick={() => {
                                     dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}))
+                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
+                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
                                 }}
                                 to={`${lesson.day}`}
                                 className={css.link}
@@ -113,7 +118,8 @@ export default function Course () {
                             <Link
                                 onClick={() => {
                                     dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}))
+                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
+                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
                                 }}
                                 to={`${lesson.day}`}
                                 className={css.link}
