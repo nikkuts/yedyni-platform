@@ -71,11 +71,8 @@ export default function Diary () {
       return;
     }
 
-    if (testInput) {
-      data.test = testInput;
-    }
-
     data.date = dateInput;
+    data.test = testInput;
     data.entry = entryInput;
     data.plan = planInput;
   
