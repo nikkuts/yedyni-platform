@@ -92,7 +92,7 @@ export default function Home () {
                     <td className={css.tdChild2}>40</td>
                     <td className={css.tdChild3}>
                         <button type="button"
-                        onClick={() => navigate("bonus/tools")}  
+                        onClick={() => navigate("bonus/team")}  
                         className={css.button}
                         >
                         Детальніше

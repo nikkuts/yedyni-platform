@@ -66,14 +66,6 @@ export const BonusMenu = () => {
                     </li>
                     <li>
                         <Link 
-                            to="tools"
-                            className={css.bonusLink}
-                        >
-                            Інструменти
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
                             to="team"
                             className={css.bonusLink}
                         >

@@ -1,9 +1,9 @@
 import { useEffect, lazy } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from 'react-router-dom';
-import { LendingLayout } from './LendingLayout';
-import { HomeLayout } from "./HomeLayout";
-import { BonusLayout } from "./BonusLayout";
+import { LendingLayout } from '../pages/LendingLayout';
+import { HomeLayout } from "../pages/HomeLayout";
+import { BonusLayout } from "../pages/BonusLayout";
 import { refreshUser } from '../redux/auth/operations';
 import { useAuth } from '../hooks';
 import { RestrictedRoute } from "./RestrictedRoute";
@@ -21,8 +21,7 @@ const IndicatorsPage = lazy(() => import('./Indicators/Indicators'));
 const PaymentsPage = lazy(() => import('./Payments/Payments'));
 const SubscriptionsPage = lazy(() => import('./Subscriptions/Subscriptions'));
 const MarkPage = lazy(() => import('./Mark/Mark'));
-const ToolsPage = lazy(() => import('./Tools/Tools'));
-const StructurePage = lazy(() => import('../pages/Structure'));
+const TeamPage = lazy(() => import('./Team/Team'));
 const RulesPage = lazy(() => import('./Rules/Rules'));
 const TalkClubsPage = lazy(() => import('./TalkClubs/TalkClubs'));
 const LearnPage = lazy(() => import('./Learn/Learn'));
@@ -90,8 +89,7 @@ export default function App () {
             <Route path="payments" element={<PaymentsPage />} />
             <Route path="subscriptions" element={<SubscriptionsPage />} />
             <Route path="mark" element={<MarkPage />} />
-            <Route path="tools" element={<ToolsPage />} />
-            <Route path="team" element={<StructurePage />} />
+            <Route path="team" element={<TeamPage />} />
             <Route path="rules" element={<RulesPage />} />
           </Route>
         </Route>
