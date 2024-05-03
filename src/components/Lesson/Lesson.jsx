@@ -87,7 +87,7 @@ export default function Lesson () {
                 {homework === nextHomework &&
                 <HomeworkForm 
                     courseId={courseId}
-                    lessonId={lessonId}
+                    lessonId={lessonId || currentLesson.day}
                 />
                 }
             </div>
