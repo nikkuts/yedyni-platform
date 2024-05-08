@@ -61,3 +61,47 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
       }
     }
   );
+
+  export const addComment = createAsyncThunk(
+    "exercises/addComment",
+    async (credentials, thunkAPI) => {
+      try {
+        const response = await axios.post("/api/exercises/comment", credentials);
+        return response.data; 
+      } 
+      catch (error) {
+        alert(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );
+
+  export const updateComment = createAsyncThunk(
+    "exercises/updateComment",
+    async (credentials, thunkAPI) => {
+      try {
+        const response = await axios.patch("/api/exercises/comment", credentials);
+        return response.data; 
+      } 
+      catch (error) {
+        alert(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );
+
+  export const deleteComment = createAsyncThunk(
+    "exercises/deleteComment",
+    async (params, thunkAPI) => {
+      const searchParams = new URLSearchParams(params);
+      try {
+        const response = await axios.delete(
+          `/api/exercises/comment?${searchParams.toString()}`);
+        return response.data; 
+      } 
+      catch (error) {
+        alert(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );

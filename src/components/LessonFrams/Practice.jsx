@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectCurrentLesson, selectExercise } from '../../redux/exercises/selectors';
+// import { selectCurrentLesson, selectHomeWork } from '../../redux/exercises/selectors';
 import { HomeworkForm } from '../HomeworkForm/HomeworkForm';
 
 export default function Practice () {
@@ -9,6 +10,7 @@ export default function Practice () {
 
     const currentLesson = useSelector(selectCurrentLesson);
     const { homework } = useSelector(selectExercise);
+    // const homework = useSelector(selectHomeWork);
 
     const [nextHomework, setNextHomework] = useState(homework);
 

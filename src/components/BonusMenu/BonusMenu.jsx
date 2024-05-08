@@ -72,14 +72,14 @@ export const BonusMenu = () => {
                             Команда
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link 
                             to="rules"
                             className={css.bonusLink}
                         >
                             Умови 
                         </Link> 
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </>

@@ -1,0 +1,85 @@
+.containerComments {
+    width: 100%;
+}
+
+.title {
+    font-size: 24px;
+  }
+
+.form {
+    width: 100%;
+    padding: 15px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+}
+
+.groupTextarea {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.userName {
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #dfdddd;
+    border-radius: 20px;
+    outline: none;
+    resize: vertical;
+}
+
+.textarea::placeholder {
+    color: rgba(0, 0, 0, 0.7); 
+}
+
+.text {
+    padding-top: 5px;
+    font-size: 12px;
+    color: rgb(228, 58, 58);
+}
+
+.primaryBtn {
+    display: block;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: calc(16/14);
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    color: #000000;
+    background-color: rgb(255, 244, 0);
+  }
+  
+  .primaryBtn:hover,
+  .primaryBtn:focus {
+    background-color: rgb(228, 228, 0);
+  }
+
+  .primaryBtn[disabled] {
+    /* Стилі для кнопки, яка має атрибут disabled */
+    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
+    cursor: not-allowed; /* Зміна курсора на not-allowed */
+    pointer-events: none; /* Відключення можливості клікати на кнопку */
+}

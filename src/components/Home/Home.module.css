@@ -10,6 +10,12 @@
     margin-bottom: 40px;
 }
 
+.num {
+    color: #ff8800;
+    font-weight: 700;
+    color: #0d30f5;
+}
+
 .wrapperMark {
     position: relative;
     display: flex;
@@ -26,8 +32,9 @@
 
 .mark {
     font-size: 28px;
+    font-weight: 700;
     text-align: center;
-    color: #0d30f5;
+    color: #ff8800;
 }
 
 .points {

@@ -29,7 +29,7 @@ export default function Home () {
                 </div>
                 <span className={css.points}>балів</span>
             </div>
-            <p className={css.description}>Цей показник у загальному відображає рівень моєї причетності до реалізації цілей проєкту “Єдині”. А саме, перейти на українську та допомогти це зробити іншим українцям.</p>
+            <p className={css.description}>Цей показник у загальному відображає рівень моєї причетності до реалізації цілей проєкту “Єдині”. А саме, перейти на українську та допомогти це зробити <span className={css.num}>1 000 000</span> українців.</p>
             <p className={css.titleTable}>Завдяки яким досягненням зростає мій українськомовний слід разом із Єдиними?</p>
             <div className={css.tableTrace}>
             <table className={css.table}>

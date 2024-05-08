@@ -37,6 +37,23 @@ export const formatDate = (date) => {
   return `${day}-${month}-${year}`;
 };
 
+export const formatDateTime = (milliseconds) => {
+  const date = new Date(milliseconds);
+  
+  // Отримання назви місяця українською мовою та в родовому відмінку
+  const monthNames = new Intl.DateTimeFormat('uk-UA', { month: 'long', day: 'numeric' }).formatToParts(date);
+  const month = monthNames.find(part => part.type === 'month').value;
+  
+  // Отримання числа місяця
+  const day = date.getDate();
+  
+  // Отримання годин та хвилин
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  
+  return `${hours}:${minutes}, ${day} ${month}`;
+};
+
 export const getNextPaymentDate = (lastPaymentDate) => {
   const objDate = new Date(lastPaymentDate);
   const kyivObjDate = new Date(objDate.toLocaleString('en-US', { timeZone: 'Europe/Kiev' }));

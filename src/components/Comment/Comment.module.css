@@ -1,0 +1,214 @@
+.containerComment {
+    position: relative;
+    width: 100%;
+    padding: 10px 40px;
+    margin-top: 20px;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+    overflow-wrap: break-word;
+}
+
+.comment {
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 0px;
+}
+
+.author {
+    color: #555;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 0px;
+}
+
+.date {
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+.icon {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 5px;
+    right: 5px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon:hover,  
+.icon:focus,
+.icon:active {
+    background-color: rgb(245, 245, 245);
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 5px;
+    right: 5px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close:hover,  
+.close:focus,
+.close:active {
+    background-color: rgb(245, 245, 245);
+}
+
+.menu {
+    position: absolute;
+    display: block;
+    width: 150px;
+    top: 34px;
+    right: 0;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+    z-index: 100;
+}
+
+.menuLink {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 34px;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2a363b;   
+}
+  
+.menuLink:hover,  
+.menuLink:focus,
+.menuLink:active {
+    background-color: rgb(245, 245, 245);
+}
+
+.title {
+    font-size: 24px;
+  }
+
+.form {
+    position: relative;
+    width: 100%;
+    padding: 15px 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+}
+
+.groupTextarea {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.userName {
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #dfdddd;
+    border-radius: 20px;
+    outline: none;
+}
+
+.textarea::placeholder {
+    color: rgba(0, 0, 0, 0.7); 
+}
+
+.text {
+    padding-top: 5px;
+    font-size: 12px;
+    color: rgb(228, 58, 58);
+}
+
+.wrapperBtn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+.primaryBtn {
+    display: block;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: calc(16/14);
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    color: #000000;
+    background-color: rgb(255, 244, 0);
+  }
+  
+  .primaryBtn:hover,
+  .primaryBtn:focus {
+    background-color: rgb(228, 228, 0);
+  }
+
+  .primaryBtn[disabled] {
+    /* Стилі для кнопки, яка має атрибут disabled */
+    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
+    cursor: not-allowed; /* Зміна курсора на not-allowed */
+    pointer-events: none; /* Відключення можливості клікати на кнопку */
+    }
+
+  .cancelBtn {
+    display: block;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    padding: 10px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: calc(16/14);
+    overflow: hidden;
+    outline: none;
+    border: 1px solid #dfdddd;
+    cursor: pointer;
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+  .cancelBtn:hover,
+  .cancelBtn:focus {
+    border: none;
+    background-color: rgb(255, 244, 0);
+  }
