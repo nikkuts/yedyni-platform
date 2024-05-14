@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { CommentsList } from '../CommentsList/CommentsList';
 import { addExercise, updateExercise, deleteFile } from '../../redux/exercises/operations';
 import { selectExercise } from '../../redux/exercises/selectors';
-// import { selectHomeWork, selectFileUrl } from '../../redux/exercises/selectors';
 import { BASE_CLIENT_URL } from '../../constants';
 import css from './HomeworkForm.module.css';
 
@@ -15,8 +15,6 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   const currentURL = location.pathname; 
 
   const {homework, fileURL} = useSelector(selectExercise);
-  // const homework = useSelector(selectHomeWork);
-  // const fileURL = useSelector(selectFileUrl);
   const [textInput, setTextInput] = useState(homework);
   const [fileInput, setFileInput] = useState(null);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
@@ -193,6 +191,10 @@ export const HomeworkForm = ({courseId, lessonId}) => {
           </Button>
         </div>        
       </Form>
+      <CommentsList 
+        courseId={courseId}
+        lessonId={lessonId}
+      />
     </>
   ) 
 };

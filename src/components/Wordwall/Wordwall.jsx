@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { toogleModal } from '../../redux/modal/modalSlice';
-import css from './Exercise.module.css';
+import css from './Wordwall.module.css';
 
 export const Exercise = ({exercise}) => {
     const dispatch = useDispatch()

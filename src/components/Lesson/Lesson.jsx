@@ -3,12 +3,10 @@ import { useSelector,useDispatch } from 'react-redux';
 import { Suspense } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { selectExercise } from '../../redux/exercises/selectors';
-// import { selectHomeWork } from '../../redux/exercises/selectors';
 import { toogleModal } from '../../redux/modal/modalSlice';
 import { selectModal } from '../../redux/modal/selectors';
 import { Test } from '../Test/Test';
 import { HomeworkForm } from '../HomeworkForm/HomeworkForm';
-import { CommentsList } from '../CommentsList/CommentsList';
 import { getDifferenceInDays } from '../../service/handleDate';
 import courses from "../courses.json";
 import css from './Lesson.module.css';
@@ -18,7 +16,6 @@ export default function Lesson () {
     const dispatch = useDispatch();
     const isModalOpen = useSelector(selectModal);
     const { homework } = useSelector(selectExercise);
-    // const homework = useSelector(selectHomeWork);
     const [nextHomework, setNextHomework] = useState(homework);
     const [isLessonId, setIsLessonId] = useState(true);
 
@@ -88,16 +85,10 @@ export default function Lesson () {
                     />
                 )}
                 {homework === nextHomework &&
-                <>
                 <HomeworkForm 
                     courseId={courseId}
                     lessonId={lessonId || currentLesson.day}
                 />
-                <CommentsList 
-                    courseId={courseId}
-                    lessonId={lessonId || currentLesson.day}
-                />
-                </>
                 }
             </div>
             }

@@ -1,0 +1,28 @@
+.containerMessages {
+    min-height: calc(100vh - 50px);
+    padding: 30px;
+}
+
+.title {
+    font-size: 24px;
+    text-align: left;
+    padding-bottom: 30px;
+}
+
+.link {
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 2;
+}
+
+.link:hover,  
+.link:focus {
+    color: #0d30f5;
+}
+
+.date {
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 40px;
+}

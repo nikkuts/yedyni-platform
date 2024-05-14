@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { addComment } from '../../redux/exercises/operations';
 import { selectExercise } from '../../redux/exercises/selectors';
-// import { selectComments } from '../../redux/exercises/selectors';
 import { useAuth } from '../../hooks';
 import css from './CommentsList.module.css';
 
@@ -13,7 +12,6 @@ export const CommentsList = ({courseId, lessonId}) => {
   const dispatch = useDispatch();
   const {user} = useAuth();  
   const {comments} = useSelector(selectExercise);
-  // const comments = useSelector(selectComments);
   const [textInput, setTextInput] = useState('');
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
