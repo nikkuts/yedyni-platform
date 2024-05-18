@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useAuth } from '../../hooks';
 import { updateComment, deleteComment } from '../../redux/exercises/operations';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
@@ -12,14 +13,15 @@ import { ReactComponent as Trash } from '../../icons/trash.svg';
 import { formatDateTime } from '../../service/handleDate';
 import css from './Comment.module.css';
 
-export const Comment = ({comment, courseId, lessonId}) => {
+export const Comment = ({comment, exerciseId}) => {
   const dispatch = useDispatch(); 
   const [textInput, setTextInput] = useState(comment.comment);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
     
-  const commentMenuRef = useRef();
+  const textMenuRef = useRef();
+  const {user} = useAuth();
 
   const handleTextChange = (e) => {
     const eText = e.target.value;
@@ -39,9 +41,8 @@ export const Comment = ({comment, courseId, lessonId}) => {
     e.preventDefault();
     
     const data = {
-        courseId, 
-        lessonId,
-        author: comment.author,
+        exerciseId,
+        // author: comment.author,
         comment: textInput,
         commentId: comment._id,
     };
@@ -53,7 +54,7 @@ export const Comment = ({comment, courseId, lessonId}) => {
   };
 
     const handleClickOutside = (e) => {
-        if (commentMenuRef.current && !commentMenuRef.current.contains(e.target)) {
+        if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {
         setMenuVisible(false);
         }
     };
@@ -93,9 +94,10 @@ export const Comment = ({comment, courseId, lessonId}) => {
         {!isActiveTextarea ?
         <div className={css.containerComment}>
             <p className={css.comment}>{comment.comment}</p>
-            <p className={css.author}>{comment.author} <span className={css.date}>{formatDateTime(comment.date)}</span></p>
+            <p className={css.author}>{comment.author.name} <span className={css.date}>{formatDateTime(comment.date)}</span></p>
+            {user.id === comment.author._id &&
             <div
-                ref={commentMenuRef}
+                ref={textMenuRef}
                 onClick={toggleMenu} 
                 className={css.icon}
             >
@@ -114,9 +116,8 @@ export const Comment = ({comment, courseId, lessonId}) => {
                         <li>
                             <Link 
                                 onClick={() => dispatch(deleteComment({
-                                    courseId, 
-                                    lessonId,
-                                    commentId: comment._id,    
+                                  exerciseId,
+                                  commentId: comment._id,    
                                 }))} 
                                 className={css.menuLink}
                             >
@@ -127,6 +128,7 @@ export const Comment = ({comment, courseId, lessonId}) => {
                     </ul>
                 }
             </div>
+            }
         </div>
        :
         <Form onSubmit={handleSubmit} className={css.form}>
@@ -141,7 +143,7 @@ export const Comment = ({comment, courseId, lessonId}) => {
             className={css.groupTextarea} 
             >
               <Form.Label className={css.userName}>
-                  {comment.author}
+                  {comment.author.name}
               </Form.Label>
               <div>
                 <Form.Control 
@@ -180,6 +182,5 @@ export const Comment = ({comment, courseId, lessonId}) => {
 
 Comment.propTypes = {
     comment: PropTypes.object,
-    courseId: PropTypes.string.isRequired,
-    lessonId: PropTypes.string.isRequired,
+    exerciseId: PropTypes.string.isRequired,
 };

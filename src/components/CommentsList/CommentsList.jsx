@@ -8,10 +8,10 @@ import { selectExercise } from '../../redux/exercises/selectors';
 import { useAuth } from '../../hooks';
 import css from './CommentsList.module.css';
 
-export const CommentsList = ({courseId, lessonId}) => {
+export const CommentsList = () => {
   const dispatch = useDispatch();
   const {user} = useAuth();  
-  const {comments} = useSelector(selectExercise);
+  const {_id, comments} = useSelector(selectExercise);
   const [textInput, setTextInput] = useState('');
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
@@ -34,9 +34,8 @@ export const CommentsList = ({courseId, lessonId}) => {
     e.preventDefault();
     
     const data = {
-        courseId, 
-        lessonId,
-        author: user.name,
+        exerciseId: _id,
+        // author: user.id,
         comment: textInput,
     };
   
@@ -104,8 +103,7 @@ export const CommentsList = ({courseId, lessonId}) => {
             <Comment 
             key={comment._id}
             comment={comment}
-            courseId={courseId}
-            lessonId={lessonId}
+            exerciseId={_id}
             />
         ))}
       </ul>

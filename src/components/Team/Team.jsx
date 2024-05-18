@@ -27,7 +27,7 @@ export default function Team() {
 
     return (
       <div className={css.containerTeam}>
-        <h1>Поклич друзів разом опановувати українську та сформуй свою команду!</h1>
+        <h1 className={css.title}>Поклич друзів разом опановувати українську та сформуй свою команду!</h1>
         <div className={css.wrapperRef}>
         <h2 className={css.refLink}>Запрошувальне покликання</h2>
         <CopyUrl url={`${BASE_CLIENT_URL}?x=${user.id}`} />
@@ -43,7 +43,7 @@ export default function Team() {
                   <SkipBack />
                 </div>
               }
-              <h2 className={css.title}>Команда</h2>
+              <h2 className={css.subtitle}>Команда</h2>
               <ul className={css.userInfo}>
                 <li className={css.userName}>{partner.name}</li>
                 <li className={css.userEmail}>{partner.email}</li>

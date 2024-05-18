@@ -5,6 +5,8 @@ import { logOut } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks';
 import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators } from '../../redux/partners/selectors';
+import { getMessages } from '../../redux/exercises/operations';
+import { selectCountMessages, selectIsLoading } from '../../redux/exercises/selectors';
 import { ReactComponent as LogOut } from '../../icons/log-out.svg';
 import css from './OfficeMenu.module.css';
 
@@ -12,13 +14,17 @@ export const OfficeMenu = () => {
   const dispatch = useDispatch();
   const {user} = useAuth();
   const {levelSupport} = useSelector(selectIndicators);
+  const countMessages = useSelector(selectCountMessages);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
-    dispatch(getIndicators()); 
+    dispatch(getIndicators());
+    dispatch(getMessages()); 
   }, [dispatch]);
 
   return (  
 <>
+  <div>{isLoading && <b>Завантаження даних...</b>}</div>
   <ul className={css.menu}>
     <li>
       <ul className={css.userInfo}>
@@ -45,7 +51,10 @@ export const OfficeMenu = () => {
               to="messages"
               className={css.link}
           >
-              Повідомлення
+              Повідомлення 
+              {countMessages && 
+                <span className={css.count}>{countMessages}</span>
+              }
           </Link>
         </li>
         <li>

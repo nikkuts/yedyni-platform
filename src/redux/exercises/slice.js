@@ -28,6 +28,7 @@ const initialState = {
       comments: [],
   },
   messages: [],
+  countMessages: null,
   isLoading: false,
   error: null,
 }
@@ -99,7 +100,8 @@ const exercisesSlice = createSlice({
     .addCase(getMessages.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.messages = action.payload || initialState.messages;
+      state.messages = action.payload.messages || initialState.messages;
+      state.countMessages = action.payload.countMessages || initialState.countMessages;
     })
     .addCase(getMessages.rejected, handleRejected)
     .addCase(getExerciseById.pending, handlePending)

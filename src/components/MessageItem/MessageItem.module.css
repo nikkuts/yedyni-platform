@@ -1,0 +1,45 @@
+.containerMessageItem {
+    min-height: calc(100vh - 50px);
+    padding: 30px;
+}
+
+.title {
+    font-size: 20px;
+    text-align: left;
+}
+
+.form {
+    width: 100%;
+    padding: 20px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.textarea {
+    padding: 15px 0;
+    font-size: 16px;
+    overflow-wrap: break-word; 
+}
+
+.link {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    color: #3754fd;   
+  }
+  
+  .link:hover,  
+  .link:focus,
+  .link:active {
+    color: #0d30f5;
+  }

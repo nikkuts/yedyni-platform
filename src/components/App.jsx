@@ -34,7 +34,7 @@ const AudioAssistantPage = lazy(() => import('./AudioAssistant/AudioAssistant'))
 const VideoMaterialsPage = lazy(() => import('./VideoMaterials/VideoMaterials'));
 const DiaryPage = lazy(() => import('./Diary/Diary'));
 const MessagesPage = lazy(() => import('./MessagesList/MessagesList'));
-const ActiveExercisePage = lazy(() => import('./MessageItem/MessageItem'));
+const MessageItemPage = lazy(() => import('./MessageItem/MessageItem'));
 
 export default function App () {
   const dispatch = useDispatch();
@@ -85,9 +85,8 @@ export default function App () {
           <Route path="olympiad" element={<OlympiadPage />} />
           <Route path="donat" element={<DonatPage />} />
           <Route path="profile" element={<ProfilePage />} />
-          <Route path="messages" element={<MessagesPage />} >
-            <Route path="active" element={<ActiveExercisePage />} />
-          </Route>
+          <Route path="messages" element={<MessagesPage />} />
+          <Route path="active" element={<MessageItemPage />} />
           <Route path="clubs" element={<TalkClubsPage />} />
           <Route path="bonus" element={<BonusLayout />} >
             <Route path="" element={<IndicatorsPage />} />

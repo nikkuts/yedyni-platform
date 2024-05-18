@@ -41,6 +41,31 @@ p {
   margin: 0;
 } */
 
+h1 {
+  color: #333;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2 {
+  color: #555;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+h3 {
+  color: #555;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+p {
+  color: #555;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 img {
   display: block;
   width: 100%;

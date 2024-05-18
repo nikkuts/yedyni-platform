@@ -1,4 +1,4 @@
-h1 {
+/* h1 {
     color: #333;
     font-size: 32px;
     font-weight: 700;
@@ -29,7 +29,7 @@ p {
     line-height: 1.5;
     font-weight: 500;
     margin-bottom: 20px; 
-}
+} */
 
 .containerBonus {
     min-height: calc(100vh - 50px);

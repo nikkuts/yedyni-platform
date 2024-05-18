@@ -1,12 +1,94 @@
 .form {
-    width: 100%;
-    padding: 20px 40px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
+  position: relative;
+  width: 100%;
+  padding: 20px 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: 1px solid #d7d2f3;
+  border-radius: 20px;
+}
+
+.label {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.text {
+  padding: 15px 0;
+  font-size: 16px;
+  overflow-wrap: break-word; 
+}
+
+.icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5px;
+  right: 5px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon:hover,  
+.icon:focus,
+.icon:active {
+  background-color: rgb(245, 245, 245);
+}
+
+.close {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 5px;
+  right: 5px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close:hover,  
+.close:focus,
+.close:active {
+  background-color: rgb(245, 245, 245);
+}
+
+.menu {
+  position: absolute;
+  display: block;
+  width: 150px;
+  top: 34px;
+  right: 0;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
+  z-index: 100;
+}
+
+.menuLink {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 34px;
+  padding-left: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2a363b;   
+}
+
+.menuLink:hover,  
+.menuLink:focus,
+.menuLink:active {
+  background-color: rgb(245, 245, 245);
 }
 
 .groupTextarea {
@@ -14,12 +96,6 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-}
-
-.label {
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
 }
 
 .textarea {
@@ -118,6 +194,13 @@
     background-color: #3793fd;
   }
 
+  .shareBtn[disabled] {
+    /* Стилі для кнопки, яка має атрибут disabled */
+    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
+    cursor: not-allowed; /* Зміна курсора на not-allowed */
+    pointer-events: none; /* Відключення можливості клікати на кнопку */
+    }
+
 .primaryBtn {
     display: block;
     border: 1px solid #ffffff;
@@ -141,3 +224,10 @@
   .primaryBtn:focus {
     background-color: rgb(228, 228, 0);
   }
+
+  .primaryBtn[disabled] {
+    /* Стилі для кнопки, яка має атрибут disabled */
+    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
+    cursor: not-allowed; /* Зміна курсора на not-allowed */
+    pointer-events: none; /* Відключення можливості клікати на кнопку */
+    }

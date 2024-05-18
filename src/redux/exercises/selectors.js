@@ -2,6 +2,8 @@ export const selectExercise = state => state.exercises.exercise;
 
 export const selectMessages = state => state.exercises.messages;
 
+export const selectCountMessages = state => state.exercises.countMessages;
+
 export const selectIsLoading = state => state.exercises.isLoading;
 
 export const selectError = state => state.exercises.error;

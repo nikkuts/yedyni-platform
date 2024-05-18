@@ -37,6 +37,20 @@
     color: #000000;
   }
 
+  .count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #ff9900;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+  }
+
 .link {
     display: flex;
     justify-content: flex-start;
