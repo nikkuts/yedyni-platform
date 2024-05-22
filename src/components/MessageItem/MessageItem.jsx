@@ -11,6 +11,7 @@ export default function MessageItem () {
   return ( 
     <>
       <div>{isLoading && <b>Завантаження даних...</b>}</div> 
+      {owner && 
       <div className={css.containerMessageItem}>
         <h2 className={css.title}>
           {owner.name}. {courseId === 'id-1' ? 'Курс переходу' : 'Граматичний курс'}. День {lessonId} 
@@ -30,6 +31,7 @@ export default function MessageItem () {
         </div>
         <CommentsList />
       </div>
+      }
     </>
   );
 };

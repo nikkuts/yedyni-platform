@@ -8,6 +8,16 @@
     overflow-wrap: break-word;
 }
 
+.specialBackground {
+    width: 100%;
+    padding: 10px 40px;
+    margin-top: 20px;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+    overflow-wrap: break-word;
+    background-color: beige;
+  }
+
 .comment {
     color: #555;
     font-size: 16px;

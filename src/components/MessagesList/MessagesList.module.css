@@ -6,7 +6,10 @@
 .title {
     font-size: 24px;
     text-align: left;
-    padding-bottom: 30px;
+}
+
+.listMessages {
+    padding: 30px 100px;
 }
 
 .link {
