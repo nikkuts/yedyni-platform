@@ -35,7 +35,6 @@ export const CommentsList = () => {
     
     const data = {
         exerciseId: _id,
-        // author: user.id,
         comment: textInput,
     };
   

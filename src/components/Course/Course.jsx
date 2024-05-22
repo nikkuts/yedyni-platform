@@ -1,31 +1,11 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import courses from "../courses.json";
 import css from './Course.module.css';
-import { useDispatch } from "react-redux";
-import { getExercise } from '../../redux/exercises/operations';
-import { getDiary } from '../../redux/diary/operations';
-import { getDifferenceInDays } from '../../service/handleDate';
-import { changeLesson } from '../../redux/exercises/lessonSlice';
 
 export default function Course () {
     const {courseId} = useParams();
     const currentCourse = courses.find(course => course.id === courseId);
-    const difference = getDifferenceInDays(currentCourse.start);
-    const initialLesson = difference > 0 && difference <= 27 ?
-        currentCourse.lessons[difference] : currentCourse.lessons[0];
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(changeLesson(initialLesson));
-        dispatch(getExercise({courseId, lessonId: initialLesson.day}));
-        dispatch(getDiary({courseId, lessonId: initialLesson.day}));      
-    }, [dispatch, courseId, initialLesson]);
-
-    if (!currentCourse) {
-        return <div>Курс не знайдено</div>;
-    }
     
     return (
         <div className={css.courseContainer}>
@@ -62,11 +42,6 @@ export default function Course () {
                         lesson => (
                         <li key={lesson.day}>
                             <Link
-                                onClick={() => {
-                                    dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
-                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
-                                }}
                                 to={`${lesson.day}`}
                                 className={css.link}
                             >
@@ -80,11 +55,6 @@ export default function Course () {
                         lesson => (
                         <li key={lesson.day}>
                             <Link
-                                onClick={() => {
-                                    dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
-                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
-                                }}
                                 to={`${lesson.day}`}
                                 className={css.link}
                             >
@@ -98,11 +68,6 @@ export default function Course () {
                         lesson => (
                         <li key={lesson.day}>
                             <Link
-                                onClick={() => {
-                                    dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
-                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
-                                }}
                                 to={`${lesson.day}`}
                                 className={css.link}
                             >
@@ -116,11 +81,6 @@ export default function Course () {
                         lesson => (
                         <li key={lesson.day}>
                             <Link
-                                onClick={() => {
-                                    dispatch(changeLesson(lesson));
-                                    dispatch(getExercise({courseId, lessonId: lesson.day}));
-                                    dispatch(getDiary({courseId, lessonId: lesson.day}));
-                                }}
                                 to={`${lesson.day}`}
                                 className={css.link}
                             >

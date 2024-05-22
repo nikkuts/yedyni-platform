@@ -42,7 +42,6 @@ export const Comment = ({comment, exerciseId}) => {
     
     const data = {
         exerciseId,
-        // author: comment.author,
         comment: textInput,
         commentId: comment._id,
     };

@@ -32,7 +32,7 @@ export default function MessagesList () {
                     </Link>
                   :
                     <Link 
-                        onClick={() => dispatch(getExerciseById(_id))}
+                        // onClick={() => dispatch(getExerciseById(_id))}
                         to={courseId === 'id-1' ? `/uk/learn/${courseId}/${lessonId}` : `/uk/learn/${courseId}/${lessonId}/practice`}
                         // className={status === "inactive" ? {...css.link, fontWeight: 400} : css.link} 
                         className={css.link}
@@ -40,7 +40,7 @@ export default function MessagesList () {
                         {comments.author.name}. {courseId === 'id-1' ? 'Курс переходу' : 'Граматичний курс'}. День {lessonId} 
                     </Link>
                   }
-                    <span className={css.date}>{formatDateTime(updatedAt)}</span>
+                    <span className={css.date}>{formatDateTime(owner ? updatedAt : comments.date)}</span>
                 </li>
             ))}
         </ul>

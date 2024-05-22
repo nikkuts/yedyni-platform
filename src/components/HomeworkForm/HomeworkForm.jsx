@@ -23,7 +23,6 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   const [textInput, setTextInput] = useState(homework);
   const [fileInput, setFileInput] = useState(null);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
-  // const [isDisabledBtn, setIsDisabledBtn] = useState(true);
   const [menuVisible, setMenuVisible] = useState(false);
 
   const textMenuRef = useRef();
@@ -33,24 +32,9 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     setIsActiveTextarea(true);
   };
 
-  // const handleTextChange = (e) => {
-  //   const eText = e.target.value;
-  //   setTextInput(eText);
-    
-  //   const newText = eText.trim();
-
-  //   if (newText !== '' && newText.length <= 3000) {
-  //       setIsDisabledBtn(false);
-  //       setIsActiveTextarea(true);
-  //   } else {
-  //       setIsDisabledBtn(true);
-  //   }
-  // };
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setFileInput(file);
-    // setIsDisabledBtn(false);
   };
 
   const isTextValid = (text) => {
@@ -122,7 +106,6 @@ export const HomeworkForm = ({courseId, lessonId}) => {
       );
     }
     setIsActiveTextarea(false);
-    // setIsDisabledBtn(false);
   };
 
   const shareHomework = () => {
@@ -192,7 +175,6 @@ useEffect(() => {
             <div className={css.wrapperBtn}>
               <Button
                 onClick={shareHomework}
-                // disabled={isDisabledBtn} 
                 className={css.shareBtn}
             >
                 Поділитися
@@ -289,7 +271,6 @@ useEffect(() => {
             <Button 
               variant="primary"
               type="submit"
-              // disabled={isDisabledBtn}
               className={css.primaryBtn}
             >
               Зберегти

@@ -7,6 +7,9 @@ import { toogleModal } from '../../redux/modal/modalSlice';
 import { selectModal } from '../../redux/modal/selectors';
 import { Test } from '../Test/Test';
 import { HomeworkForm } from '../HomeworkForm/HomeworkForm';
+import { getExercise } from '../../redux/exercises/operations';
+import { getDiary } from '../../redux/diary/operations';
+import { changeLesson } from '../../redux/exercises/lessonSlice';
 import { getDifferenceInDays } from '../../service/handleDate';
 import courses from "../courses.json";
 import css from './Lesson.module.css';
@@ -50,9 +53,11 @@ export default function Lesson () {
         setNextHomework(homework);      
     }, [homework]);
 
-    if (!currentLesson) {
-        return <div>Урок не знайдено</div>;
-    };
+    useEffect(() => {
+        dispatch(changeLesson(currentLesson));
+        dispatch(getExercise({courseId, lessonId: currentLesson.day}));
+        dispatch(getDiary({courseId, lessonId: currentLesson.day}));      
+    }, [dispatch, courseId, currentLesson]);
 
     return (
         <>          
@@ -199,83 +204,3 @@ export default function Lesson () {
         </>           
     )
   };
-
-
-//   {courseId === 'id-2' &&
-//   <>
-//       <img src={currentLesson.image} alt={`День ${currentLesson.day}`} width="100%" />
-//       {currentLesson.content && (
-//           <div className={css.wrapperFrame}>
-//               <iframe 
-//                   title="Вставка Google doc"
-//                   src={currentLesson.content} 
-//                   width="100%" height="600" frameBorder="0" allow="autoplay"
-//               />
-//           </div>
-//       )}
-//       {!isLessonId ?
-//           <Link 
-//               to={`${currentLesson.day}`}
-//               className={css.wrapperBtn}
-//           >
-//               <Button 
-//                   variant="primary"
-//                   type="button"
-//                   className={css.primaryBtn}
-//               >
-//                   Почати урок
-//               </Button>
-//           </Link>
-//       :
-//       <>
-//           <ul className={css.lessonNavigation}>
-//               <li>
-//                   <Link 
-//                       to=""
-//                       className={css.lessonNavLink}
-//                   >
-//                       Теорія
-//                   </Link> 
-//               </li>
-//               <li>
-//                   <Link 
-//                       to=""
-//                       className={css.lessonNavLink}
-//                   >
-//                       Матеріали
-//                   </Link> 
-//               </li>
-//               <li>
-//                   <Link 
-//                       to=""
-//                       className={css.lessonNavLink}
-//                   >
-//                       Практика
-//                   </Link> 
-//               </li>
-//               <li>
-//                   <Link 
-//                       to=""
-//                       className={css.lessonNavLink}
-//                   >
-//                       Відповіді
-//                   </Link> 
-//               </li>
-//               <li>
-//                   <Link 
-//                       to=""
-//                       className={css.lessonNavLink}
-//                   >
-//                       Тестування
-//                   </Link> 
-//               </li>
-//           </ul>
-//           <div className={css.wrapperFrame}>
-//               <Suspense fallback={null}>
-//                   <Outlet /> 
-//               </Suspense>  
-//           </div>
-//       </>
-//       }
-//   </>
-//   }   
