@@ -16,7 +16,7 @@ const handleRejected = (state, action) => {
 
 const initialState = {
     diary: {
-      date: new Date(),
+      date: null,
       entry: '',
       plan: '',
   },
