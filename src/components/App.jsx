@@ -17,6 +17,7 @@ const ProfilePage = lazy(() => import('./Profile/Profile'));
 const GamePage = lazy(() => import('./Game/Game'));
 const OlympiadPage = lazy(() => import('./Olympiad/Olympiad'));
 const DonatPage = lazy(() => import('./Donat/Donat'));
+const GratitudesPage = lazy(() => import('./Gratitudes/Gratitudes'));
 const IndicatorsPage = lazy(() => import('./Indicators/Indicators'));
 const PaymentsPage = lazy(() => import('./Payments/Payments'));
 const SubscriptionsPage = lazy(() => import('./Subscriptions/Subscriptions'));
@@ -89,7 +90,8 @@ export default function App () {
           <Route path="active" element={<MessageItemPage />} />
           <Route path="clubs" element={<TalkClubsPage />} />
           <Route path="bonus" element={<BonusLayout />} >
-            <Route path="" element={<IndicatorsPage />} />
+            <Route path="" element={<GratitudesPage />} />
+            <Route path="indicators" element={<IndicatorsPage />} />
             <Route path="payments" element={<PaymentsPage />} />
             <Route path="subscriptions" element={<SubscriptionsPage />} />
             <Route path="mark" element={<MarkPage />} />

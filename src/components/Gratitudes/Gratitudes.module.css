@@ -1,0 +1,86 @@
+.wrapper {
+    padding-bottom: 50px;
+}
+
+.description {
+    padding: 0px 70px;
+}
+
+.titleList {
+    font-size: 20px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.listGratitudes {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.tr {
+    display: flex;
+    align-items: center;
+}
+
+.th1 {
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d7d2f3;
+}
+
+.th2 {
+    width: 770px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.tdChild1 {
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.tdChild2 {
+    width: 770px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: calc(16/14);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    cursor: pointer;
+    color: #000000;
+    background-color: rgb(255, 244, 0);
+  }
+  
+  .button:hover,
+  .button:focus {
+    background-color: rgb(228, 228, 0);
+  }
