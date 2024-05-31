@@ -1,6 +1,12 @@
 .wrapper {
+    padding-top: 20px;
     padding-bottom: 50px;
 }
+
+.title {
+    text-align: center;
+    margin-bottom: 70px;
+  }
 
 .description {
     padding: 0px 70px;
