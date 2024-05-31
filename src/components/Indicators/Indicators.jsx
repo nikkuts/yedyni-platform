@@ -41,7 +41,7 @@ export default function Indicators () {
                     </button> */}
                     <Link 
                         onClick={() => dispatch(setCurrentRange())} 
-                        to="mark"
+                        to="/uk/bonus/mark"
                         className={css.button}
                     >
                         Детальніше
