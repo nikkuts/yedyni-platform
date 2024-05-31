@@ -4,6 +4,8 @@ import css from './Gratitudes.module.css';
 
 export default function Gratitudes () {
   const navigate = useNavigate();
+  const subGratitudes = gratitudes.filter(gratitude => gratitude.typeDonation === "subscribe");
+  const onceGratitudes = gratitudes.filter(gratitude => gratitude.typeDonation === "once");
 
     return (
       <div className={css.wrapper}>
@@ -16,13 +18,17 @@ export default function Gratitudes () {
             <span className={css.th1}>Сума внеску, гривень</span>
             <span className={css.th2}>Подарунок</span>
           </li>
-          {gratitudes.subscribe.map(item => (
+          {subGratitudes.map(({typeDonation, fromDonation, gift}) => (
           <li className={css.tr}>
-            <span className={css.tdChild1}>{item.fromDonation}</span>
-            <span className={css.tdChild2}>{item.gift}</span>
+            <span className={css.tdChild1}>{fromDonation}</span>
+            <span className={css.tdChild2}>{gift}</span>
             <button 
               type="button"
-              onClick={() => navigate("/uk/donat")}  
+              onClick={() => {
+                localStorage.setItem('typeDonation', typeDonation);
+                localStorage.setItem('sumDonation', fromDonation);
+                navigate("/uk/donat");
+              }}  
               className={css.button}
             >
               Обрати
@@ -36,13 +42,17 @@ export default function Gratitudes () {
             <span className={css.th1}>Сума внеску, гривень</span>
             <span className={css.th2}>Подарунок</span>
           </li>
-          {gratitudes.once.map(item => (
+          {onceGratitudes.map(({typeDonation, fromDonation, gift}) => (
           <li className={css.tr}>
-            <span className={css.tdChild1}>{item.fromDonation}</span>
-            <span className={css.tdChild2}>{item.gift}</span>
+            <span className={css.tdChild1}>{fromDonation}</span>
+            <span className={css.tdChild2}>{gift}</span>
             <button 
               type="button"
-              onClick={() => navigate("/uk/donat")}  
+              onClick={() => {
+                localStorage.setItem('typeDonation', typeDonation);
+                localStorage.setItem('sumDonation', fromDonation);
+                navigate("/uk/donat");
+              }}    
               className={css.button}
             >
               Обрати

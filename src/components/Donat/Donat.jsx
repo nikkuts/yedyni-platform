@@ -112,6 +112,8 @@ export default function Donat () {
         alert('Помилка відправки форми. Будь ласка, спробуйте повторити.');
       }
       finally {
+        localStorage.removeItem('typeDonation');
+        localStorage.removeItem('sumDonation'); 
         calc.reset();
       }
     }
@@ -120,6 +122,31 @@ export default function Donat () {
   useEffect(() => {
     dispatch(getIndicators()); 
   }, [dispatch]);
+
+  useEffect(() => {
+    const type = localStorage.getItem('typeDonation');
+    const sum = localStorage.getItem('sumDonation');
+
+    if (type && sum) {
+      if (type === 'once') {
+        setCheckboxSubscription(false);
+        setCheckboxOnce(true);
+      }
+      setCurrentAmount(sum);
+    }
+
+    const removeLocalStorageItems = () => {
+      localStorage.removeItem('typeDonation');
+      localStorage.removeItem('sumDonation');
+    };
+
+    window.addEventListener('beforeunload', removeLocalStorageItems);
+
+    return () => {
+      removeLocalStorageItems();
+      window.removeEventListener('beforeunload', removeLocalStorageItems); 
+    };
+  }, []);
 
   return (
     <div className={css.containerDonat}>
