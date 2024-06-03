@@ -6,11 +6,36 @@
   border-bottom: 1px solid #d7d2f3;
 }
 
-.nav {
+.menuBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
+
+  @media screen and (min-width: 1200px) {
+    gap: 120px;
+  }
+}
+
+.headerMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  @media screen and (min-width: 1200px) {
+    gap: 30px;
+  }
+
+  @media screen and (max-width: 479px) {
+    display: none;
+  }
+}
+
+.nav {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 }
 
 .logo {
@@ -37,10 +62,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 250px;
+    width: 150px;
     height: 50px;
     padding-left: 10px;
     padding-right: 10px;
+
+    @media screen and (min-width: 1200px) {
+      width: 250px;
+    }
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
 
   .officeMenu:hover,  
@@ -56,10 +89,10 @@
     gap: 10px;
   }
 
-  .userName {
-    font-weight: 700;
-    font-size: 18px;
-    color: #FFC107;
+  .menu {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
   }
 
   .button {

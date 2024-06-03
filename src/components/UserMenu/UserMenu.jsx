@@ -7,6 +7,7 @@ import { ReactComponent as Favicon } from '../../icons/favicon.svg';
 import { ReactComponent as User } from '../../icons/user.svg';
 import { ReactComponent as ChevronDown } from '../../icons/chevron-down.svg';
 import { ReactComponent as ChevronUp } from '../../icons/chevron-up.svg';
+import { ReactComponent as Menu } from '../../icons/menu.svg';
 import css from './UserMenu.module.css';
 
 export const UserMenu = () => {
@@ -42,35 +43,42 @@ export const UserMenu = () => {
         <Favicon />
         <span className={css.textLogo}>ЄДИНІ</span>
       </Link>
-      <nav className={css.nav}>
-        <Navigation />
-        <button type="button"
-          onClick={() => navigate("donat")} 
-          className={css.button}
-        >
-          Підтримати
-        </button>
-      </nav>
-      <div 
-        ref={officeRef}
-        onClick={toggleMenu}
-        className={css.office}
-      >
-        <ul className={css.officeMenu}>
-          <li className={css.officeUser}>
-            <User /> {user.name}
-          </li>
-          <li 
-            onClick={(e) => { 
-              e.preventDefault(); 
-              e.stopPropagation(); 
-              toggleMenu(); 
-            }}
+      <div className={css.menuBar}>
+        <div className={css.headerMenu}>
+          <nav className={css.nav}>
+            <Navigation />
+          </nav>
+          <button type="button"
+            onClick={() => navigate("donat")} 
+            className={css.button}
           >
-            {menuVisible ? <ChevronUp/> : <ChevronDown/>}
-          </li>
-        </ul>
-        {menuVisible && <OfficeMenu />}
+            Підтримати
+          </button>
+        </div>      
+        <div 
+          ref={officeRef}
+          onClick={toggleMenu}
+          className={css.office}
+        >
+          <ul className={css.officeMenu}>
+            <li className={css.officeUser}>
+              <User /> {user.name}
+            </li>
+            <li 
+              onClick={(e) => { 
+                e.preventDefault(); 
+                e.stopPropagation(); 
+                toggleMenu(); 
+              }}
+            >
+              {menuVisible ? <ChevronUp/> : <ChevronDown/>}
+            </li>
+          </ul>
+          <div className={css.menu}>
+            <Menu />
+          </div>
+          {menuVisible && <OfficeMenu />}
+        </div>
       </div>
     </div>
   );

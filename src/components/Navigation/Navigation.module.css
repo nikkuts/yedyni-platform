@@ -1,19 +1,40 @@
 .nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    gap: 30px;
+  }
 }
 
 .link {
     display: inline-block;
     text-decoration: none;
     font-weight: 700;
-    color: #2a363b;   
+    color: #2a363b;
+    
+    @media screen and (max-width: 767px) {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      padding: 16px;
+    }
   }
   
 .link:hover,  
 .link:focus,
 .link:active {
     color: #0d30f5;
+
+    @media screen and (max-width: 767px) {
+      background-color: beige;
+    }
   }

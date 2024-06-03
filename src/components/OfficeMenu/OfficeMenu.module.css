@@ -1,18 +1,33 @@
 .menu {
     position: absolute;
     display: block;
-    width: 345px;
-    top: 80px;
+    width: 280px;
+    top: 56px;
     right: 0;
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     z-index: 100;
+
+    @media screen and (min-width: 768px) {
+      width: 345px;
+      top: 65px;
+    }
+  }
+
+  .nav {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
   }
 
   .userInfo {
     padding: 16px;
     border-bottom: 1px solid #a3c5d3;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
 
   .userName {

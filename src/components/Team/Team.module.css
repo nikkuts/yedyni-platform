@@ -17,6 +17,38 @@
   margin-bottom: 20px;
 }
 
+.listTeam {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 340px;
+  min-height: 170px;
+  padding: 10px;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  border: 1px solid #d7d2f3;
+  border-radius: 20px;
+}
+
+.numberItem {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ff8800;  
+}
+
 .wrapperTeam {
     display: flex;
     flex-direction: column;

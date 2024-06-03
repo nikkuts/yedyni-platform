@@ -32,6 +32,20 @@ export default function Team() {
         <h2 className={css.refLink}>Запрошувальне покликання</h2>
         <CopyUrl url={`${BASE_CLIENT_URL}?x=${user.id}`} />
         </div>
+        <ul className={css.listTeam}>
+            <li className={css.item}>
+              <span className={css.numberItem}>1 </span>
+              Поділись запрошувальним покликанням зі своїм оточенням будь яким зручним способом.
+            </li>
+            <li className={css.item}>
+              <span className={css.numberItem}>2 </span>
+              Учасники, які реєструються на платформі за твоїм запрошенням, автоматично потрапляють до твоєї команди.
+            </li>
+            <li className={css.item}>
+              <span className={css.numberItem}>3 </span>
+              Коли учасник твоєї команди здобуває досягнення, вони враховуються у твій командний залік!
+            </li>
+        </ul>
         <div>{isLoading && <b>Завантаження даних...</b>}</div>
         {partner && 
           <div className={css.wrapperTeam}>
