@@ -4,10 +4,14 @@
 }
 
 .titleHome {
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 500;
     text-align: center;
     margin-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 40px;
+    }
 }
 
 .num {
@@ -48,7 +52,11 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 1.5;
-    padding: 40px 70px;
+    padding: 40px 0px;
+
+    @media screen and (min-width: 1200px) {
+        padding: 40px 70px;
+    }
 }
 
 .titleTable {
@@ -65,84 +73,149 @@
     margin-bottom: 50px;
 }
 
-.tableTrace {
+.listTrace {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 30px;
     margin-bottom: 50px;
-    padding: 0px 20px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-}
-
-.table {
-    border-collapse: collapse;
+    padding: 10px;
     font-size: 16px;
     line-height: 1.5;
     color: #000000;
+
+    @media screen and (min-width: 768px) {
+        padding: 10px;
+        border: 1px solid #d7d2f3;
+        border-radius: 20px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding: 20px;
+    }
+}
+
+.trHead {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 767px) {
+        display: none;
+    }
 }
 
 .tr {
-    height: 80px;
-}
-
-.th {
-    width: 220px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-bottom: 1px solid #d7d2f3;
-}
-
-.tdChild1 {
-    width: 700px;
-}
-
-.child1 {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 50px;
-    padding-left: 20px;
-    color: #000000;
-    background-color: rgb(240, 240, 240);
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 500;
-    /* border: 1px solid #d7d2f3; */
-    border-radius: 20px;
-}
-
-.tdChild2 {
-    width: 220px;
-    padding-left: 40px;
-    padding-right: 40px;
-    text-align: center;
-    font-weight: 700;
-}
-
-.tdChild3 {
-    width: 200px;
-}
-
-.item {
-    display: flex;
-    align-items: center;
-    width: 700px;
-    height: 50px;
-    padding-left: 30px;
-    color: #000000;
-    background-color: rgb(240, 240, 240);
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 500;
+    gap: 20px;
+    padding: 20px 10px;
     border: 1px solid #d7d2f3;
     border-radius: 20px;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: row;
+        gap: 0px;
+        padding: 0px;
+        border: none;
+    }
+}
+
+.th1 {
+    width: 378px;
+
+    @media screen and (min-width: 768px) {
+        width: 378px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 700px;
+    }
+}
+
+.th2 {
+    width: 200px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 1px solid #d7d2f3;
+
+    @media screen and (min-width: 768px) {
+        width: 200px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 220px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 20px;
+    }
+}
+
+.tdchild1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50px;
+    padding: 5px 10px;
+    color: #000000;
+    background-color: rgb(240, 240, 240);
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+    border-radius: 20px;
+
+    @media screen and (min-width: 480px) {
+        height: 50px;
+        padding: 5px 20px;
+        font-size: 16px;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 378px;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 700px;
+    }
+}
+
+.tdchild2 {
+    width: 200px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 700;
+
+    @media screen and (min-width: 768px) {
+        width: 200px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 220px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.bal {
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
 }
 
 .button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 150px;
     height: 50px;
     margin: auto;
     border: 1px solid #ffffff;
@@ -156,6 +229,10 @@
     cursor: pointer;
     color: #000000;
     background-color: rgb(255, 244, 0);
+
+    @media screen and (min-width: 1200px) {
+        width: 200px;
+    }
   }
   
   .button:hover,

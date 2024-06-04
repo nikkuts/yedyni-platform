@@ -30,107 +30,75 @@ export default function Home () {
                 <span className={css.points}>балів</span>
             </div>
             <p className={css.description}>Цей показник у загальному відображає рівень моєї причетності до реалізації цілей проєкту “Єдині”. А саме, перейти на українську та допомогти це зробити <span className={css.num}>1 000 000</span> українців.</p>
-            <p className={css.titleTable}>Завдяки яким досягненням зростає мій українськомовний слід разом із Єдиними?</p>
-            <div className={css.tableTrace}>
-            <table className={css.table}>
-                <thead>
-                    <tr className={css.tr}>
-                    <th></th>
-                    <th className={css.th}>Кількість балів</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Реєстрація на платформі</span></td>
-                    <td className={css.tdChild2}>40</td>
-                    <td className={css.tdChild3}></td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Завершений курс з отриманням сертифікату від проєкту “Єдині”</span></td>
-                    <td className={css.tdChild2}>400</td>
-                    <td className={css.tdChild3}>
-                        <button type="button"
+            <p className={css.titleTable}>Завдяки яким досягненням зростає мій українськомовний слід разом із Єдиними?</p>          
+            <ul className={css.listTrace}>
+                <li className={css.trHead}>
+                    <span className={css.th1}></span>
+                    <span className={css.th2}>Кількість балів</span>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Реєстрація на платформі</span>
+                    <span className={css.tdchild2}>40<br/><span className={css.bal}>балів</span></span>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Завершений курс з отриманням сертифікату від проєкту “Єдині”</span>
+                    <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
+                    <button type="button"
                         onClick={() => navigate("learn")} 
                         className={css.button}
                         >
                         Перейти до курсу
-                        </button>
-                    </td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Організація зустрічі розмовного клубу</span></td>
-                    <td className={css.tdChild2}>400</td>
-                    <td className={css.tdChild3}>
-                        <button type="button"
+                    </button>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Організація зустрічі розмовного клубу</span>
+                    <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
+                    <button type="button"
                         onClick={() => navigate("clubs")} 
                         className={css.button}
                         >
                         Детальніше
-                        </button>
-                    </td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Проходження тестувань</span></td>
-                    <td className={css.tdChild2}>сума набраних балів</td>
-                    <td className={css.tdChild3}></td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Фінансова підтримка проєкту “Єдині”</span></td>
-                    <td className={css.tdChild2}>сума підтримки у гривнях</td>
-                    <td className={css.tdChild3}>
-                        <button type="button"
-                        onClick={() => navigate("donat")}  
+                    </button>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Проходження тестувань</span>
+                    <span className={css.tdchild2}>сума набраних балів</span>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Фінансова підтримка проєкту “Єдині”</span>
+                    <span className={css.tdchild2}>сума підтримки у гривнях</span>
+                    <button type="button"
+                        onClick={() => navigate("donat")} 
                         className={css.button}
                         >
                         Підтримати
-                        </button>
-                    </td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Реєстрація на платформі нового учасника у моїй команді</span></td>
-                    <td className={css.tdChild2}>40</td>
-                    <td className={css.tdChild3}>
-                        <button type="button"
-                        onClick={() => navigate("bonus/team")}  
+                    </button>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Реєстрація на платформі нового учасника у моїй команді</span>
+                    <span className={css.tdchild2}>40<br/><span className={css.bal}>балів</span></span>
+                    <button type="button"
+                        onClick={() => navigate("bonus/team")} 
                         className={css.button}
                         >
                         Детальніше
-                        </button>
-                    </td>
-                </tr>
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Завершений курс учасником моєї команди</span></td>
-                    <td className={css.tdChild2}>400</td>
-                    <td className={css.tdChild3}></td>
-                </tr>
-                {/* <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Отримання винагороди у бонусній програмі</span></td>
-                    <td className={css.tdChild2}>сума отриманих бонусів</td>
-                    <td className={css.tdChild3}>
-                        <button type="button"
-                        onClick={() => navigate("bonus/rules")} 
-                        className={css.button}
-                        >
-                        Детальніше
-                        </button>
-                    </td>
-                </tr> */}
-                <tr className={css.tr}>
-                    <td className={css.tdChild1}><span className={css.child1}>Участь у олімпіаді</span></td>
-                    <td className={css.tdChild2}>сума призових балів</td>
-                    <td className={css.tdChild3}>
-                        <button type="button"
+                    </button>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Завершений курс учасником моєї команди</span>
+                    <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Участь у олімпіаді</span>
+                    <span className={css.tdchild2}>сума призових балів</span>
+                    <button type="button"
                         onClick={() => navigate("olympiad")} 
                         className={css.button}
                         >
                         Детальніше
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            </div>
+                    </button>
+                </li>
+            </ul>
             <h2 className={css.sertificate}>
                 Мої сертифікати
             </h2>
