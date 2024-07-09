@@ -6,12 +6,12 @@
     right: 0;
     background-color: #FFFFFF;
     border-radius: 10px;
-    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     z-index: 100;
 
     @media screen and (min-width: 768px) {
-      width: 345px;
+      width: 364px;
       top: 65px;
+      box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     }
   }
 

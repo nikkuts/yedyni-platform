@@ -8,7 +8,6 @@
   text-align: center;
 
   @media screen and (min-width: 480px) {
-    font-size: 20px;
     padding-left: 20px;
     text-align: left;
   }
@@ -66,11 +65,73 @@
 
 .courseBtn:hover,
 .courseBtn:focus {
-  /* color: #0d30f5; */
   background-color: rgb(228, 228, 0);
 }
 
-.courseWrapper {
+.menuBtn {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.courseMenu {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.courseMenu.active {
+  display: block;
+}
+
+.courseList {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    align-content: flex-start;
+    max-height: 540px;
+    width: 364px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-height: 300px;
+    width: 280px;
+  }
+}
+
+.link {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000; 
+  background-color: #FFFFFF;
+  
+  @media screen and (min-width: 768px) {
+    width: 364px;
+    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19); 
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 280px;
+  }
+}
+
+.link:hover,  
+.link:focus,
+.link:active {
+  color: #0d30f5;
+  background-color: beige;
+}
+
+/* .courseWrapper {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -97,7 +158,7 @@
 .link:active {
   color: #0d30f5;
   background-color: beige;
-}
+} */
 
 .error {
   text-align: center;

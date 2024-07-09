@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import courses from "../courses.json";
 import css from './Course.module.css';
@@ -6,6 +6,26 @@ import css from './Course.module.css';
 export default function Course () {
     const {courseId} = useParams();
     const currentCourse = courses.find(course => course.id === courseId);
+
+    const [menuVisible, setMenuVisible] = useState(false);
+    const menuRef = useRef();
+
+    const handleClickOutside = (e) => {
+        if (menuRef.current && !menuRef.current.contains(e.target)) {
+            setMenuVisible(false);
+          }
+    };
+
+    const toggleMenu = () => {
+        setMenuVisible((prevVisible) => !prevVisible);
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+        document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
     
     return (
         <div className={css.courseContainer}>
@@ -35,8 +55,33 @@ export default function Course () {
                         Чат
                     </Link>
                 </li>
-            </ul>                
-            <div className={css.courseWrapper}>
+            </ul>
+            <div
+                ref={menuRef}
+                onClick={toggleMenu}
+                className={css.menu}
+            >
+                <button className={css.menuBtn} aria-expanded={menuVisible}>
+                    Меню курсу
+                </button>
+                <nav className={`${css.courseMenu} ${menuVisible ? css.active : ''}`}>
+                    <ul className={css.courseList}>
+                        {currentCourse.lessons.map(
+                            lesson => (
+                            <li key={lesson.day}>
+                                <Link
+                                    to={`${lesson.day}`}
+                                    className={css.link}
+                                >
+                                    День {lesson.day}. {lesson.theme}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>   
+            </div>
+
+            {/* <div className={css.courseWrapper}>
                 <ul className={css.courseList}>
                     {currentCourse.lessons.slice(0,7).map(
                         lesson => (
@@ -89,7 +134,7 @@ export default function Course () {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
             <div className={css.wrapperFrame}>
                 <Suspense fallback={null}>
                     <Outlet />
