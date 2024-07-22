@@ -1,9 +1,33 @@
+.headerContainer {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+  background-color: #fef9f9;
+  z-index: 1000;
+  padding: 0 10px;
+  max-width: 480px;
+  
+  @media screen and (min-width: 480px) {
+    max-width: 480px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-width: 1200px;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   border-bottom: 1px solid #d7d2f3;
+  width: 100%;
 }
 
 .menuBar {

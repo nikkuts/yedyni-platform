@@ -21,7 +21,7 @@
 //     return (
 //       <div style={styles.container}>
 //         <h1 style={styles.title}>
-//           Мова - це наш культурний фронт!
+//           Українська - мова перемоги!
 //         </h1>
 //       </div>
 //     );

@@ -9,6 +9,7 @@ import { ReactComponent as ChevronDown } from '../../icons/chevron-down.svg';
 import { ReactComponent as ChevronUp } from '../../icons/chevron-up.svg';
 import { ReactComponent as Menu } from '../../icons/menu.svg';
 import css from './UserMenu.module.css';
+import '../../index.css';
 
 export const UserMenu = () => {
   const navigate = useNavigate();
@@ -35,51 +36,53 @@ export const UserMenu = () => {
   }, []);
 
   return (
-    <div className={css.header}>
-      <Link 
-        to={"https://yedyni.org/"}
-        target="blank" 
-        className={css.logo}>
-        <Favicon />
-        <span className={css.textLogo}>ЄДИНІ</span>
-      </Link>
-      <div className={css.menuBar}>
-        <div className={css.headerMenu}>
-          <nav className={css.nav}>
-            <Navigation />
-          </nav>
-          <button type="button"
-            onClick={() => navigate("donat")} 
-            className={css.button}
-          >
-            Підтримати
-          </button>
-        </div>      
-        <div 
-          ref={officeRef}
-          onClick={toggleMenu}
-          className={css.office}
-        >
-          <ul className={css.officeMenu}>
-            <li className={css.officeUser}>
-              <User /> {user.name}
-            </li>
-            <li 
-              onClick={(e) => { 
-                e.preventDefault(); 
-                e.stopPropagation(); 
-                toggleMenu(); 
-              }}
+    <div className={css.headerContainer}>
+      <header className={css.header}>
+        <Link 
+          to={"https://yedyni.org/"}
+          target="blank" 
+          className={css.logo}>
+          <Favicon />
+          <span className={css.textLogo}>ЄДИНІ</span>
+        </Link>
+        <div className={css.menuBar}>
+          <div className={css.headerMenu}>
+            <nav className={css.nav}>
+              <Navigation />
+            </nav>
+            <button type="button"
+              onClick={() => navigate("donat")} 
+              className={css.button}
             >
-              {menuVisible ? <ChevronUp/> : <ChevronDown/>}
-            </li>
-          </ul>
-          <div className={css.menu}>
-            <Menu />
+              Підтримати
+            </button>
+          </div>      
+          <div 
+            ref={officeRef}
+            onClick={toggleMenu}
+            className={css.office}
+          >
+            <ul className={css.officeMenu}>
+              <li className={css.officeUser}>
+                <User /> {user.name}
+              </li>
+              <li 
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  e.stopPropagation(); 
+                  toggleMenu(); 
+                }}
+              >
+                {menuVisible ? <ChevronUp/> : <ChevronDown/>}
+              </li>
+            </ul>
+            <div className={css.menu}>
+              <Menu />
+            </div>
+            {menuVisible && <OfficeMenu />}
           </div>
-          {menuVisible && <OfficeMenu />}
         </div>
-      </div>
+      </header>
     </div>
   );
 };

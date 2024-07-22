@@ -7,12 +7,12 @@ export const HomeLayout = () => {
 
   return (
     <>
-    <div className="container">
       <UserMenu />
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
-    </div>
+      <div className="container">
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+      </div>
     </>
   );
 };
