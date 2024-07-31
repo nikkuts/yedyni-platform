@@ -23,7 +23,6 @@ const PaymentsPage = lazy(() => import('./Payments/Payments'));
 const SubscriptionsPage = lazy(() => import('./Subscriptions/Subscriptions'));
 const MarkPage = lazy(() => import('./Mark/Mark'));
 const TeamPage = lazy(() => import('./Team/Team'));
-// const RulesPage = lazy(() => import('./Rules/Rules'));
 const TalkClubsPage = lazy(() => import('./TalkClubs/TalkClubs'));
 const LearnPage = lazy(() => import('./Learn/Learn'));
 const CoursePage = lazy(() => import('./Course/Course'));
@@ -71,9 +70,8 @@ export default function App () {
         >
           <Route index element={<HomePage />} />
           <Route path="learn" element={<LearnPage />} />
-          <Route path="learn/:courseId" element={<CoursePage />} >
-            <Route path="" element={<LessonPage />} />
-            <Route path=":lessonId" element={<LessonPage />} >
+          <Route path="learn/:courseId/:lessonId" element={<CoursePage />} >
+            <Route path="" element={<LessonPage />} >
               <Route path="" element={<ContentPage />} />
               <Route path="theory" element={<TheoryPage />} />
               <Route path="practice" element={<PracticePage />} />
@@ -96,7 +94,6 @@ export default function App () {
             <Route path="subscriptions" element={<SubscriptionsPage />} />
             <Route path="mark" element={<MarkPage />} />
             <Route path="team" element={<TeamPage />} />
-            {/* <Route path="rules" element={<RulesPage />} /> */}
           </Route>
         </Route>
       </Route>

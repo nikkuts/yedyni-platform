@@ -11,7 +11,7 @@ export default function Learn () {
           {courses.map((course) => (
               <CourseCover
                 key={course.id} 
-                id={course.id} 
+                courseId={course.id} 
                 title={course.title} 
               />
             ))

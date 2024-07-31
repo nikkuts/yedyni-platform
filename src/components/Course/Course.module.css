@@ -133,42 +133,17 @@
   background-color: beige;
 }
 
-/* .courseWrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.courseList {
-  display: block;
-  width: 280px;
-  background-color: #FFFFFF;
-  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-}
-
-.link {
-  display: block;
-  padding: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000000;   
-}
-
-.link:hover,  
-.link:focus,
-.link:active {
-  color: #0d30f5;
-  background-color: beige;
-} */
-
 .error {
   text-align: center;
 }
 
 .wrapperFrame {
-  
+
   @media screen and (min-width: 768px) {
+    padding-top: 30px; 
+  }
+  
+  @media screen and (min-width: 1200px) {
     padding: 30px 100px; 
   }
 }
