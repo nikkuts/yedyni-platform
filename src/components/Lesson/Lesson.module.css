@@ -2,15 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 0px; 
+
+  @media screen and (min-width: 1200px) {
+    padding: 30px 100px; 
+  }
 }
 
 .descriptionAudio {
-
-  padding: 10px 20px;
-
-  @media screen and (min-width: 480px) {
-    padding: 10px 100px; 
-  }
+  padding: 30px 15px;
 }
 
 .wrapperAudio {
@@ -19,9 +19,48 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding-bottom: 20px;
+    margin-bottom: 30px;
 
     @media screen and (min-width: 768px) {
-      flex-direction: row; 
+      flex-direction: row;
+      flex-wrap: wrap; 
     }
+}
+
+.menu {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 15px;
+  background-color: beige;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.lessonMenu {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.lessonMenu.active {
+  display: block;
+  margin-top: 10px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+  }
 }

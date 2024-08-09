@@ -68,8 +68,19 @@
   background-color: rgb(228, 228, 0);
 }
 
+.menu {
+
+}
+
 .menuBtn {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 15px;
+  background-color: beige;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -86,6 +97,7 @@
 
 .courseMenu.active {
   display: block;
+  margin-top: 10px;
 }
 
 .courseList {
@@ -131,19 +143,4 @@
 .link:active {
   color: #0d30f5;
   background-color: beige;
-}
-
-.error {
-  text-align: center;
-}
-
-.wrapperFrame {
-
-  @media screen and (min-width: 768px) {
-    padding-top: 30px; 
-  }
-  
-  @media screen and (min-width: 1200px) {
-    padding: 30px 100px; 
-  }
 }

@@ -1,15 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { selectCurrentLesson, selectExercise } from '../../redux/exercises/selectors';
+import { useParams, useNavigate } from 'react-router-dom';
+import { selectCurrentLesson, selectExercise, selectContent } from '../../redux/exercises/selectors';
 import { HomeworkForm } from '../HomeworkForm/HomeworkForm';
+import { insertContent } from '../../service/insertContent';
 
 export default function Content () {
     const {courseId, lessonId} = useParams();
     const currentLesson = useSelector(selectCurrentLesson);
-    
+    const content = useSelector(selectContent);
+    const contentRef = useRef();
+    const navigate = useNavigate();
+
     const { homework } = useSelector(selectExercise);
     const [nextHomework, setNextHomework] = useState(homework);
+      
+    useEffect(() => {
+        insertContent({
+            courseId,
+            lessonId,
+            elem: contentRef.current, 
+            content,
+            navigate
+        });         
+    }, [currentLesson, courseId, lessonId, content, navigate]);
 
     useEffect(() => {
         setNextHomework(homework);      
@@ -17,13 +31,7 @@ export default function Content () {
 
     return (
         <>
-            {currentLesson.content !== '' &&
-                <iframe 
-                    title="Вставка Google doc"
-                    src={currentLesson.content} 
-                    width="100%" height="600" frameBorder="0" allow="autoplay"
-                />
-            }
+            <div ref={contentRef}></div>
             {courseId === 'id-1' &&
             <>
                 {homework === nextHomework &&
@@ -33,7 +41,7 @@ export default function Content () {
                     />
                 }
             </>
-            }          
+            }                    
         </>           
     )
   };

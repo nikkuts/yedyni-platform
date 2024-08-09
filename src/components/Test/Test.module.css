@@ -1,17 +1,32 @@
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1200;
+.wrapperTest {
+  padding-top: 30px;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  padding: 0 20px;
+  width: 280px;
+  height: 50px;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: calc(16/14);
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #3754fd;
+
+  @media screen and (min-width: 768px) {
+    width: 300px; 
   }
-  
-  .overlay.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
+}
+
+.button:hover,
+.button:focus {
+  background-color: #0d30f5;
+}

@@ -1,11 +1,23 @@
 .descriptionAudio {
-    padding: 0 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 30px;
+
+    @media screen and (min-width: 1200px) {
+        padding-left: 100px;
+        padding-right: 100px; 
+      }
 }
 
 .wrapperAudio {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 300px;
+    gap: 15px;
+
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      flex-wrap: wrap; 
+    }
 }

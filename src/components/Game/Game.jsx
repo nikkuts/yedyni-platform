@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { toogleModal } from '../../redux/modal/modalSlice';
 import { selectModal } from '../../redux/modal/selectors';
-import { Exercise } from '../Wordwall/Wordwall';
+import { Wordwall } from '../Wordwall/Wordwall';
 import exercises from "../exercises.json";
 import css from './Game.module.css';
 
@@ -67,7 +67,7 @@ export default function Game () {
           Почати гру
         </button>
         { isModalOpen && 
-        <Exercise
+        <Wordwall
           exercise={exercise}
         />
         }  

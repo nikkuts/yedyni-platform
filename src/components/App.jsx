@@ -32,6 +32,7 @@ const TheoryPage = lazy(() => import('./LessonFrams/Theory'));
 const PracticePage = lazy(() => import('./LessonFrams/Practice'));
 const AudioAssistantPage = lazy(() => import('./AudioAssistant/AudioAssistant'));
 const VideoMaterialsPage = lazy(() => import('./VideoMaterials/VideoMaterials'));
+const TestPage = lazy(() => import('./Test/Test'));
 const DiaryPage = lazy(() => import('./Diary/Diary'));
 const MessagesPage = lazy(() => import('./MessagesList/MessagesList'));
 const MessageItemPage = lazy(() => import('./MessageItem/MessageItem'));
@@ -51,22 +52,22 @@ export default function App () {
       <Route path="/" element={<LendingLayout />}>
         <Route index element={<LendingPage />} />
         <Route
-            path="/register"
-            element={
-              <RestrictedRoute redirectTo="/uk" component={<RegisterPage />} />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute redirectTo="/uk" component={<LoginPage />} />
-            }
-          />
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/uk" component={<RegisterPage />} />
+          }
+        />
         <Route
-            path="/uk"
-            element={
-              <PrivateRoute redirectTo="/login" component={<HomeLayout />} />
-            }
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/uk" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/uk"
+          element={
+            <PrivateRoute redirectTo="/login" component={<HomeLayout />} />
+          }
         >
           <Route index element={<HomePage />} />
           <Route path="learn" element={<LearnPage />} />
@@ -77,6 +78,7 @@ export default function App () {
               <Route path="practice" element={<PracticePage />} />
               <Route path="audio" element={<AudioAssistantPage />} />
               <Route path="video" element={<VideoMaterialsPage />} />
+              <Route path="test" element={<TestPage />} />
               <Route path="diary" element={<DiaryPage />} />
             </Route>
           </Route>

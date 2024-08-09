@@ -1,43 +1,33 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toogleModal } from '../../redux/modal/modalSlice';
+import { selectModal } from '../../redux/modal/selectors';
+import { selectCurrentLesson } from '../../redux/exercises/selectors';
+import { Wordwall } from '../Wordwall/Wordwall';
 import css from './Test.module.css';
 
-export const Test = ({test}) => {
-    const dispatch = useDispatch()
+export default function Test () {
+    const dispatch = useDispatch();
+    const currentLesson = useSelector(selectCurrentLesson);
+    const isModalOpen = useSelector(selectModal);
 
-    const closeModal = useCallback(
-        () => dispatch(toogleModal()),
-        [dispatch]
-    );
-
-    const onBackdropClose = e => {
-        if (e.currentTarget === e.target) {
-            closeModal();
-        }
-      };
-
-    useEffect(() => {
-        const keyDown = e => {
-          if (e.code === 'Escape') {
-            closeModal();
-          }
-        };
-        window.addEventListener('keydown', keyDown);
-        return () => {window.removeEventListener('keydown', keyDown);}
-      }, [closeModal])
+    const handleClickStartTest = () => {
+      dispatch(toogleModal());
+    };
 
     return (
-        <div  
-            onClick={onBackdropClose}
-            className={css.overlay}
-        >  
-            <iframe 
-                title="Вставка Wordwall"
-                style={{ maxWidth: '100%' }} 
-                src={test} 
-                width="1150" height="650" frameBorder="0" allowFullScreen>
-            </iframe>
-        </div>           
+      <div className={css.wrapperTest}>   
+        <button 
+          type="button"
+          onClick={handleClickStartTest} 
+          className={css.button}
+        >
+          Почати тест
+        </button>
+        { isModalOpen && 
+        <Wordwall
+          exercise={currentLesson.test}
+        />
+        }  
+      </div>
     )
 }

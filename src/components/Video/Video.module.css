@@ -1,17 +1,32 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1200;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+}
+
+.wrapperVideo {
+  width: 300px;
+  height: 170px;
+
+  @media screen and (min-width: 480px) {
+    width: 460px;
+    height: 260px; 
   }
-  
-  .overlay.is-hidden {
-    opacity: 0;
-    pointer-events: none;
+
+  @media screen and (min-width: 768px) {
+    width: 748px;
+    height: 425px; 
   }
+
+  @media screen and (min-width: 1200px) {
+    width: 1150px;
+    height: 650px; 
+  }
+}

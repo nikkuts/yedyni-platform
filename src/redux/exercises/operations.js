@@ -49,7 +49,7 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
   );
 
   export const deleteHomework = createAsyncThunk(
-    "exercises/ddeleteHomework",
+    "exercises/deleteHomework",
     async (credentials, thunkAPI) => {
       try {
         const response = await axios.patch("/api/exercises/homework", credentials);
@@ -135,7 +135,6 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
       }
     }
   );
-
 
   export const getMessages = createAsyncThunk(
     "exercises/getMessages",

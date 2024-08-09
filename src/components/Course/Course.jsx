@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { Link, useParams, Outlet } from 'react-router-dom';
+import { ReactComponent as ChevronsRight } from '../../icons/chevrons-right.svg';
 import courses from "../courses.json";
 import css from './Course.module.css';
 
@@ -61,9 +62,10 @@ export default function Course () {
                 onClick={toggleMenu}
                 className={css.menu}
             >
-                <button className={css.menuBtn} aria-expanded={menuVisible}>
-                    Меню курсу
-                </button>
+                <div className={css.menuBtn} aria-expanded={menuVisible}>
+                    <span>Меню курсу</span>
+                    <ChevronsRight />
+                </div>
                 <nav className={`${css.courseMenu} ${menuVisible ? css.active : ''}`}>
                     <ul className={css.courseList}>
                         {currentCourse.lessons.map(
@@ -80,11 +82,9 @@ export default function Course () {
                     </ul>
                 </nav>   
             </div>
-            <div className={css.wrapperFrame}>
-                <Suspense fallback={null}>
-                    <Outlet /> 
-                </Suspense>
-            </div>
+            <Suspense fallback={null}>
+                <Outlet /> 
+            </Suspense> 
         </div>
     )
 }

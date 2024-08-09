@@ -1,21 +1,25 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toogleModal } from '../../redux/modal/modalSlice';
 import { Link } from 'react-router-dom';
 import { selectCurrentLesson } from '../../redux/exercises/selectors';
 import { Video } from '../Video/Video';
 import css from './VideoMaterials.module.css';
 
-export default function VideoMaterials () {
+  export default function VideoMaterials () {
+    const dispatch = useDispatch();
     const currentLesson = useSelector(selectCurrentLesson);
     const [openedVideoIndex, setOpenedVideoIndex] = useState(null);
 
     const handleClickVideo = (index) => {
         setOpenedVideoIndex(index);
-      };
+        dispatch(toogleModal());
+    };
     
-      const handleCloseModal = () => {
+    const handleCloseModal = () => {
         setOpenedVideoIndex(null);
-      };
+        dispatch(toogleModal());
+    };
 
     return (
         <>
@@ -23,7 +27,7 @@ export default function VideoMaterials () {
                 <p>Перегляньте відео до цього уроку та невідкладно скористайтеся цінними порадами 🙏 
                 </p>
             </div>
-            <ul className={css.wrapperVideo}>
+            <ul className={css.listVideo}>
                 {currentLesson.video.map(({ title, url }, index) => (
                     <li key={url}>
                     <Link 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { toogleModal } from '../../redux/modal/modalSlice';
 import css from './Wordwall.module.css';
 
-export const Exercise = ({exercise}) => {
+export const Wordwall = ({exercise}) => {
     const dispatch = useDispatch()
 
     const closeModal = useCallback(
@@ -34,11 +34,11 @@ export const Exercise = ({exercise}) => {
         >
             <div className={css.wrapperExercise}>   
                 <iframe 
-                    title="Вставка Wordwall"
-                    style={{ maxWidth: '100%' }} 
+                    title="Вставка Wordwall" 
                     src={exercise} 
-                    width="1150" height="650" frameBorder="0" allowFullScreen>
-                </iframe>
+                    width="100%" height="100%" 
+                    frameBorder="0" allowFullScreen
+                />
             </div>
         </div>           
     )

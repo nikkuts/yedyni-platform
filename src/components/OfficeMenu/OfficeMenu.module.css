@@ -2,10 +2,9 @@
     position: absolute;
     display: block;
     width: 280px;
-    top: 56px;
+    top: 54px;
     right: 0;
     background-color: #FFFFFF;
-    border-radius: 10px;
     z-index: 100;
 
     @media screen and (min-width: 768px) {

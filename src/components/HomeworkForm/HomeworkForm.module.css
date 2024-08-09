@@ -1,13 +1,17 @@
 .form {
   position: relative;
   width: 100%;
-  padding: 20px 40px;
+  padding: 20px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
   margin-bottom: 40px;
   border: 1px solid #d7d2f3;
   border-radius: 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 20px 40px;
+}
 }
 
 .label {
@@ -211,13 +215,18 @@
     text-align: center;
     text-overflow: ellipsis;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: calc(16/14);
     overflow: hidden;
     outline: none;
     cursor: pointer;
     color: #000000;
     background-color: rgb(255, 244, 0);
+
+    @media screen and (min-width: 768px) {
+      height: 50px;
+      font-size: 18px;
+  }
   }
   
   .primaryBtn:hover,
