@@ -87,4 +87,4 @@ export default function Course () {
             </Suspense> 
         </div>
     )
-}
+};				
