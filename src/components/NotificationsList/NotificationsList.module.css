@@ -1,4 +1,4 @@
-.containerMessages {
+.containerNotifications {
     min-height: calc(100vh - 50px);
     padding: 30px;
 }
@@ -8,7 +8,7 @@
     text-align: left;
 }
 
-.listMessages {
+.lisNotifications {
     padding: 30px 100px;
 }
 

@@ -18,6 +18,7 @@ import { authReducer } from './auth/slice';
 import { exercisesReducer } from './exercises/slice';
 import { lessonReducer } from './exercises/lessonSlice';
 import { diaryReducer } from './diary/slice';
+import { chatReducer } from './chat/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -35,6 +36,7 @@ export const store = configureStore({
     exercises: exercisesReducer,
     lesson: lessonReducer,
     diary: diaryReducer,
+    chat: chatReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

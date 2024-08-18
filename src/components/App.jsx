@@ -34,8 +34,9 @@ const AudioAssistantPage = lazy(() => import('./AudioAssistant/AudioAssistant'))
 const VideoMaterialsPage = lazy(() => import('./VideoMaterials/VideoMaterials'));
 const TestPage = lazy(() => import('./Test/Test'));
 const DiaryPage = lazy(() => import('./Diary/Diary'));
-const MessagesPage = lazy(() => import('./MessagesList/MessagesList'));
-const MessageItemPage = lazy(() => import('./MessageItem/MessageItem'));
+const NotificationsPage = lazy(() => import('./NotificationsList/NotificationsList'));
+const NotificationItemPage = lazy(() => import('./NotificationItem/NotificationItem'));
+const ChatPage = lazy(() => import('./Chat/Chat'));
 
 export default function App () {
   const dispatch = useDispatch();
@@ -81,13 +82,14 @@ export default function App () {
               <Route path="test" element={<TestPage />} />
               <Route path="diary" element={<DiaryPage />} />
             </Route>
+            <Route path="chat" element={<ChatPage />} />
           </Route>
           <Route path="game" element={<GamePage />} />
           <Route path="olympiad" element={<OlympiadPage />} />
           <Route path="donat" element={<DonatPage />} />
           <Route path="profile" element={<ProfilePage />} />
-          <Route path="messages" element={<MessagesPage />} />
-          <Route path="active" element={<MessageItemPage />} />
+          <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="active" element={<NotificationItemPage />} />
           <Route path="clubs" element={<TalkClubsPage />} />
           <Route path="bonus" element={<BonusLayout />} >
             <Route path="" element={<GratitudesPage />} />

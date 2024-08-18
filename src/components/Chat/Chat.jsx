@@ -1,17 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Comment } from "../Comment/Comment";
+import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
+import { Message } from '../Message/Message';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { addComment } from '../../redux/exercises/operations';
-import { selectExercise } from '../../redux/exercises/selectors';
+import { getMessages } from '../../redux/chat/operations';
+import { addMessage } from '../../redux/chat/slice';
+import { selectMessages } from '../../redux/chat/selectors';
+import { selectToken } from '../../redux/auth/selectors';
 import { useAuth } from '../../hooks';
-import css from './CommentsList.module.css';
+import courses from "../courses.json";
+import {AXIOS_BASE_URL} from '../../constants';
+import css from './Chat.module.css';
 
-export const CommentsList = () => {
+export default function Chat () {
+  const socket = io(AXIOS_BASE_URL, {
+    transports: ['websocket'], // Використовуйте тільки WebSocket для підключень
+  });
   const dispatch = useDispatch();
-  const {user} = useAuth();  
-  const {_id, comments} = useSelector(selectExercise);
+  const {user} = useAuth(); 
+  const token = useSelector(selectToken); 
+  const messages = useSelector(selectMessages);
+
+  const {courseId} = useParams();
+  const currentCourse = courses.find(course => course.id === courseId);
+  const chat = `${currentCourse.title}-${currentCourse.wave}`;
+
   const [textInput, setTextInput] = useState('');
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
@@ -22,7 +37,7 @@ export const CommentsList = () => {
 
     const newText = eText.trim();
 
-    if (newText !== '' && newText.length <= 300) {
+    if (newText !== '' && newText.length <= 500) {
         setIsDisabledBtn(false);
         setIsActiveTextarea(true);
     } else {
@@ -34,16 +49,35 @@ export const CommentsList = () => {
     e.preventDefault();
     
     const data = {
-        exerciseId: _id,
-        comment: textInput,
+      token,
+      chat,
+      text: textInput,
     };
   
-    dispatch(addComment(data));
+    // dispatch(addMessage(data));
+    socket.emit('message', data); // Відправлення повідомлення на сервер
 
     setTextInput('');   
     setIsActiveTextarea(false);
     setIsDisabledBtn(true);
   };
+
+  useEffect(() => {
+    // Завантаження історії чату з сервера
+    dispatch(getMessages(chat));
+  }, [dispatch, chat]);
+
+  useEffect(() => {
+    // Отримання повідомлень у реальному часі
+    socket.on('message', (message) => {
+      dispatch(addMessage(message));
+    });
+
+    // Відключення сокету при виході з компонента
+    return () => {
+      socket.disconnect();
+    };
+  }, [dispatch, socket]);
 
   useEffect(() => {
     // Функція-обробник для обробки події beforeunload
@@ -65,8 +99,8 @@ export const CommentsList = () => {
   }, [isActiveTextarea]);
 
   return (
-    <div className={css.containerComments}>
-      <h2 className={css.title}>Коментарі</h2>
+    <div className={css.chatContainer}>
+      <h2 className={css.title}>Чат підтримки</h2>
       <Form onSubmit={handleSubmit} className={css.form}>
         <Form.Group 
           controlId="formText"
@@ -78,13 +112,13 @@ export const CommentsList = () => {
           <div>
             <Form.Control 
               as="textarea" rows={1} 
-              placeholder="Залишіть коментар" 
+              placeholder="Надішліть повідомлення" 
               value={textInput} 
               onChange={handleTextChange}
               className={css.textarea} 
             />
             {isDisabledBtn && isActiveTextarea &&
-              <div className={css.text}>Коментар не може бути порожнім і може вміщати до 300 символів</div>
+              <div className={css.text}>Повідомлення не може бути порожнім і може вміщати до 500 символів</div>
             } 
           </div>
           <Button 
@@ -98,11 +132,10 @@ export const CommentsList = () => {
         </Form.Group>  
       </Form>
       <ul className={css.list}>
-        {comments.slice().reverse().map(comment => (
-            <Comment 
-            key={comment._id}
-            comment={comment}
-            exerciseId={_id}
+        {messages.slice().reverse().map(message => (
+            <Message 
+            key={message._id}
+            message={message}
             />
         ))}
       </ul>

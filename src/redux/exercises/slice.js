@@ -8,7 +8,7 @@ import {
     addComment,
     updateComment,
     deleteComment,
-    getMessages,
+    getNotifications,
     getExerciseById,
 } from "./operations";
 
@@ -27,8 +27,8 @@ const initialState = {
       fileURL: '',
       comments: [],
   },
-  messages: [],
-  countMessages: null,
+  notifications: [],
+  countNotifications: null,
   isLoading: false,
   error: null,
 }
@@ -96,14 +96,14 @@ const exercisesSlice = createSlice({
       state.exercise.comments.splice(index,1);
     })
     .addCase(deleteComment.rejected, handleRejected)
-    .addCase(getMessages.pending, handlePending)
-    .addCase(getMessages.fulfilled, (state, action) => {
+    .addCase(getNotifications.pending, handlePending)
+    .addCase(getNotifications.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.messages = action.payload.messages || initialState.messages;
-      state.countMessages = action.payload.countMessages || initialState.countMessages;
+      state.notifications = action.payload.notifications || initialState.notifications;
+      state.countNotifications = action.payload.countNotifications || initialState.countNotifications;
     })
-    .addCase(getMessages.rejected, handleRejected)
+    .addCase(getNotifications.rejected, handleRejected)
     .addCase(getExerciseById.pending, handlePending)
     .addCase(getExerciseById.fulfilled, (state, action) => {
       state.isLoading = false;

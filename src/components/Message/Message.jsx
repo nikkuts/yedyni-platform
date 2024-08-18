@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from '../../hooks';
-import { updateComment, deleteComment } from '../../redux/exercises/operations';
+import { updateMessage, deleteMessage } from '../../redux/chat/operations';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
 import { ReactComponent as Trash } from '../../icons/trash.svg';
 import { formatDateTime } from '../../service/handleDate';
-import css from './Comment.module.css';
+import css from './Message.module.css';
 
-export const Comment = ({comment, exerciseId}) => {
+export const Message = ({message}) => {
   const dispatch = useDispatch(); 
-  const [textInput, setTextInput] = useState(comment.comment);
+  const [textInput, setTextInput] = useState(message.text);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -29,7 +29,7 @@ export const Comment = ({comment, exerciseId}) => {
     
     const newText = eText.trim();
 
-    if (newText !== '' && newText.length <= 300) {
+    if (newText !== '' && newText.length <= 500) {
         setIsDisabledBtn(false);
         setIsActiveTextarea(true);
     } else {
@@ -41,12 +41,11 @@ export const Comment = ({comment, exerciseId}) => {
     e.preventDefault();
     
     const data = {
-        exerciseId,
-        comment: textInput,
-        commentId: comment._id,
+        chat: message.chat,
+        text: textInput,
     };
   
-    dispatch(updateComment(data));
+    dispatch(updateMessage(data));
    
     setIsActiveTextarea(false);
     setIsDisabledBtn(false);
@@ -91,10 +90,10 @@ export const Comment = ({comment, exerciseId}) => {
   return (
     <li>
         {!isActiveTextarea ?
-        <div className={user.id === comment.author._id ? css.containerComment : css.specialBackground}>
-            <p className={css.comment}>{comment.comment}</p>
-            <p className={css.author}>{comment.author.name} <span className={css.date}>{formatDateTime(comment.date)}</span></p>
-            {user.id === comment.author._id &&
+        <div className={user.id === message.sender._id ? css.containerMessage : css.specialBackground}>
+            <p className={css.comment}>{message.text}</p>
+            <p className={css.author}>{message.sender.name} <span className={css.date}>{formatDateTime(message.date)}</span></p>
+            {user.id === message.sender._id &&
             <div
                 ref={textMenuRef}
                 onClick={toggleMenu} 
@@ -114,9 +113,8 @@ export const Comment = ({comment, exerciseId}) => {
                         </li>
                         <li>
                             <Link 
-                                onClick={() => dispatch(deleteComment({
-                                  exerciseId,
-                                  commentId: comment._id,    
+                                onClick={() => dispatch(deleteMessage({
+                                  messageId: message._id,    
                                 }))} 
                                 className={css.menuLink}
                             >
@@ -142,18 +140,18 @@ export const Comment = ({comment, exerciseId}) => {
             className={css.groupTextarea} 
             >
               <Form.Label className={css.userName}>
-                  {comment.author.name}
+                  {message.sender.name}
               </Form.Label>
               <div>
                 <Form.Control 
                   as="textarea" rows={1} 
-                  placeholder="Залишіть коментар" 
+                  placeholder="Надішліть повідомлення" 
                   value={textInput} 
                   onChange={handleTextChange}
                   className={css.textarea} 
                 />
                 {isDisabledBtn && 
-                  <div className={css.text}>Коментар не може бути порожнім і може вміщати до 300 символів</div>
+                  <div className={css.text}>Повідомлення не може бути порожнім і може вміщати до 500 символів</div>
                 } 
               </div>
               <div className={css.wrapperBtn}> 
@@ -180,6 +178,5 @@ export const Comment = ({comment, exerciseId}) => {
 };
 
 Comment.propTypes = {
-    comment: PropTypes.object,
-    exerciseId: PropTypes.string.isRequired,
+    message: PropTypes.object,
 };

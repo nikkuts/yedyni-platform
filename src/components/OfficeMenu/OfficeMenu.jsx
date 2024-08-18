@@ -5,8 +5,8 @@ import { logOut } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks';
 import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators } from '../../redux/partners/selectors';
-import { getMessages } from '../../redux/exercises/operations';
-import { selectCountMessages, selectIsLoading } from '../../redux/exercises/selectors';
+import { getNotifications } from '../../redux/exercises/operations';
+import { selectCountNotifications, selectIsLoading } from '../../redux/exercises/selectors';
 import { ReactComponent as LogOut } from '../../icons/log-out.svg';
 import { Navigation } from "../Navigation/Navigation";
 import css from './OfficeMenu.module.css';
@@ -15,12 +15,12 @@ export const OfficeMenu = () => {
   const dispatch = useDispatch();
   const {user} = useAuth();
   const {levelSupport} = useSelector(selectIndicators);
-  const countMessages = useSelector(selectCountMessages);
+  const countNotifications = useSelector(selectCountNotifications);
   const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getIndicators());
-    dispatch(getMessages()); 
+    dispatch(getNotifications()); 
   }, [dispatch]);
 
   return (  
@@ -52,12 +52,12 @@ export const OfficeMenu = () => {
         </li>
         <li>
           <Link  
-              to="messages"
+              to="notifications"
               className={css.link}
           >
-              Повідомлення 
-              {countMessages && 
-                <span className={css.count}>{countMessages}</span>
+              Сповіщення 
+              {countNotifications && 
+                <span className={css.count}>{countNotifications}</span>
               }
           </Link>
         </li>

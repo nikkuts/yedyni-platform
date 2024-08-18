@@ -17,14 +17,12 @@
 .courseWave {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  max-width: 280px;
+  max-width: 380px;
   padding: 30px 0px;
 
   @media screen and (min-width: 768px) {
-    justify-content: flex-start;
     flex-wrap: nowrap;
     gap: 30px;
     max-width: 768px;
@@ -67,6 +65,17 @@
 .courseBtn:hover,
 .courseBtn:focus {
   background-color: rgb(228, 228, 0);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 15px;
+  background-color: beige;
+  cursor: pointer;
 }
 
 .menu {

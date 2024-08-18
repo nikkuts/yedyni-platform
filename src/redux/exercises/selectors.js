@@ -1,8 +1,8 @@
 export const selectExercise = state => state.exercises.exercise;
 
-export const selectMessages = state => state.exercises.messages;
+export const selectNotifications = state => state.exercises.notifications;
 
-export const selectCountMessages = state => state.exercises.countMessages;
+export const selectCountNotifications = state => state.exercises.countNotifications;
 
 export const selectIsLoading = state => state.exercises.isLoading;
 

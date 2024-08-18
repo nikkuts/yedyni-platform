@@ -136,13 +136,13 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
     }
   );
 
-  export const getMessages = createAsyncThunk(
-    "exercises/getMessages",
+  export const getNotifications = createAsyncThunk(
+    "exercises/getNotifications",
     async (params, thunkAPI) => {
       const searchParams = new URLSearchParams(params);
       try {
         const response = await axios.get(
-          `/api/exercises/messages?${searchParams.toString()}`
+          `/api/exercises/notifications?${searchParams.toString()}`
         );
         return response.data; 
       } 
