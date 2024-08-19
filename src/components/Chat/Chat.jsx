@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { v4 as uuidv4 } from 'uuid';
 import { Message } from '../Message/Message';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -16,7 +17,7 @@ import css from './Chat.module.css';
 
 export default function Chat () {
   const socket = io(AXIOS_BASE_URL, {
-    transports: ['websocket'], // Використовуйте тільки WebSocket для підключень
+    transports: ['websocket'], // Використовуємо тільки WebSocket для підключень
   });
   const dispatch = useDispatch();
   const {user} = useAuth(); 
@@ -25,10 +26,9 @@ export default function Chat () {
 
   const {courseId} = useParams();
   const currentCourse = courses.find(course => course.id === courseId);
-  const chat = `${currentCourse.title}-${currentCourse.wave}`;
+  const chatTitle = `${currentCourse.title}-${currentCourse.wave}`;
 
   const [textInput, setTextInput] = useState('');
-  const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
 
   const handleTextChange = (e) => {
@@ -39,64 +39,65 @@ export default function Chat () {
 
     if (newText !== '' && newText.length <= 500) {
         setIsDisabledBtn(false);
-        setIsActiveTextarea(true);
     } else {
         setIsDisabledBtn(true);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const tempId = uuidv4()
     
     const data = {
       token,
-      chat,
+      chat: chatTitle,
       text: textInput,
     };
-  
-    // dispatch(addMessage(data));
-    socket.emit('message', data); // Відправлення повідомлення на сервер
+
+    const message = {
+      _id: tempId,
+      chat: chatTitle,
+      text: textInput,
+      sender: {
+        _id: user.id,
+        name: user.name
+      },
+      date: Date.now()
+    };
+
+    // Додавання до стану повідомлення з тимчасовим id
+    dispatch(addMessage(message));
+
+    // Відправка повідомлення на сервер
+    socket.emit('message', data);
 
     setTextInput('');   
-    setIsActiveTextarea(false);
     setIsDisabledBtn(true);
   };
 
   useEffect(() => {
-    // Завантаження історії чату з сервера
-    dispatch(getMessages(chat));
-  }, [dispatch, chat]);
+    dispatch(getMessages(chatTitle));
+  }, [dispatch, chatTitle]);
 
   useEffect(() => {
-    // Отримання повідомлень у реальному часі
+    if (!socket.connected) {
+      socket.connect();
+      console.log('socket connect'); 
+    }
+  
+    // Отримання повідомлення від сервера і додавання до стану
     socket.on('message', (message) => {
       dispatch(addMessage(message));
+      console.log('socket message');
     });
-
-    // Відключення сокету при виході з компонента
+  
     return () => {
+      socket.off('message');
       socket.disconnect();
+      console.log('socket disconnect'); 
     };
   }, [dispatch, socket]);
-
-  useEffect(() => {
-    // Функція-обробник для обробки події beforeunload
-    const handleBeforeUnload = (e) => {
-      // Перевірка, чи активне текстове поле, і якщо так, попередження користувача
-      if (isActiveTextarea) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-
-    // Додавання обробника події beforeunload при монтуванні компонента
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    // Видалення обробника події beforeunload при розмонтуванні компонента
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [isActiveTextarea]);
 
   return (
     <div className={css.chatContainer}>
@@ -117,9 +118,6 @@ export default function Chat () {
               onChange={handleTextChange}
               className={css.textarea} 
             />
-            {isDisabledBtn && isActiveTextarea &&
-              <div className={css.text}>Повідомлення не може бути порожнім і може вміщати до 500 символів</div>
-            } 
           </div>
           <Button 
             variant="primary"
