@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
-import { v4 as uuidv4 } from 'uuid';
 import { Message } from '../Message/Message';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -16,9 +15,7 @@ import {AXIOS_BASE_URL} from '../../constants';
 import css from './Chat.module.css';
 
 export default function Chat () {
-  const socket = io(AXIOS_BASE_URL, {
-    transports: ['websocket'], // Використовуємо тільки WebSocket для підключень
-  });
+  const socket = useMemo(() => io(AXIOS_BASE_URL, {transports: ['websocket']}), []);
   const dispatch = useDispatch();
   const {user} = useAuth(); 
   const token = useSelector(selectToken); 
@@ -46,8 +43,6 @@ export default function Chat () {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const tempId = uuidv4()
     
     const data = {
       token,
@@ -55,21 +50,6 @@ export default function Chat () {
       text: textInput,
     };
 
-    const message = {
-      _id: tempId,
-      chat: chatTitle,
-      text: textInput,
-      sender: {
-        _id: user.id,
-        name: user.name
-      },
-      date: Date.now()
-    };
-
-    // Додавання до стану повідомлення з тимчасовим id
-    dispatch(addMessage(message));
-
-    // Відправка повідомлення на сервер
     socket.emit('message', data);
 
     setTextInput('');   
