@@ -25,8 +25,7 @@ export const Message = ({message}) => {
 
   const handleTextChange = (e) => {
     const eText = e.target.value;
-    setTextInput(eText);
-    
+    setTextInput(eText);  
     const newText = eText.trim();
 
     if (newText !== '' && newText.length <= 500) {
@@ -51,6 +50,13 @@ export const Message = ({message}) => {
     setIsDisabledBtn(false);
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); 
+      handleSubmit(e);
+    }
+  };
+
     const handleClickOutside = (e) => {
         if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {
         setMenuVisible(false);
@@ -68,24 +74,24 @@ export const Message = ({message}) => {
         };
     }, []);
 
-  useEffect(() => {
-    // Функція-обробник для обробки події beforeunload
-    const handleBeforeUnload = (e) => {
-      // Перевірка, чи активне текстове поле, і якщо так, попередження користувача
-      if (isActiveTextarea) {
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
+  // useEffect(() => {
+  //   // Функція-обробник для обробки події beforeunload
+  //   const handleBeforeUnload = (e) => {
+  //     // Перевірка, чи активне текстове поле, і якщо так, попередження користувача
+  //     if (isActiveTextarea) {
+  //       e.preventDefault();
+  //       e.returnValue = '';
+  //     }
+  //   };
 
-    // Додавання обробника події beforeunload при монтуванні компонента
-    window.addEventListener('beforeunload', handleBeforeUnload);
+  //   // Додавання обробника події beforeunload при монтуванні компонента
+  //   window.addEventListener('beforeunload', handleBeforeUnload);
 
-    // Видалення обробника події beforeunload при розмонтуванні компонента
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, [isActiveTextarea]);
+  //   // Видалення обробника події beforeunload при розмонтуванні компонента
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   };
+  // }, [isActiveTextarea]);
 
   return (
     <li>
@@ -148,11 +154,9 @@ export const Message = ({message}) => {
                   placeholder="Надішліть повідомлення" 
                   value={textInput} 
                   onChange={handleTextChange}
+                  onKeyDown={handleKeyDown}
                   className={css.textarea} 
                 />
-                {isDisabledBtn && 
-                  <div className={css.text}>Повідомлення не може бути порожнім і може вміщати до 500 символів</div>
-                } 
               </div>
               <div className={css.wrapperBtn}> 
                 <Button 

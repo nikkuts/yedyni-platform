@@ -31,7 +31,6 @@ export default function Chat () {
   const handleTextChange = (e) => {
     const eText = e.target.value;
     setTextInput(eText);
-
     const newText = eText.trim();
 
     if (newText !== '' && newText.length <= 500) {
@@ -54,6 +53,13 @@ export default function Chat () {
 
     setTextInput('');   
     setIsDisabledBtn(true);
+  };
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Запобігає стандартній поведінці Enter (наприклад, створення нового рядка в textarea)
+      handleSubmit(e);
+    }
   };
 
   useEffect(() => {
@@ -96,6 +102,7 @@ export default function Chat () {
               placeholder="Надішліть повідомлення" 
               value={textInput} 
               onChange={handleTextChange}
+              onKeyDown={handleKeyDown}
               className={css.textarea} 
             />
           </div>
