@@ -32,7 +32,7 @@ const chatSlice = createSlice({
     },
     updateMessage(state, action) {
       const index = state.messages.findIndex(message => message._id === action.payload._id);
-      state.messages[index] = action.payload;
+      state.messages[index] = index !== -1 && {...state.messages[index], ...action.payload};
     },
     deleteMessage(state, action) {
       const index = state.messages.findIndex(message => message._id === action.payload._id);

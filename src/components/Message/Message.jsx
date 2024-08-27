@@ -1,15 +1,12 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { io } from 'socket.io-client';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { uploadFile, deleteFile } from '../../redux/chat/operations';
-import { updateMessage, deleteMessage } from '../../redux/chat/slice';
 import { selectToken } from '../../redux/auth/selectors';
 import { useAuth } from '../../hooks';
-import {AXIOS_BASE_URL} from '../../constants';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
@@ -17,8 +14,7 @@ import { ReactComponent as Trash } from '../../icons/trash.svg';
 import { formatDateTime } from '../../service/handleDate';
 import css from './Message.module.css';
 
-export const Message = ({message}) => {
-  const socket = useMemo(() => io(AXIOS_BASE_URL, {transports: ['websocket']}), []);
+export const Message = ({message, socket}) => {
   const dispatch = useDispatch();
   const {user} = useAuth(); 
   const token = useSelector(selectToken);
@@ -74,6 +70,8 @@ export const Message = ({message}) => {
     dispatch(
       deleteFile(formData)
     );
+
+    setIsDisabledBtn(false);
   };
 
   const handleDeleteMessage = (e) => {
@@ -106,15 +104,8 @@ export const Message = ({message}) => {
 
     socket.emit('message', data);
 
-    // setTextInput('');
-    // setFileInput(null);
     setIsActiveTextarea(false);   
     setIsDisabledBtn(true);
-
-    // Очищення значення file input
-    // if (fileInputRef.current) {
-    //   fileInputRef.current.value = null;
-    // }
   };
 
   const handleKeyDown = e => {
@@ -128,28 +119,9 @@ export const Message = ({message}) => {
     setMenuVisible((prevVisible) => !prevVisible);
   };
 
-  useEffect(() => {
-    if (!socket.connected) {
-      socket.connect();
-      console.log('socket connect'); 
-    }
-  
-    socket.on('message', (message) => {
-      if (message._id && message.isDeleteMessage) {
-        dispatch(deleteMessage(message));
-        console.log('socket message delete');
-      } else {
-        dispatch(updateMessage(message));
-        console.log('socket message update');
-      }
-    });
-  
-    return () => {
-      socket.off('message');
-      socket.disconnect();
-      console.log('socket disconnect'); 
-    };
-  }, [dispatch, socket]);
+  if (!sender) {
+    return <p>Error: Sender information is missing.</p>;
+  }
 
   return (
     <>

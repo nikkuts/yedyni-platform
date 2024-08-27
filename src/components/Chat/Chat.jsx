@@ -6,8 +6,9 @@ import { Message } from '../Message/Message';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { getMessages, uploadFile } from '../../redux/chat/operations';
-import { addMessage } from '../../redux/chat/slice';
+import { addMessage, updateMessage, deleteMessage } from '../../redux/chat/slice';
 import { selectMessages } from '../../redux/chat/selectors';
+import { selectIsLoading } from '../../redux/chat/selectors';
 import { selectToken } from '../../redux/auth/selectors';
 import { useAuth } from '../../hooks';
 import courses from "../courses.json";
@@ -20,6 +21,7 @@ export default function Chat () {
   const {user} = useAuth(); 
   const token = useSelector(selectToken); 
   const messages = useSelector(selectMessages);
+  const isLoading = useSelector(selectIsLoading);
 
   const {courseId} = useParams();
   const currentCourse = courses.find(course => course.id === courseId);
@@ -89,8 +91,7 @@ export default function Chat () {
 
   const handleKeyDown = e => {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Запобігає стандартній поведінці Enter (наприклад, створення нового рядка в textarea)
-      handleSubmit(e);
+      e.preventDefault(); 
     }
   };
 
@@ -104,10 +105,19 @@ export default function Chat () {
       console.log('socket connect'); 
     }
   
-    // Отримання повідомлення від сервера і додавання до стану
     socket.on('message', (message) => {
-      dispatch(addMessage(message));
-      console.log('socket message');
+      if (message.chat) {
+        dispatch(addMessage(message));
+        console.log('socket new message');
+      }
+      else if (message._id && message.isDeleteMessage) {
+        dispatch(deleteMessage(message));
+        console.log('socket delete message');
+      } 
+      else if (message._id) {
+        dispatch(updateMessage(message));
+        console.log('socket update message');
+      }
     });
   
     return () => {
@@ -118,57 +128,63 @@ export default function Chat () {
   }, [dispatch, socket]);
 
   return (
-    <div className={css.chatContainer}>
-      <h2 className={css.title}>Чат підтримки</h2>
-      <Form onSubmit={handleSubmit} className={css.form}>
-        <Form.Group 
-          controlId="formText"
-          className={css.groupTextarea} 
-        >
-          <Form.Label className={css.userName}>
-            {user.name}
-          </Form.Label>
-            <Form.Control 
-              as="textarea" rows={1} 
-              placeholder="Написати повідомлення" 
-              value={textInput} 
-              onChange={handleTextChange}
-              onKeyDown={handleKeyDown}
-              className={css.textarea} 
-            />
-        </Form.Group>
-        <div className={css.wrapperBtn}>
+    <>
+      <div className={css.chatContainer}>
+        <h2 className={css.title}>Чат підтримки</h2>
+        <Form onSubmit={handleSubmit} className={css.form}>
           <Form.Group 
-            controlId="formFile" 
-            className={css.groupFile}
+            controlId="formText"
+            className={css.groupTextarea} 
           >
-            <Form.Control 
-              type="file" 
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              className={css.file} 
-            />               
+            <Form.Label className={css.userName}>
+              {user.name}
+            </Form.Label>
+              <Form.Control 
+                as="textarea" rows={1} 
+                placeholder="Написати повідомлення" 
+                value={textInput} 
+                onChange={handleTextChange}
+                onKeyDown={handleKeyDown}
+                className={css.textarea} 
+              />
           </Form.Group>
-          <Button 
-            variant="primary"
-            type="submit"
-            disabled={isDisabledBtn}
-            className={css.primaryBtn}
-          >
-            Відправити
-          </Button>     
-        </div>
-      </Form>
-      <ul className={css.list}>
-        {messages.slice().reverse().map(message => (
-          <li 
-            key={message._id}
-          >
-            <Message message={message} />
-          </li>
-        ))}
-      </ul>
-    </div>
+          <div className={css.wrapperBtn}>
+            <Form.Group 
+              controlId="formFile" 
+              className={css.groupFile}
+            >
+              <Form.Control 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className={css.file} 
+              />               
+            </Form.Group>
+            <Button 
+              variant="primary"
+              type="submit"
+              disabled={isDisabledBtn}
+              className={css.primaryBtn}
+            >
+              Відправити
+            </Button>     
+          </div>
+        </Form>
+        <div>{isLoading && <b>Завантаження даних...</b>}</div>
+        <ul className={css.list}>
+          {messages.slice().reverse().map(message => (
+            <li 
+              key={message._id}
+            >
+              <Message 
+                message={message}
+                socket={socket} 
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   ) 
 };
 
