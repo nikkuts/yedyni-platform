@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { 
     getMessages,
     // addMessage,
-    updateMessage,
+    // updateMessage,
     uploadFile,
     deleteFile,
-    deleteMessage,
+    // deleteMessage,
 } from "./operations";
 
 const handlePending = state => {
@@ -19,7 +19,6 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   messages: [],
-  fileURL: '',
   isLoading: false,
   error: null,
 }
@@ -30,6 +29,14 @@ const chatSlice = createSlice({
   reducers: {
     addMessage(state, action) {
         state.messages.push(action.payload);
+    },
+    updateMessage(state, action) {
+      const index = state.messages.findIndex(message => message._id === action.payload._id);
+      state.messages[index] = action.payload;
+    },
+    deleteMessage(state, action) {
+      const index = state.messages.findIndex(message => message._id === action.payload._id);
+      state.messages.splice(index,1);
     },
   },
   extraReducers: builder =>
@@ -52,7 +59,7 @@ const chatSlice = createSlice({
     .addCase(uploadFile.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.fileURL = action.payload || initialState.fileURL;
+      // state.fileURL = action.payload || initialState.fileURL;
     })
     .addCase(uploadFile.rejected, handleRejected)
     .addCase(deleteFile.pending, handlePending)
@@ -63,23 +70,23 @@ const chatSlice = createSlice({
       state.messages[index] = action.payload;
     })
     .addCase(deleteFile.rejected, handleRejected)
-    .addCase(updateMessage.pending, handlePending)
-    .addCase(updateMessage.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.messages.findIndex(message => message._id === action.payload._id);
-      state.messages[index] = action.payload;
-    })
-    .addCase(updateMessage.rejected, handleRejected)
-    .addCase(deleteMessage.pending, handlePending)
-    .addCase(deleteMessage.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.messages.findIndex(message => message._id === action.payload._id);
-      state.messages.splice(index,1);
-    })
-    .addCase(deleteMessage.rejected, handleRejected)
+    // .addCase(updateMessage.pending, handlePending)
+    // .addCase(updateMessage.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   const index = state.messages.findIndex(message => message._id === action.payload._id);
+    //   state.messages[index] = action.payload;
+    // })
+    // .addCase(updateMessage.rejected, handleRejected)
+    // .addCase(deleteMessage.pending, handlePending)
+    // .addCase(deleteMessage.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   const index = state.messages.findIndex(message => message._id === action.payload._id);
+    //   state.messages.splice(index,1);
+    // })
+    // .addCase(deleteMessage.rejected, handleRejected)
 });
 
-export const { addMessage } = chatSlice.actions;
+export const { addMessage, updateMessage, deleteMessage } = chatSlice.actions;
 export const chatReducer = chatSlice.reducer;

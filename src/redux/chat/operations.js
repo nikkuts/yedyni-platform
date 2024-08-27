@@ -44,18 +44,18 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
 //     }
 //   );
 
-  export const updateMessage = createAsyncThunk(
-    "chat/updateMessage",
-    async (credentials, thunkAPI) => {
-      try {
-        const response = await axios.patch("/api/chats/message", credentials);
-        return response.data; 
-      } 
-      catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
+  // export const updateMessage = createAsyncThunk(
+  //   "chat/updateMessage",
+  //   async (credentials, thunkAPI) => {
+  //     try {
+  //       const response = await axios.patch("/api/chats/message", credentials);
+  //       return response.data; 
+  //     } 
+  //     catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );
 
   export const deleteFile = createAsyncThunk(
     "chat/deleteFile",
@@ -70,16 +70,16 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
     }
   );
 
-  export const deleteMessage = createAsyncThunk(
-    "chat/deleteMessage",
-    async (messageId, thunkAPI) => {
-      try {
-        const response = await axios.delete(
-          `/api/chats/message/${messageId}`);
-        return response.data; 
-      } 
-      catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
+  // export const deleteMessage = createAsyncThunk(
+  //   "chat/deleteMessage",
+  //   async (messageId, thunkAPI) => {
+  //     try {
+  //       const response = await axios.delete(
+  //         `/api/chats/message/${messageId}`);
+  //       return response.data; 
+  //     } 
+  //     catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );

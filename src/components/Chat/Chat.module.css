@@ -15,6 +15,9 @@
   }
 
 .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     width: 100%;
     padding: 15px 20px;
     margin-left: auto;
@@ -65,23 +68,48 @@
     color: rgb(228, 58, 58);
 }
 
+.groupFile {
+    overflow: hidden;
+}
+
+.file {
+    font-size: 12px;
+
+    @media screen and (min-width: 480px) {
+        font-size: 14px;
+    }
+}
+
+.wrapperBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .primaryBtn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
     text-align: center;
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
+    line-height: calc(14/12);
     cursor: pointer;
     color: #000000;
     background-color: rgb(255, 244, 0);
+
+    @media screen and (min-width: 480px) {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+        line-height: calc(16/14);
+    }
   }
   
   .primaryBtn:hover,

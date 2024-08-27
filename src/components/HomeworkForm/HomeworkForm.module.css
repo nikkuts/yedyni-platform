@@ -164,7 +164,7 @@
   .dangerBtn:hover,
   .dangerBtn:focus {
     background-color: rgba(230, 230, 230);
-    cursor:auto;
+    cursor: auto;
   }
 
   .wrapperBtn {

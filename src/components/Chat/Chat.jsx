@@ -1,11 +1,11 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { Message } from '../Message/Message';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { getMessages } from '../../redux/chat/operations';
+import { getMessages, uploadFile } from '../../redux/chat/operations';
 import { addMessage } from '../../redux/chat/slice';
 import { selectMessages } from '../../redux/chat/selectors';
 import { selectToken } from '../../redux/auth/selectors';
@@ -26,7 +26,9 @@ export default function Chat () {
   const chatTitle = `${currentCourse.title}-${currentCourse.wave}`;
 
   const [textInput, setTextInput] = useState('');
+  const [fileInput, setFileInput] = useState(null);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
+  const fileInputRef = useRef(null);
 
   const handleTextChange = (e) => {
     const eText = e.target.value;
@@ -40,6 +42,22 @@ export default function Chat () {
     }
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file.size > 1048576) {
+      alert('Файл повинен бути не більше 1 Мб.');
+
+      // Очищення значення file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
+      }
+    } else {
+      setFileInput(file);
+      setIsDisabledBtn(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -49,10 +67,24 @@ export default function Chat () {
       text: textInput,
     };
 
+    if (fileInput) {
+      const formData = new FormData();
+      formData.append('file', fileInput);
+
+      const fileURL = await dispatch(uploadFile(formData)).unwrap();
+      data.fileURL = fileURL;
+    }
+
     socket.emit('message', data);
 
-    setTextInput('');   
+    setTextInput('');
+    setFileInput(null);   
     setIsDisabledBtn(true);
+
+    // Очищення значення file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
   };
 
   const handleKeyDown = e => {
@@ -96,16 +128,27 @@ export default function Chat () {
           <Form.Label className={css.userName}>
             {user.name}
           </Form.Label>
-          <div>
             <Form.Control 
               as="textarea" rows={1} 
-              placeholder="Надішліть повідомлення" 
+              placeholder="Написати повідомлення" 
               value={textInput} 
               onChange={handleTextChange}
               onKeyDown={handleKeyDown}
               className={css.textarea} 
             />
-          </div>
+        </Form.Group>
+        <div className={css.wrapperBtn}>
+          <Form.Group 
+            controlId="formFile" 
+            className={css.groupFile}
+          >
+            <Form.Control 
+              type="file" 
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              className={css.file} 
+            />               
+          </Form.Group>
           <Button 
             variant="primary"
             type="submit"
@@ -113,15 +156,16 @@ export default function Chat () {
             className={css.primaryBtn}
           >
             Відправити
-          </Button>   
-        </Form.Group>  
+          </Button>     
+        </div>
       </Form>
       <ul className={css.list}>
         {messages.slice().reverse().map(message => (
-            <Message 
+          <li 
             key={message._id}
-            message={message}
-            />
+          >
+            <Message message={message} />
+          </li>
         ))}
       </ul>
     </div>
