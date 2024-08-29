@@ -4,7 +4,7 @@ import {
     // addMessage,
     // updateMessage,
     uploadFile,
-    deleteFile,
+    // deleteFile,
     // deleteMessage,
 } from "./operations";
 
@@ -62,14 +62,14 @@ const chatSlice = createSlice({
       // state.fileURL = action.payload || initialState.fileURL;
     })
     .addCase(uploadFile.rejected, handleRejected)
-    .addCase(deleteFile.pending, handlePending)
-    .addCase(deleteFile.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.error = null;
-      const index = state.messages.findIndex(message => message._id === action.payload._id);
-      state.messages[index] = action.payload;
-    })
-    .addCase(deleteFile.rejected, handleRejected)
+    // .addCase(deleteFile.pending, handlePending)
+    // .addCase(deleteFile.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   const index = state.messages.findIndex(message => message._id === action.payload._id);
+    //   state.messages[index] = action.payload;
+    // })
+    // .addCase(deleteFile.rejected, handleRejected)
     // .addCase(updateMessage.pending, handlePending)
     // .addCase(updateMessage.fulfilled, (state, action) => {
     //   state.isLoading = false;

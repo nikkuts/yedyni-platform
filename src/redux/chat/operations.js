@@ -57,18 +57,18 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
   //   }
   // );
 
-  export const deleteFile = createAsyncThunk(
-    "chat/deleteFile",
-    async (credentials, thunkAPI) => {
-      try {
-        const response = await axios.patch("/api/chats/message/file", credentials);
-        return response.data; 
-      } 
-      catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
+  // export const deleteFile = createAsyncThunk(
+  //   "chat/deleteFile",
+  //   async (credentials, thunkAPI) => {
+  //     try {
+  //       const response = await axios.patch("/api/chats/message/file", credentials);
+  //       return response.data; 
+  //     } 
+  //     catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );
 
   // export const deleteMessage = createAsyncThunk(
   //   "chat/deleteMessage",
