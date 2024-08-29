@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { uploadFile } from '../../redux/chat/operations';
 import { selectToken } from '../../redux/auth/selectors';
 import { ReactComponent as Close } from '../../icons/x.svg';
+import { ReactComponent as Trash } from '../../icons/trash.svg';
 import css from './MessageForm.module.css';
 
 export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
@@ -120,6 +121,7 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
               className={css.textarea} 
             />
           </div>
+          <div className={css.wrapperBtn}> 
           {fileURL && fileURL !== '' && !deletedFile ?
             <div className={css.groupFile}>
               <Link
@@ -129,14 +131,12 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
               >
                 Прикріплений файл
               </Link>
-              <Button 
-                variant="danger"
-                type='button' 
+              <div
                 onClick={handleDeleteFile}
-                className={css.dangerBtn}
+                className={css.trash}
               >
-                Видалити файл
-              </Button>
+                <Trash className={css.trashIcon} />
+              </div>
             </div>
             :
             <Form.Group 
@@ -150,24 +150,25 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
               />               
             </Form.Group>
           }
-          <div className={css.wrapperBtn}> 
-            <Button 
-              variant="primary"
-              type="submit"
-              disabled={isDisabledBtn}
-              className={css.primaryBtn}
-            >
-              Зберегти
-            </Button>
-            <Button
-              onClick={() => {
-                setTextInput(text);
-                onCancel();
-              }} 
-              className={css.cancelBtn}
-            >
-              Скасувати
-            </Button>
+            <div className={css.groupBtn}> 
+              <Button 
+                variant="primary"
+                type="submit"
+                disabled={isDisabledBtn}
+                className={css.primaryBtn}
+              >
+                Зберегти
+              </Button>
+              <Button
+                onClick={() => {
+                  setTextInput(text);
+                  onCancel();
+                }} 
+                className={css.cancelBtn}
+              >
+                Скасувати
+              </Button>
+            </div>
           </div>
         </Form.Group>              
     </Form> 

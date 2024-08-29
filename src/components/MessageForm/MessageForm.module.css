@@ -1,73 +1,3 @@
-.containerMessage {
-    position: relative;
-    width: 100%;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-    overflow-wrap: break-word;
-
-    @media screen and (min-width: 768px) {
-        padding: 10px 40px;
-    }
-}
-
-.specialBackground {
-    width: 100%;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-    overflow-wrap: break-word;
-    background-color: beige;
-
-    @media screen and (min-width: 768px) {
-        padding: 10px 40px;
-    }
-  }
-
-.comment {
-    color: #555;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 0px;
-}
-
-.author {
-    color: #555;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 0px;
-}
-
-.date {
-    color: #555;
-    font-size: 14px;
-    font-weight: 400;
-    padding-left: 10px;
-}
-
-.icon {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 5px;
-    right: 5px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.icon:hover,  
-.icon:focus,
-.icon:active {
-    background-color: rgb(245, 245, 245);
-}
-
 .close {
     position: absolute;
     display: flex;
@@ -75,10 +5,15 @@
     align-items: center;
     top: 5px;
     right: 5px;
-    width: 34px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+        width: 34px;
+        height: 34px;
+    }
 }
 
 .close:hover,  
@@ -87,40 +22,24 @@
     background-color: rgb(245, 245, 245);
 }
 
-.menu {
-    position: absolute;
-    display: block;
-    width: 150px;
-    top: 34px;
-    right: 0;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-    z-index: 100;
+.trash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
-.menuLink {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    height: 34px;
-    padding-left: 10px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #2a363b;   
-}
-  
-.menuLink:hover,  
-.menuLink:focus,
-.menuLink:active {
+.trash:hover,  
+.trash:focus,
+.trash:active {
     background-color: rgb(245, 245, 245);
 }
 
 .title {
     font-size: 24px;
-  }
+}
 
 .form {
     position: relative;
@@ -155,88 +74,97 @@
     margin-left: auto;
     margin-right: auto;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.2;
     border: 1px solid #dfdddd;
     border-radius: 20px;
     outline: none;
+    resize: vertical;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }
 
 .textarea::placeholder {
     color: rgba(0, 0, 0, 0.7); 
 }
 
-.link {
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: underline;
-    color: #3754fd;   
-  }
-  
-  .link:hover,  
-  .link:focus,
-  .link:active {
-    color: #0d30f5;
-  }
+.wrapperBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+
+    @media screen and (min-width: 480px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 
 .groupFile {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.link {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    color: #3754fd; 
+}
+
+.link:hover,  
+.link:focus,
+.link:active {
+    color: #0d30f5;
 }
 
 .file {
-    font-size: 14px;
+    font-size: 12px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 14px;
+    }
 }
 
-.dangerBtn {
-    display: block;
-    border: 1px solid #000000;
-    border-radius: 3px;
-    width: 120px;
-    height: 24px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    font-weight: 500;
-    overflow: hidden;
-    outline: none;
-    color: #000000;
-    background-color: rgb(240, 240, 240);
-}
-
-.dangerBtn:hover,
-.dangerBtn:focus {
-    background-color: rgba(230, 230, 230);
-    cursor: auto;
-}
-
-.wrapperBtn {
+.groupBtn {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-  }
+    gap: 8px;
+}
 
 .primaryBtn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
     text-align: center;
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: calc(16/14);
+    line-height: calc(14/12);
     overflow: hidden;
     outline: none;
     cursor: pointer;
     color: #000000;
     background-color: rgb(255, 244, 0);
+
+    @media screen and (min-width: 768px) {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+        line-height: calc(16/14);
+    }
   }
   
   .primaryBtn:hover,
@@ -252,23 +180,31 @@
     }
 
   .cancelBtn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
+    width: 100px;
+    height: 30px;
     text-align: center;
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: calc(16/14);
+    line-height: calc(14/12);
     overflow: hidden;
     outline: none;
     border: 1px solid #dfdddd;
     cursor: pointer;
     color: #000000;
     background-color: #ffffff;
+
+    @media screen and (min-width: 768px) {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+        line-height: calc(16/14);
+    }
   }
   
   .cancelBtn:hover,

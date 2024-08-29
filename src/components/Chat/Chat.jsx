@@ -24,6 +24,11 @@ export default function Chat () {
   const chatTitle = `${currentCourse.title}-${currentCourse.wave}`;
 
   const [editingMessage, setEditingMessage] = useState(null);
+  const [currentEditingMessage, setCurrentEditingMessage] = useState(editingMessage);
+  
+  useEffect(() => {
+    setCurrentEditingMessage(editingMessage);      
+  }, [editingMessage]);
 
   useEffect(() => {
     dispatch(getMessages(chatTitle));
@@ -61,7 +66,7 @@ export default function Chat () {
     <>
       <div className={css.chatContainer}>
         <h2 className={css.title}>Чат підтримки</h2>
-        {editingMessage ? (
+        {editingMessage && editingMessage === currentEditingMessage ? (
           <MessageForm
             socket={socket} 
             initialMessage={editingMessage}
@@ -75,7 +80,7 @@ export default function Chat () {
           />
         )}
         <div>{isLoading && <b>Завантаження даних...</b>}</div>
-        <ul className={css.list}>
+        <ul>
           {messages.slice().reverse().map(message => (
             <li 
               key={message._id}
@@ -84,6 +89,7 @@ export default function Chat () {
                 socket={socket}
                 message={message}
                 onEdit={() => setEditingMessage(message)}
+                onCancel={() => setEditingMessage(null)}
               />
             </li>
           ))}

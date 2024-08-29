@@ -13,25 +13,20 @@
 }
 
 .specialBackground {
-    width: 100%;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-    overflow-wrap: break-word;
     background-color: beige;
-
-    @media screen and (min-width: 768px) {
-        padding: 10px 40px;
-    }
   }
 
 .comment {
     color: #555;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.2;
     margin-bottom: 0px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }
 
 .author {
@@ -39,7 +34,6 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 1.5;
-    margin-bottom: 0px;
 }
 
 .date {
@@ -56,36 +50,22 @@
     align-items: center;
     top: 5px;
     right: 5px;
-    width: 34px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+        width: 34px;
+        height: 34px;
+    }
 }
 
-.icon:hover,  
+/* .icon:hover,  
 .icon:focus,
 .icon:active {
     background-color: rgb(245, 245, 245);
-}
-
-.close {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 5px;
-    right: 5px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.close:hover,  
-.close:focus,
-.close:active {
-    background-color: rgb(245, 245, 245);
-}
+} */
 
 .menu {
     position: absolute;
@@ -118,54 +98,9 @@
     background-color: rgb(245, 245, 245);
 }
 
-.title {
-    font-size: 24px;
-  }
-
-.form {
-    position: relative;
-    width: 100%;
-    padding: 15px 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-
-    @media screen and (min-width: 768px) {
-        padding: 15px 40px;
-    }
-}
-
-.groupTextarea {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.userName {
-    font-weight: 700;
-    font-size: 18px;
-    color: #333;
-}
-
-.textarea {
-    display: block;
-    width: 100%;
-    min-height: 45px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #dfdddd;
-    border-radius: 20px;
-    outline: none;
-}
-
-.textarea::placeholder {
-    color: rgba(0, 0, 0, 0.7); 
-}
-
 .link {
+    display: inline-block;
+    margin-top: 15px;
     font-size: 14px;
     font-weight: 500;
     text-decoration: underline;
@@ -176,103 +111,4 @@
   .link:focus,
   .link:active {
     color: #0d30f5;
-  }
-
-.groupFile {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.file {
-    font-size: 14px;
-}
-
-.dangerBtn {
-    display: block;
-    border: 1px solid #000000;
-    border-radius: 3px;
-    width: 120px;
-    height: 24px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 14px;
-    font-weight: 500;
-    overflow: hidden;
-    outline: none;
-    color: #000000;
-    background-color: rgb(240, 240, 240);
-}
-
-.dangerBtn:hover,
-.dangerBtn:focus {
-    background-color: rgba(230, 230, 230);
-    cursor: auto;
-}
-
-.wrapperBtn {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-  }
-
-.primaryBtn {
-    display: block;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
-    color: #000000;
-    background-color: rgb(255, 244, 0);
-  }
-  
-  .primaryBtn:hover,
-  .primaryBtn:focus {
-    background-color: rgb(228, 228, 0);
-  }
-
-  .primaryBtn[disabled] {
-    /* Стилі для кнопки, яка має атрибут disabled */
-    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
-    cursor: not-allowed; /* Зміна курсора на not-allowed */
-    pointer-events: none; /* Відключення можливості клікати на кнопку */
-    }
-
-  .cancelBtn {
-    display: block;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
-    border: 1px solid #dfdddd;
-    cursor: pointer;
-    color: #000000;
-    background-color: #ffffff;
-  }
-  
-  .cancelBtn:hover,
-  .cancelBtn:focus {
-    border: none;
-    background-color: rgb(255, 244, 0);
   }

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
@@ -10,7 +10,7 @@ import { ReactComponent as Trash } from '../../icons/trash.svg';
 import { formatDateTime } from '../../service/handleDate';
 import css from './Message.module.css';
 
-export const Message = ({message, socket, onEdit}) => {
+export const Message = ({message, socket, onEdit, onCancel}) => {
   const {user} = useAuth(); 
   const token = useSelector(selectToken);
   const {_id, text, fileURL, date, sender } = message; 
@@ -18,6 +18,10 @@ export const Message = ({message, socket, onEdit}) => {
   const [menuVisible, setMenuVisible] = useState(false);    
   const textMenuRef = useRef();
 
+  const handleEditClick = () => {
+    onEdit(); 
+  };
+  
   const handleDeleteMessage = (e) => {
     const data = {
       token,
@@ -27,20 +31,30 @@ export const Message = ({message, socket, onEdit}) => {
     };
 
     socket.emit('message', data);
-  }
+    onCancel();
+  };
 
   const toggleMenu = () => {
     setMenuVisible((prevVisible) => !prevVisible);
   };
 
-  const handleEditClick = () => {
-    onEdit(); 
+  const handleClickOutside = (e) => {
+    if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {
+    setMenuVisible(false);
+    }
   };
 
+  useEffect(() => {
+      document.addEventListener('click', handleClickOutside);
+      return () => {
+      document.removeEventListener('click', handleClickOutside);
+      };
+  }, []);
+
   return (
-        <div className={user.id === sender._id ? css.containerMessage : css.specialBackground}>
+        <div className={`${css.containerMessage} ${user.id === sender._id && css.specialBackground}`}>
+            <span className={css.author}>{sender.name} <span className={css.date}>{formatDateTime(date)}</span></span>
             <p className={css.comment}>{text}</p>
-            <p className={css.author}>{sender.name} <span className={css.date}>{formatDateTime(date)}</span></p>
             {fileURL && fileURL !== '' &&
                 <Link
                   to={fileURL}
