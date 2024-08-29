@@ -53,9 +53,11 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
     if (fileURL === '') {
       return;
     };
-
     setDeletedFile(fileURL);
-    setIsDisabledBtn(false);
+
+    if (textInput !== '' && textInput.trim().length <= 500) {
+      setIsDisabledBtn(false);
+    }
   };
 
   const handleSubmit = async (e) => {
