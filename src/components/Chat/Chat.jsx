@@ -81,7 +81,7 @@ export default function Chat () {
         )}
         <div>{isLoading && <b>Завантаження даних...</b>}</div>
         <ul>
-          {messages.slice().reverse().map(message => (
+          {messages.slice().reverse().map((message) => (
             <li 
               key={message._id}
             >

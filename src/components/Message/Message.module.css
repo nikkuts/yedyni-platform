@@ -22,6 +22,7 @@
     font-weight: 500;
     line-height: 1.2;
     margin-bottom: 0px;
+    padding-bottom: 10px;
 
     @media screen and (min-width: 768px) {
         font-size: 16px;
@@ -36,11 +37,28 @@
     line-height: 1.5;
 }
 
+.disabled {
+    display: none;
+}
+
 .date {
+    display: block;
     color: #555;
     font-size: 14px;
     font-weight: 400;
-    padding-left: 10px;
+    text-align: right;
+}
+
+.wrapperImage {
+    display: inline-block; /* Зробити контейнер по розміру зображення */
+    padding-bottom: 10px;
+}
+  
+.img {
+    max-width: 100%;  /* Не перевищувати ширину контейнера */
+    height: auto;     /* Зберігати пропорції зображення */
+    width: auto;      /* Зберігати оригінальну ширину зображення, якщо вона менша за ширину контейнера */
+    border-radius: 20px;
 }
 
 .icon {
@@ -99,8 +117,6 @@
 }
 
 .link {
-    display: inline-block;
-    margin-top: 15px;
     font-size: 14px;
     font-weight: 500;
     text-decoration: underline;

@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Image } from '../Image/Image';
 import { selectToken } from '../../redux/auth/selectors';
+import { toogleModal } from '../../redux/modal/modalSlice';
 import { useAuth } from '../../hooks';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
@@ -11,12 +13,24 @@ import { formatDateTime } from '../../service/handleDate';
 import css from './Message.module.css';
 
 export const Message = ({message, socket, onEdit, onCancel}) => {
+  const dispatch = useDispatch();
   const {user} = useAuth(); 
   const token = useSelector(selectToken);
-  const {_id, text, fileURL, date, sender } = message; 
+  const {_id, text, fileURL, fileType, date, sender } = message; 
 
+  const [openedImageIndex, setOpenedImageIndex] = useState(null);
   const [menuVisible, setMenuVisible] = useState(false);    
   const textMenuRef = useRef();
+
+  const handleClickImage = (index) => {
+    setOpenedImageIndex(index);
+    dispatch(toogleModal());
+  };
+
+  const handleCloseModal = () => {
+    setOpenedImageIndex(null);
+    dispatch(toogleModal());
+  };
 
   const handleEditClick = () => {
     onEdit(); 
@@ -53,17 +67,43 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
 
   return (
         <div className={`${css.containerMessage} ${user.id === sender._id && css.specialBackground}`}>
-            <span className={css.author}>{sender.name} <span className={css.date}>{formatDateTime(date)}</span></span>
+            <span className={`${css.author} ${user.id === sender._id && css.disabled}`}>{sender.name}</span>
             <p className={css.comment}>{text}</p>
-            {fileURL && fileURL !== '' &&
-                <Link
-                  to={fileURL}
-                  target='blank'
-                  className={css.link}         
-                >
-                  Прикріплений файл
-                </Link>
-            }
+            {fileURL && fileURL !== '' && fileType && fileType !== '' ? (
+              <>
+                {fileType.startsWith('image') && (
+                  <Link className={css.wrapperImage}
+                    onClick={() => handleClickImage(_id)}        
+                  >
+                    <img src={fileURL} alt="Зображення" className={css.img} />
+                  </Link>
+                )}
+                {openedImageIndex === _id && (
+                  <Image 
+                    url={fileURL}
+                    closeModal={handleCloseModal}
+                  />
+                )}
+                {fileType.startsWith('audio') && (
+                  <audio controls>
+                    <source src={fileURL} type={fileType} />
+                    Ваш браузер не підтримує відтворення аудіо.
+                  </audio>
+                )}
+              </>
+            ) : (
+              <>
+                 {fileURL && fileURL !== '' &&
+                  <Link
+                    to={fileURL}
+                    target='blank'
+                    className={css.link}         
+                  >
+                    Прикріплений файл
+                  </Link>
+                }
+              </>
+            )}
             {user.id === sender._id &&
             <div
                 ref={textMenuRef}
@@ -95,6 +135,7 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
                 }
             </div>
             }
+            <span className={css.date}>{formatDateTime(date)}</span>
         </div>
   ) 
 };

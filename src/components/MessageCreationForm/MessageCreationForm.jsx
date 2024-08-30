@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import imageCompression from 'browser-image-compression';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { uploadFile } from '../../redux/chat/operations';
@@ -29,19 +30,30 @@ export const MessageCreationForm = ({socket, chat}) => {
     }
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
 
-    if (file.size > 1048576) {
+    if (file.size > 1048576) {  // Перевірка розміру файлу
       alert('Файл повинен бути не більше 1 Мб.');
 
       // Очищення значення file input
       if (fileInputRef.current) {
         fileInputRef.current.value = null;
       }
-    } else {
-      setFileInput(file);
+      return;
+    }
+
+    try {
+      const compressedFile = await imageCompression(file, {
+        maxSizeMB: 1, // Максимальний розмір файлу після стиснення
+        // maxWidthOrHeight: 800, // Максимальна висота або ширина зображення
+        useWebWorker: true // Використання Web Worker для стиснення
+      });
+
+      setFileInput(compressedFile);
       setIsDisabledBtn(false);
+    } catch (error) {
+      console.error('Помилка стиснення файлу:', error);
     }
   };
 
@@ -58,8 +70,9 @@ export const MessageCreationForm = ({socket, chat}) => {
       const formData = new FormData();
       formData.append('file', fileInput);
 
-      const fileURL = await dispatch(uploadFile(formData)).unwrap();
-      data.fileURL = fileURL;
+      const response = await dispatch(uploadFile(formData)).unwrap();
+      data.fileURL = response.fileURL;
+      data.fileType = response.fileType;
     }
 
     socket.emit('message', data);
@@ -77,6 +90,7 @@ export const MessageCreationForm = ({socket, chat}) => {
   const handleKeyDown = e => {
     if (e.key === 'Enter') {
       e.preventDefault(); 
+      handleSubmit(e);
     }
   };
 
@@ -108,7 +122,7 @@ export const MessageCreationForm = ({socket, chat}) => {
             ref={fileInputRef}
             onChange={handleFileChange}
             className={css.file} 
-          />               
+          />          
         </Form.Group>
         <Button 
           variant="primary"

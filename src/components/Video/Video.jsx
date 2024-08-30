@@ -3,7 +3,6 @@ import css from './Video.module.css';
 
 export const Video = ({url, closeModal}) => {
 
-
   const onBackdropClose = e => {
       if (e.currentTarget === e.target) {
           closeModal();
