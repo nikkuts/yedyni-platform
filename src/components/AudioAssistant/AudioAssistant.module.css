@@ -15,9 +15,14 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+    width: fit-content;
 
     @media screen and (min-width: 768px) {
       flex-direction: row;
       flex-wrap: wrap; 
     }
+}
+
+.audio {
+  max-width: 100%;
 }

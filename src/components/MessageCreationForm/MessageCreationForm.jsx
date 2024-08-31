@@ -33,8 +33,8 @@ export const MessageCreationForm = ({socket, chat}) => {
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
 
-    if (file.size > 1048576) {  // Перевірка розміру файлу
-      alert('Файл повинен бути не більше 1 Мб.');
+    if (file.size > 5 * 1024 * 1024) {  
+      alert('Файл повинен бути не більше 5 Мб.');
 
       // Очищення значення file input
       if (fileInputRef.current) {
@@ -43,18 +43,20 @@ export const MessageCreationForm = ({socket, chat}) => {
       return;
     }
 
-    try {
-      const compressedFile = await imageCompression(file, {
-        maxSizeMB: 1, // Максимальний розмір файлу після стиснення
-        // maxWidthOrHeight: 800, // Максимальна висота або ширина зображення
-        useWebWorker: true // Використання Web Worker для стиснення
-      });
-
-      setFileInput(compressedFile);
-      setIsDisabledBtn(false);
-    } catch (error) {
-      console.error('Помилка стиснення файлу:', error);
+    if (file.type.startsWith('image/')) {
+      try {
+        const compressedFile = await imageCompression(file, {
+          useWebWorker: true 
+        });
+  
+        setFileInput(compressedFile);
+      } catch (error) {
+        console.error('Помилка стиснення файлу:', error);
+      }
+    } else {
+      setFileInput(file);
     }
+    setIsDisabledBtn(false);
   };
 
   const handleSubmit = async (e) => {

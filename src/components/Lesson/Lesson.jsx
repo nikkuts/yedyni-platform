@@ -60,7 +60,7 @@ export default function Lesson () {
                     </div>
                     <div className={css.wrapperAudio}>
                         {currentLesson.audio.map((audioUrl) => (
-                            <audio key={audioUrl} controls>
+                            <audio key={audioUrl} controls className={css.audio}>
                                 <source src={audioUrl} type="audio/mp3" />
                                 Ваш браузер не підтримує відтворення аудіо.
                             </audio>

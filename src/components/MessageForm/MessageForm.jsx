@@ -14,7 +14,7 @@ import css from './MessageForm.module.css';
 export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
   const dispatch = useDispatch(); 
   const token = useSelector(selectToken);
-  const {_id, text, fileURL, sender } = initialMessage; 
+  const {_id, text, fileURL, fileType, sender } = initialMessage; 
 
   const [textInput, setTextInput] = useState(text);
   const [fileInput, setFileInput] = useState(null);
@@ -37,8 +37,8 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
 
-    if (file.size > 1048576) {  // Перевірка розміру файлу
-      alert('Файл повинен бути не більше 1 Мб.');
+    if (file.size > 5 * 1024 * 1024) {  
+      alert('Файл повинен бути не більше 5 Мб.');
 
       // Очищення значення file input
       if (fileInputRef.current) {
@@ -47,18 +47,20 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
       return;
     }
 
-    try {
-      const compressedFile = await imageCompression(file, {
-        maxSizeMB: 1, // Максимальний розмір файлу після стиснення
-        // maxWidthOrHeight: 800, // Максимальна висота або ширина зображення
-        useWebWorker: true // Використання Web Worker для стиснення
-      });
-
-      setFileInput(compressedFile);
-      setIsDisabledBtn(false);
-    } catch (error) {
-      console.error('Помилка стиснення файлу:', error);
+    if (file.type.startsWith('image/')) {
+      try {
+        const compressedFile = await imageCompression(file, {
+          useWebWorker: true 
+        });
+  
+        setFileInput(compressedFile);
+      } catch (error) {
+        console.error('Помилка стиснення файлу:', error);
+      }
+    } else {
+      setFileInput(file);
     }
+    setIsDisabledBtn(false);
   };
 
   const handleDeleteFile = () => {
@@ -79,8 +81,16 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
       token,
       messageId: _id,
       text: textInput,
+      fileURL,
+      fileType,
     };
-  
+
+    if (deletedFile) {
+      data.deletedFile = deletedFile;
+      data.fileURL = '';
+      data.fileType = '';
+    }
+
     if (fileInput) {
       const formData = new FormData();
       formData.append('file', fileInput);
@@ -88,11 +98,7 @@ export const MessageForm = ({socket, initialMessage, onSubmit, onCancel}) => {
       const response = await dispatch(uploadFile(formData)).unwrap();
       data.fileURL = response.fileURL;
       data.fileType = response.fileType;
-    }
-
-    if (deletedFile) {
-      data.deletedFile = deletedFile;
-    }
+    } 
  
     socket.emit('message', data);
   

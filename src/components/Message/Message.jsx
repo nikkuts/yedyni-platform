@@ -72,7 +72,7 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
             {fileURL && fileURL !== '' && fileType && fileType !== '' ? (
               <>
                 {fileType.startsWith('image') && (
-                  <Link className={css.wrapperImage}
+                  <Link className={css.wrapperFile}
                     onClick={() => handleClickImage(_id)}        
                   >
                     <img src={fileURL} alt="Зображення" className={css.img} />
@@ -85,10 +85,12 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
                   />
                 )}
                 {fileType.startsWith('audio') && (
-                  <audio controls>
-                    <source src={fileURL} type={fileType} />
-                    Ваш браузер не підтримує відтворення аудіо.
-                  </audio>
+                  <div className={css.wrapperFile}>
+                    <audio controls className={css.audio} >
+                      <source src={fileURL} type={fileType} />
+                      Ваш браузер не підтримує відтворення аудіо.
+                    </audio>
+                  </div>
                 )}
               </>
             ) : (
