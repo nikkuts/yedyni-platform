@@ -1,9 +1,9 @@
 .box {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    max-width: 300px;
-    height: auto;
+    justify-content: space-between;
+    width: 280px;
+    height: 180px;
     padding: 20px;
     background-color: #0d30f5;
     border-radius: 16px;

@@ -18,7 +18,14 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
+  isChatVisible: false,
   messages: [],
+  firstMessageDate: '',
+  sharedMessage: {
+    text: '',
+    fileURL: '',
+    fileType: '',
+  },
   isLoading: false,
   error: null,
 }
@@ -27,8 +34,18 @@ const chatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
+    openChat(state) {
+      state.isChatVisible = true;
+    },
+    closeChat(state) {
+      state.isChatVisible = false;
+    },
     addMessage(state, action) {
-        state.messages.push(action.payload);
+      if (state.firstMessageDate === '') {
+        state.firstMessageDate = action.payload.date;
+      } else {
+        state.messages = [action.payload, ...state.messages];
+      }
     },
     updateMessage(state, action) {
       const index = state.messages.findIndex(message => message._id === action.payload._id);
@@ -38,6 +55,19 @@ const chatSlice = createSlice({
       const index = state.messages.findIndex(message => message._id === action.payload._id);
       state.messages.splice(index,1);
     },
+    shareMessage(state, action) {
+      state.sharedMessage = {...state.sharedMessage, ...action.payload};
+    },
+    clearSharedMessage(state) {
+      state.sharedMessage = {
+        text: '',
+        fileURL: '',
+        fileType: '',
+      };
+    },
+    clearMessages: (state) => {
+      return { ...initialState };
+    },        
   },
   extraReducers: builder =>
     builder
@@ -45,7 +75,13 @@ const chatSlice = createSlice({
     .addCase(getMessages.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
-      state.messages = action.payload || initialState.messages;
+      if (action.payload.firstMessageDate) {
+        state.firstMessageDate = action.payload.firstMessageDate;
+      } else {
+        state.messages = [...state.messages, ...action.payload.messages];
+      }
+      // state.messages = !action.payload.firstMessageDate && [...state.messages, ...action.payload.messages];
+      // state.firstMessageDate = action.payload.firstMessageDate ?? state.firstMessageDate;
     })
     .addCase(getMessages.rejected, handleRejected)
     // .addCase(addMessage.pending, handlePending)
@@ -88,5 +124,14 @@ const chatSlice = createSlice({
     // .addCase(deleteMessage.rejected, handleRejected)
 });
 
-export const { addMessage, updateMessage, deleteMessage } = chatSlice.actions;
+export const { 
+  openChat,
+  closeChat,
+  addMessage, 
+  updateMessage, 
+  deleteMessage,
+  shareMessage,
+  clearSharedMessage, 
+  clearMessages 
+} = chatSlice.actions;
 export const chatReducer = chatSlice.reducer;

@@ -36,7 +36,6 @@ const TestPage = lazy(() => import('./Test/Test'));
 const DiaryPage = lazy(() => import('./Diary/Diary'));
 const NotificationsPage = lazy(() => import('./NotificationsList/NotificationsList'));
 const NotificationItemPage = lazy(() => import('./NotificationItem/NotificationItem'));
-const ChatPage = lazy(() => import('./Chat/Chat'));
 
 export default function App () {
   const dispatch = useDispatch();
@@ -82,7 +81,6 @@ export default function App () {
               <Route path="test" element={<TestPage />} />
               <Route path="diary" element={<DiaryPage />} />
             </Route>
-            <Route path="chat" element={<ChatPage />} />
           </Route>
           <Route path="game" element={<GamePage />} />
           <Route path="olympiad" element={<OlympiadPage />} />

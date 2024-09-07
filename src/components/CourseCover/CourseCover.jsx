@@ -13,7 +13,7 @@ export default function CourseCover ({courseId, title}) {
 
       return (
           <li className={css.box}>
-            <h2 className={css.title}>{title}</h2>
+            <span className={css.title}>{title}</span>
             <button type="button"
               onClick={() => navigate(`${courseId}/${lessonId}`)} 
               className={css.button}

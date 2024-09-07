@@ -1,40 +1,57 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+import imageCompression from 'browser-image-compression';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { CommentsList } from '../CommentsList/CommentsList';
 import { addExercise, updateExercise, deleteHomework, deleteFile } from '../../redux/exercises/operations';
 import { selectExercise } from '../../redux/exercises/selectors';
+import { openChat, shareMessage } from '../../redux/chat/slice';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
 import { ReactComponent as Trash } from '../../icons/trash.svg';
-import { BASE_CLIENT_URL } from '../../constants';
+// import { BASE_CLIENT_URL } from '../../constants';
 import css from './HomeworkForm.module.css';
 
 export const HomeworkForm = ({courseId, lessonId}) => {
   const dispatch = useDispatch(); 
-  const location = useLocation();
-  const currentURL = location.pathname; 
+  // const location = useLocation();
+  // const currentURL = location.pathname; 
 
-  const {_id, homework, fileURL} = useSelector(selectExercise);
+  const {_id, homework, fileURL, fileType} = useSelector(selectExercise);
   const [textInput, setTextInput] = useState(homework);
   const [fileInput, setFileInput] = useState(null);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
   const textMenuRef = useRef();
+  const fileInputRef = useRef(null);
 
   const handleTextChange = (e) => {
     setTextInput(e.target.value);
     setIsActiveTextarea(true);
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    setFileInput(file);
+    
+    if (file.type.startsWith('image/')) {
+      try {
+        const compressedFile = await imageCompression(file, {
+          useWebWorker: true 
+        });
+  
+        setFileInput(compressedFile);
+      } catch (error) {
+        console.error('Помилка стиснення файлу:', error);
+      }
+    } else {
+      setFileInput(file);
+    }
   };
 
   const isTextValid = (text) => {
@@ -47,8 +64,12 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   };
 
   const isFileValid = (file) => {
-    if (file.size > 1048576) {
-      alert('Файл повинен бути не більше 1 Мб.');
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Файл повинен бути не більше 5 Мб.');
+      
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
+      }
       return false;
     }
     return true;
@@ -108,17 +129,40 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     setIsActiveTextarea(false);
   };
 
+  // const shareHomework = () => {
+  //   if (homework === '') {
+  //     alert('Спочатку збережіть домашню роботу.');
+  //     return;
+  //   }
+
+  //   if (fileURL && fileURL !== '') {
+  //     window.open(`https://t.me/share/url?url=${fileURL}&text=${encodeURIComponent(homework)}`);
+  //   } else {
+  //     window.open(`https://t.me/share/url?url=${BASE_CLIENT_URL}${currentURL}&text=${encodeURIComponent(homework)}`);
+  //   }
+  // };
+
   const shareHomework = () => {
     if (homework === '') {
       alert('Спочатку збережіть домашню роботу.');
       return;
     }
 
+    const data = {
+      text: homework,
+    };
+
     if (fileURL && fileURL !== '') {
-      window.open(`https://t.me/share/url?url=${fileURL}&text=${encodeURIComponent(homework)}`);
-    } else {
-      window.open(`https://t.me/share/url?url=${BASE_CLIENT_URL}${currentURL}&text=${encodeURIComponent(homework)}`);
-    }
+      data.fileURL = fileURL;
+    } 
+
+    if (fileType && fileType !== '') {
+      data.fileType = fileType;
+    } 
+console.log(data);
+
+    dispatch(shareMessage(data));
+    dispatch(openChat());
   };
 
 const handleClickOutside = (e) => {
@@ -173,12 +217,12 @@ useEffect(() => {
                 </Link>
             }
             <div className={css.wrapperBtn}>
-              <Button
+              <Link
                 onClick={shareHomework}
                 className={css.shareBtn}
             >
                 Поділитися
-              </Button> 
+              </Link> 
             </div>      
             <div
                 ref={textMenuRef}
@@ -262,6 +306,7 @@ useEffect(() => {
             >
               <Form.Control 
                 type="file" 
+                ref={fileInputRef}
                 onChange={handleFileChange}
                 className={css.file} 
               />               

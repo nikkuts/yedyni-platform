@@ -2,14 +2,10 @@
     position: relative;
     width: 100%;
     padding: 10px 20px;
-    margin-top: 20px;
-    border: 1px solid #d7d2f3;
+    margin-top: 10px;
     border-radius: 20px;
+    background-color: #FFFFFF;
     overflow-wrap: break-word;
-
-    @media screen and (min-width: 768px) {
-        padding: 10px 40px;
-    }
 }
 
 .specialBackground {
@@ -23,18 +19,12 @@
     line-height: 1.2;
     margin-bottom: 0px;
     padding-bottom: 10px;
-
-    @media screen and (min-width: 768px) {
-        font-size: 16px;
-        line-height: 1.5;
-    }
 }
 
 .author {
     color: #555;
     font-size: 14px;
     font-weight: 700;
-    line-height: 1.5;
 }
 
 .disabled {
@@ -44,7 +34,7 @@
 .date {
     display: block;
     color: #555;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     text-align: right;
 }
@@ -79,18 +69,13 @@
     height: 24px;
     border-radius: 50%;
     cursor: pointer;
-
-    @media screen and (min-width: 768px) {
-        width: 34px;
-        height: 34px;
-    }
 }
 
-/* .icon:hover,  
+.icon:hover,  
 .icon:focus,
 .icon:active {
     background-color: rgb(245, 245, 245);
-} */
+}
 
 .menu {
     position: absolute;
@@ -134,4 +119,4 @@
   .link:focus,
   .link:active {
     color: #0d30f5;
-  }
+}

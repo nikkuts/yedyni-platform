@@ -6,10 +6,17 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
 
   export const getMessages = createAsyncThunk(
     "chat/getMessages",
-    async (chatTitle, thunkAPI) => {
-    //   const searchParams = new URLSearchParams(params);
+    async (params, thunkAPI) => {
+      const searchParams = new URLSearchParams(params);
+      
+      searchParams.forEach((value, key) => {
+        if (value === '') {
+          searchParams.delete(key);
+        }
+      });
+
       try {
-        const response = await axios.get("/api/chats", { params: { chat: chatTitle } });
+        const response = await axios.get(`/api/chats?${searchParams.toString()}`);
         return response.data; 
       } 
       catch (error) {

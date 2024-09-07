@@ -25,6 +25,7 @@ const initialState = {
   exercise: {
       homework: '',
       fileURL: '',
+      fileType: '',
       comments: [],
   },
   notifications: [],

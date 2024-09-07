@@ -1,15 +1,71 @@
-.chatContainer { 
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  max-width: 480px;
+  margin: 0 auto;
+  overflow: hidden;
+}
 
-    @media screen and (min-width: 1200px) {
-      padding: 0px 100px; 
-    }
+.chatHeader { 
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  height: 40px;
+  background-color: #3754fd;
+  width: calc(100% - 20px);
+  max-width: 480px;
+}
+
+.chevronLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .title {
-    font-weight: 600;
-    font-size: 18px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  padding-left: 5px;
+  white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+  overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+  text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
+}
 
-    @media screen and (min-width: 768px) {
-        padding-left: 30px;
-      }
-  }
+.formContainer {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+  width: calc(100% - 20px);
+  max-width: 480px;
+}
+
+.messagesContainer {
+  flex: 1;
+  margin-top: 144px;
+  overflow-y: scroll; /* Зберігає можливість прокрутки */
+  scrollbar-width: none; /* Приховує прокрутку в Firefox */
+}
+
+.messagesContainer::-webkit-scrollbar {
+  display: none; /* Приховує прокрутку в Chrome, Safari */
+}
+
+.wrapperLoader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
