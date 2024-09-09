@@ -569,6 +569,78 @@
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710698922/aumrcbsot8b9xkxjrpzq.png"
             }
         ] 
+    },
+    { 
+        "id": "id-3", 
+        "title": "Новий курс",
+        "wave": "1",
+        "start": "2024-10-01",
+        "canal": "",
+        "chat": "", 
+        "lessons": [
+            {
+                "day": "1",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709411603/wjj3h5sxevthq6xuidzb.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710698509/tu0mpva4s0fbmteoefmd.png"
+            },
+            {
+                "day": "2",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709760175/ikolp8mlfsi3rdrrrjck.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700289/v4kh40zl1pjutfgfvajc.png"
+            },
+            {
+                "day": "3",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984462/z3ym5sjaqro6umclwelg.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700497/cpbojxmbhl9l7zmglqz7.png"
+            },
+            {
+                "day": "4",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984509/rehqnczyilrtwpbktxj8.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710699959/hq9lakxbcfhyfpzx9dqd.png"
+            },
+            {
+                "day": "5",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984542/yxyx9th3ym6lc89cc9ii.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700565/zle5qkommspzexpmagjr.png"
+            },
+            {
+                "day": "6",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984571/vpkqkwsqp36lbrjirmnh.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700062/hs6yyvjmap86ctt5knkh.png"
+            },
+            {
+                "day": "7",
+                "theme": "",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984601/du5khi8dtmzoqmdqvvzt.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700405/a9gmvc73pxp6o1o7e2xf.png"
+            }
+        ] 
     }
-]
-  
+]  

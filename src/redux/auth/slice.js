@@ -5,7 +5,8 @@ const initialState = {
   user: { 
     id: null, 
     name: null, 
-    email: null, 
+    email: null,
+    courses: [], 
     registerDate: null,
     inviter: null,
   },

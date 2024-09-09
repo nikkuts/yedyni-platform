@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 import { register } from '../../redux/auth/operations';
 import { ReactComponent as Favicon } from '../../icons/favicon.svg';
 import { ReactComponent as EyeOff } from '../../icons/eye-off.svg';
@@ -9,6 +10,9 @@ import bgImage from '../../service/bgimg.jpg';
 import css from './RegisterForm.module.css';
 
 export default function RegisterForm () {
+  const [searchParams] = useSearchParams();
+  const inviterId = searchParams.get("x");
+
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,11 +43,11 @@ export default function RegisterForm () {
   };
 
   const isPasswordValid = (password) => {
-    const passwordRegex = /^[a-zA-Z0-9]{6,30}$/;
+    const passwordRegex = /^[a-zA-Z0-9]{8,30}$/;
     // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
     
     if (!passwordRegex.test(password)) {
-      alert('Пароль має містити від 6 до 30 знаків');
+      alert('Пароль має містити від 8 до 30 знаків');
       return false;
     }
     return true;
@@ -75,6 +79,12 @@ export default function RegisterForm () {
       register(formData)
     );
   };
+
+  useEffect(() => {
+    if (inviterId) {
+      window.localStorage.setItem("inviterId", JSON.stringify(inviterId));
+    }
+  }, [inviterId]);
 
   return (
     <div className={css.wrapper}>
