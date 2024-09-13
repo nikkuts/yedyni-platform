@@ -32,7 +32,7 @@ export default function Content () {
     return (
         <>
             <div ref={contentRef}></div>
-            {courseId === 'id-1' &&
+            {courseId === '66e2c70e5122f6140e1ad568' &&
             <>
                 {homework === nextHomework &&
                     <HomeworkForm 
