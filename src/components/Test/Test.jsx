@@ -24,9 +24,9 @@ export default function Test () {
           Почати тест
         </button>
         { isModalOpen && 
-        <Wordwall
-          exercise={currentLesson.test}
-        />
+          <Wordwall
+            exercise={currentLesson.test}
+          />
         }  
       </div>
     )

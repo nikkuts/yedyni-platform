@@ -1,0 +1,120 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1200;
+  }
+    
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 480px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+    background-color: #fef9f9;
+}
+
+.groupInputDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputDate {
+    display: block;
+    width: 180px;
+    height: 30px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #dfdddd;
+    border-radius: 20px;
+    outline: none;
+}
+
+.inputDate::placeholder {
+  font-size: 14px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+  .wrapperBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+.primaryBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: calc(14/12);
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    color: #000000;
+    background-color: rgb(255, 244, 0);
+  }
+  
+  .primaryBtn:hover,
+  .primaryBtn:focus {
+    background-color: rgb(228, 228, 0);
+  }
+
+  .primaryBtn[disabled] {
+    /* Стилі для кнопки, яка має атрибут disabled */
+    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
+    cursor: not-allowed; /* Зміна курсора на not-allowed */
+    pointer-events: none; /* Відключення можливості клікати на кнопку */
+    }
+
+  .cancelBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: calc(14/12);
+    overflow: hidden;
+    outline: none;
+    /* border: 1px solid #dfdddd; */
+    cursor: pointer;
+    color: #000000;
+    background-color: #ffffff;
+  }
+  
+  .cancelBtn:hover,
+  .cancelBtn:focus {
+    border: none;
+    background-color: #dfdddd;
+  }

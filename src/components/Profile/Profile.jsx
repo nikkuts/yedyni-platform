@@ -23,7 +23,7 @@ export default function Profile () {
             <li className={css.userEmail}>{user.email}</li>
             <li>
               Дата реєстрації: 
-              <span className={css.registerDate}> {formatDate(user.registerDate)}</span>
+              <span className={css.registerDate}> {formatDate(user.createdAt)}</span>
             </li>
             <li className={css.userLevel}>
               Українськомовний слід: 

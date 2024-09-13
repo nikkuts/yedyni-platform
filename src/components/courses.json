@@ -207,7 +207,7 @@
     },
     { 
         "id": "id-2", 
-        "title": "Граматичний курс української мови",
+        "title": "Граматичний курс",
         "wave": "22",
         "start": "2024-09-02",
         "canal": "https://t.me/+pVFO8U01DyEzNzQy",
@@ -585,6 +585,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710698509/tu0mpva4s0fbmteoefmd.png"
             },
             {
@@ -594,6 +597,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700289/v4kh40zl1pjutfgfvajc.png"
             },
             {
@@ -603,6 +609,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700497/cpbojxmbhl9l7zmglqz7.png"
             },
             {
@@ -612,6 +621,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710699959/hq9lakxbcfhyfpzx9dqd.png"
             },
             {
@@ -621,6 +633,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700565/zle5qkommspzexpmagjr.png"
             },
             {
@@ -630,6 +645,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700062/hs6yyvjmap86ctt5knkh.png"
             },
             {
@@ -639,6 +657,9 @@
                 "content": "",
                 "theory": "",
                 "practice": "",
+                "audio": [],
+                "video": [],
+                "test": "",
                 "diary": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710700405/a9gmvc73pxp6o1o7e2xf.png"
             }
         ] 

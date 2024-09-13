@@ -232,5 +232,5 @@
   .cancelBtn:hover,
   .cancelBtn:focus {
     border: none;
-    background-color: rgb(255, 244, 0);
+    background-color: #dfdddd;
   }

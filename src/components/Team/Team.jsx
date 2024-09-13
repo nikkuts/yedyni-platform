@@ -30,7 +30,7 @@ export default function Team() {
         <h1 className={css.title}>Поклич друзів разом опановувати українську та сформуй свою команду!</h1>
         <div className={css.wrapperRef}>
         <h2 className={css.refLink}>Запрошувальне покликання</h2>
-        <CopyUrl url={`${BASE_CLIENT_URL}?x=${user.id}`} />
+        <CopyUrl url={`${BASE_CLIENT_URL}?x=${user._id}`} />
         </div>
         <ul className={css.listTeam}>
             <li className={css.item}>

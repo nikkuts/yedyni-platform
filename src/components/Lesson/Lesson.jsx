@@ -32,7 +32,9 @@ export default function Lesson () {
 
     useEffect(() => {
         dispatch(changeLesson(currentLesson));
-        dispatch(getContent(currentLesson.content));
+        if (courseId === 'id-1' || courseId === 'id-2') {
+            dispatch(getContent(currentLesson.content));
+        }
         dispatch(getExercise({courseId, lessonId}));
         dispatch(getDiary({courseId, lessonId})); 
         setIsChangedLesson(true);     

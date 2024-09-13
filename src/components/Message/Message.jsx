@@ -72,8 +72,8 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
 
   return (
     <>
-      <div className={`${css.containerMessage} ${user.id === sender._id && css.specialBackground}`}>
-        <span className={`${css.author} ${user.id === sender._id && css.disabled}`}>{sender.name}</span>
+      <div className={`${css.containerMessage} ${user._id === sender._id && css.specialBackground}`}>
+        <span className={`${css.author} ${user._id === sender._id && css.disabled}`}>{sender.name}</span>
         <p className={css.comment}>{text}</p>
         {fileURL && fileURL !== '' && fileType && fileType !== '' && (
           <>
@@ -112,7 +112,7 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
             )}
           </>
         )}
-        {user.id === sender._id &&
+        {user._id === sender._id &&
         <div
             ref={menuRef}
             onClick={toggleMenu} 

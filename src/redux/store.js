@@ -15,6 +15,7 @@ import { paymentsReducer } from './payments/slice';
 import { rangeReducer } from './payments/rangeSlice';
 import { modalReducer } from './modal/modalSlice';
 import { authReducer } from './auth/slice';
+import { coursesReducer } from './courses/slice';
 import { exercisesReducer } from './exercises/slice';
 import { lessonReducer } from './exercises/lessonSlice';
 import { diaryReducer } from './diary/slice';
@@ -33,6 +34,7 @@ export const store = configureStore({
     payments: paymentsReducer,
     range: rangeReducer,
     modal: modalReducer,
+    courses: coursesReducer,
     exercises: exercisesReducer,
     lesson: lessonReducer,
     diary: diaryReducer,

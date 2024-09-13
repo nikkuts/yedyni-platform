@@ -71,8 +71,8 @@ export default function App () {
         >
           <Route index element={<HomePage />} />
           <Route path="learn" element={<LearnPage />} />
-          <Route path="learn/:courseId/:lessonId" element={<CoursePage />} >
-            <Route path="" element={<LessonPage />} >
+          <Route path="learn/:courseId" element={<CoursePage />} >
+            <Route path=":lessonId" element={<LessonPage />} >
               <Route path="" element={<ContentPage />} />
               <Route path="theory" element={<TheoryPage />} />
               <Route path="practice" element={<PracticePage />} />

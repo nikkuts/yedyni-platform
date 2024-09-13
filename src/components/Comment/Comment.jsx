@@ -91,10 +91,10 @@ export const Comment = ({comment, exerciseId}) => {
   return (
     <li>
         {!isActiveTextarea ?
-        <div className={user.id === comment.author._id ? css.containerComment : css.specialBackground}>
+        <div className={user._id === comment.author._id ? css.containerComment : css.specialBackground}>
             <p className={css.comment}>{comment.comment}</p>
             <p className={css.author}>{comment.author.name} <span className={css.date}>{formatDateTime(comment.date)}</span></p>
-            {user.id === comment.author._id &&
+            {user._id === comment.author._id &&
             <div
                 ref={textMenuRef}
                 onClick={toggleMenu} 

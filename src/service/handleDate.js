@@ -27,14 +27,25 @@ export const convertEndDate = (endDate) => {
 };
 
 export const formatDate = (date) => {
-  const kyivStringDate = new Date(date).toLocaleDateString('en-US', { timeZone: 'Europe/Kiev' });
+  const kyivDate = new Date(date);
+
+  // Форматуємо дату
+  const kyivStringDate = kyivDate.toLocaleDateString('en-US', { timeZone: 'Europe/Kiev' });
   const dateParts = kyivStringDate.split('/');
   
   const year = dateParts[2];
   const month = ('0' + dateParts[0]).slice(-2); 
   const day = ('0' + dateParts[1]).slice(-2);
 
-  return `${day}-${month}-${year}`;
+  // Форматуємо час (години і хвилини)
+  const kyivTime = kyivDate.toLocaleTimeString('en-US', { 
+    timeZone: 'Europe/Kiev',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false // Використовуємо 24-годинний формат
+  });
+
+  return `${day}-${month}-${year} ${kyivTime}`;
 };
 
 export const formatDateTime = (milliseconds) => {
