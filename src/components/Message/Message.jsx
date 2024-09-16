@@ -19,6 +19,7 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
   const {_id, text, fileURL, fileType, date, sender } = message; 
 
   const [openedImageIndex, setOpenedImageIndex] = useState(null);
+  const [isLoadedImage, setIsLoadedImage] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);    
   const menuRef = useRef();
 
@@ -78,11 +79,20 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
         {fileURL && fileURL !== '' && fileType && fileType !== '' && (
           <>
             {fileType.startsWith('image') && (
+              <>
+              {!isLoadedImage && <div className="preloader">Loading...</div>}
               <Link className={css.wrapperFile}
                 onClick={() => handleClickImage(_id)}        
               >
-                <img src={fileURL} alt="Зображення" className={css.img} />
+                <img 
+                  src={fileURL} 
+                  onLoad={() => setIsLoadedImage(true)}
+                  style={{ display: isLoadedImage ? 'block' : 'none' }}
+                  alt="Зображення" 
+                  className={css.img} 
+                />
               </Link>
+              </>
             )}
             
             {openedImageIndex === _id && (

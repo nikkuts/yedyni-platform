@@ -180,7 +180,7 @@ export const Chat = ({course, onClose}) => {
             wrapperStyle={{}}
             wrapperClass="comment-wrapper"
             color="#fff"
-            backgroundColor="#F4442E"
+            backgroundColor="#3754fd"
           />
         </div>
       }      
