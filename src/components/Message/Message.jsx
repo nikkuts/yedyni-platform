@@ -81,13 +81,14 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
             {fileType.startsWith('image') && (
               <>
               {!isLoadedImage && <div className="preloader">Loading...</div>}
-              <Link className={css.wrapperFile}
-                onClick={() => handleClickImage(_id)}        
+              <Link 
+                onClick={() => handleClickImage(_id)}
+                className={css.wrapperFile}
+                style={{ display: isLoadedImage ? 'block' : 'none' }}        
               >
                 <img 
                   src={fileURL} 
                   onLoad={() => setIsLoadedImage(true)}
-                  style={{ display: isLoadedImage ? 'block' : 'none' }}
                   alt="Зображення" 
                   className={css.img} 
                 />
