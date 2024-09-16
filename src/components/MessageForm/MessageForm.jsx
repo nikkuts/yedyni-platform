@@ -48,8 +48,8 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
       }
     } 
 
-    if (file.size > 5 * 1024 * 1024) {  
-      alert('Файл повинен бути не більше 5 Мб.');
+    if (file.size > 15 * 1024 * 1024) {  
+      alert('Файл повинен бути не більше 15 Мб.');
 
       if (fileInputRef.current) {
         fileInputRef.current.value = null;
