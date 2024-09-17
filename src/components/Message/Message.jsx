@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Linkify from 'react-linkify';
+import { componentDecorator } from '../../service/componentDecorator';
 import PropTypes from 'prop-types';
 import { Image } from '../Image/Image';
 import { selectToken } from '../../redux/auth/selectors';
@@ -75,12 +77,24 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
     <>
       <div className={`${css.containerMessage} ${user._id === sender._id && css.specialBackground}`}>
         <span className={`${css.author} ${user._id === sender._id && css.disabled}`}>{sender.name}</span>
-        <p className={css.comment}>{text}</p>
+        <p className={css.comment}>
+          <Linkify componentDecorator={componentDecorator}>
+            {text}
+          </Linkify>
+        </p>
         {fileURL && fileURL !== '' && fileType && fileType !== '' && (
           <>
             {fileType.startsWith('image') && (
               <>
-              {!isLoadedImage && <div className="preloader">Loading...</div>}
+              {!isLoadedImage && 
+                <Link
+                  to={fileURL}
+                  target='_blank'
+                  className={css.link}         
+                >
+                  Прикріплений файл
+                </Link>
+              }
               <Link 
                 onClick={() => handleClickImage(_id)}
                 className={css.wrapperFile}
