@@ -1,41 +1,79 @@
-.containerMessageItem {
+.containerItem {
     min-height: calc(100vh - 50px);
-    padding: 30px 100px;
+    /* padding: 10px; */
+
+    @media screen and (min-width: 768px) {
+        padding: 30px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding: 30px 100px;
+    }
 }
 
 .title {
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
+
+    @media screen and (min-width: 768px) {
+        font-size: 20px;
+    }
 }
 
 .form {
     width: 100%;
-    padding: 20px 40px;
+    padding: 10px 10px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 40px;
     margin-bottom: 40px;
     border: 1px solid #d7d2f3;
     border-radius: 20px;
+
+    @media screen and (min-width: 480px) {
+        padding: 20px 20px;
+    }
+    
+    @media screen and (min-width: 768px) {
+        padding: 20px 40px;
+    }
 }
 
 .label {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     text-align: center;
+    padding: 0;
+
+    @media screen and (min-width: 768px) {
+        font-size: 20px;
+    }
 }
 
-.textarea {
+.text {
     padding: 15px 0;
-    font-size: 16px;
+    font-size: 14px;
     overflow-wrap: break-word; 
+  
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
 }
+
+.wrapperLink {
+    width: 240px;
+    padding-top: 10px;
+    overflow: hidden;
+  }
 
 .link {
     font-size: 14px;
     font-weight: 500;
     text-decoration: underline;
     color: #3754fd;   
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */  
   }
   
   .link:hover,  

@@ -1,22 +1,35 @@
 .containerNotifications {
     min-height: calc(100vh - 50px);
-    padding: 30px;
+    padding: 10px;
+
+    @media screen and (min-width: 768px) {
+        padding: 30px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        padding: 30px 100px;
+    }
 }
 
 .title {
-    font-size: 24px;
+    font-size: 22px;
     text-align: left;
-}
 
-.lisNotifications {
-    padding: 30px 100px;
+    @media screen and (min-width: 768px) {
+        font-size: 24px;
+    }
 }
 
 .link {
     color: #333;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 2;
+    text-decoration: underline;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+    }
 }
 
 .link:hover,  
@@ -25,7 +38,12 @@
 }
 
 .date {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
-    padding-left: 40px;
+    padding-left: 10px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 14px;
+        padding-left: 40px;
+    }
 }

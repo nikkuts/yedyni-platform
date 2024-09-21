@@ -306,7 +306,7 @@ useEffect(() => {
                 target='blank'
                 className={css.link}         
               >
-                {fileName}
+                {fileName || 'Прикріплений файл'}
               </Link>
               <div
                 onClick={handleDeleteFile}
