@@ -64,7 +64,10 @@ export const UserMenu = () => {
           >
             <ul className={css.officeMenu}>
               <li className={css.officeUser}>
-                <User /> {user.name}
+                <User /> 
+                <span className={css.name}>
+                  {user.name}
+                </span>
               </li>
               <li 
                 onClick={(e) => { 

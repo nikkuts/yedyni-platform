@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
+import Linkify from 'react-linkify';
+import { componentDecorator } from '../../service/componentDecorator';
 import imageCompression from 'browser-image-compression';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
@@ -14,17 +15,16 @@ import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
 import { ReactComponent as Trash } from '../../icons/trash.svg';
-// import { BASE_CLIENT_URL } from '../../constants';
 import css from './HomeworkForm.module.css';
 
 export const HomeworkForm = ({courseId, lessonId}) => {
   const dispatch = useDispatch(); 
-  // const location = useLocation();
-  // const currentURL = location.pathname; 
+  const {_id, homework, fileURL, fileType, fileName} = useSelector(selectExercise);
 
-  const {_id, homework, fileURL, fileType} = useSelector(selectExercise);
   const [textInput, setTextInput] = useState(homework);
   const [fileInput, setFileInput] = useState(null);
+  const [originalFileName, setOriginalFileName] = useState(null);
+  const [isDisabledBtn, setIsDisabledBtn] = useState(true);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
 
@@ -34,24 +34,7 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   const handleTextChange = (e) => {
     setTextInput(e.target.value);
     setIsActiveTextarea(true);
-  };
-
-  const handleFileChange = async (e) => {
-    const file = e.target.files[0];
-    
-    if (file.type.startsWith('image/')) {
-      try {
-        const compressedFile = await imageCompression(file, {
-          useWebWorker: true 
-        });
-  
-        setFileInput(compressedFile);
-      } catch (error) {
-        console.error('Помилка стиснення файлу:', error);
-      }
-    } else {
-      setFileInput(file);
-    }
+    setIsDisabledBtn(false);
   };
 
   const isTextValid = (text) => {
@@ -63,16 +46,31 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     return true;
   };
 
-  const isFileValid = (file) => {
-    if (file.size > 5 * 1024 * 1024) {
-      alert('Файл повинен бути не більше 5 Мб.');
-      
+  const handleFileChange = async (e) => {
+    let file = e.target.files[0];
+    
+    if (file.type.startsWith('image/')) {
+      try {
+        file = await imageCompression(file, {
+          useWebWorker: true 
+        });
+      } catch (error) {
+        console.error('Помилка стиснення файлу:', error);
+      }
+    } 
+
+    if (file.size > 15 * 1024 * 1024) {  
+      alert('Файл повинен бути не більше 15 Мб.');
+
       if (fileInputRef.current) {
         fileInputRef.current.value = null;
       }
-      return false;
+      return;
     }
-    return true;
+
+    setFileInput(file);
+    setOriginalFileName(file.name);
+    setIsDisabledBtn(false);
   };
 
   const handleDeleteFile = () => {
@@ -80,14 +78,18 @@ export const HomeworkForm = ({courseId, lessonId}) => {
       return;
     };
 
-    const formData = {
+    const data = {
       exerciseId: _id,
       fileURL,
     };
 
     dispatch(
-      deleteFile(formData)
+      deleteFile(data)
     );
+
+    if (textInput !== '' && textInput.trim().length <= 3000) {
+      setIsDisabledBtn(false);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -109,12 +111,8 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     formData.append('homework', textInput.trim());
 
     if (fileInput) {
-      
-        if (!isFileValid(fileInput)) {
-          return;
-        }
-
-        formData.append('file', fileInput);
+      formData.append('file', fileInput);
+      formData.append('originalname', originalFileName);
     }
   
     if (_id) {
@@ -126,6 +124,10 @@ export const HomeworkForm = ({courseId, lessonId}) => {
         addExercise(formData)
       );
     }
+
+    setFileInput(null); 
+    setOriginalFileName(null);  
+    setIsDisabledBtn(true);
     setIsActiveTextarea(false);
   };
 
@@ -159,7 +161,10 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     if (fileType && fileType !== '') {
       data.fileType = fileType;
     } 
-console.log(data);
+
+    if (fileName && fileName !== '') {
+      data.fileName = fileName;
+    }
 
     dispatch(shareMessage(data));
     dispatch(openChat());
@@ -206,24 +211,28 @@ useEffect(() => {
       {_id && !isActiveTextarea ?
         <div className={css.form}>
             <h3 className={css.label}>Домашня робота</h3>
-            <p className={css.text}>{homework}</p>
-            {fileURL && fileURL !== '' &&
-                <Link
-                  to={fileURL}
-                  target='blank'
-                  className={css.link}         
-                >
-                  Прикріплений файл
-                </Link>
-            }
+            <span className={css.text}>
+              <Linkify componentDecorator={componentDecorator}>
+                {homework}
+              </Linkify>
+            </span>
             <div className={css.wrapperBtn}>
               <Link
                 onClick={shareHomework}
                 className={css.shareBtn}
-            >
+              >
                 Поділитися
               </Link> 
-            </div>      
+            {fileURL && fileURL !== '' &&
+              <Link
+                to={fileURL}
+                target='blank'
+                className={css.link}         
+              >
+                {fileName}
+              </Link>
+            }
+            </div>     
             <div
                 ref={textMenuRef}
                 onClick={toggleMenu} 
@@ -281,23 +290,30 @@ useEffect(() => {
               className={css.textarea} 
             />
           </Form.Group>
+          <div className={css.wrapperBtn}>
+            <Button 
+              variant="primary"
+              type="submit"
+              disabled={isDisabledBtn}
+              className={css.primaryBtn}
+            >
+              Зберегти
+            </Button>
           {fileURL && fileURL !== '' ?
-            <div className={css.groupFile}>
+            <div className={css.groupBtn}>
               <Link
                 to={fileURL}
                 target='blank'
                 className={css.link}         
               >
-                Прикріплений файл
+                {fileName}
               </Link>
-              <Button 
-                variant="danger"
-                type='button' 
+              <div
                 onClick={handleDeleteFile}
-                className={css.dangerBtn}
+                className={css.trash}
               >
-                Видалити файл
-              </Button>
+                <Trash className={css.trashIcon} />
+              </div>
             </div>
             :
             <Form.Group 
@@ -312,14 +328,6 @@ useEffect(() => {
               />               
             </Form.Group>
           }
-          <div className={css.wrapperBtn}>
-            <Button 
-              variant="primary"
-              type="submit"
-              className={css.primaryBtn}
-            >
-              Зберегти
-            </Button>
           </div>        
         </Form>
       }

@@ -15,10 +15,11 @@ import css from './MessageForm.module.css';
 export const MessageForm = ({socket, chat, onSubmit}) => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken); 
-  const {text, fileURL, fileType} = useSelector(selectSharedMessage);
+  const {text, fileURL, fileType, fileName} = useSelector(selectSharedMessage);
 
   const [textInput, setTextInput] = useState(text);
   const [fileInput, setFileInput] = useState(null);
+  const [originalFileName, setOriginalFileName] = useState(null);
   const [deletedFile, setDeletedFile] = useState(null);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
   const fileInputRef = useRef(null);
@@ -58,6 +59,7 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
     }
 
     setFileInput(file);
+    setOriginalFileName(file.name);
     setIsDisabledBtn(false);
   };
 
@@ -81,26 +83,32 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
       text: textInput,
       fileURL,
       fileType,
+      fileName,
     };
 
     if (deletedFile) {
       data.fileURL = '';
       data.fileType = '';
+      data.fileName = '';
     }
 
     if (fileInput) {
       const formData = new FormData();
       formData.append('file', fileInput);
+      formData.append('originalname', originalFileName);
 
-      const response = await dispatch(uploadFile(formData)).unwrap();
+      const response = await dispatch(uploadFile(formData)).unwrap(); 
+      
       data.fileURL = response.fileURL;
       data.fileType = response.fileType;
+      data.fileName = response.fileName;
     }
 
     socket.emit('message', data);
 
     setTextInput('');
-    setFileInput(null);   
+    setFileInput(null); 
+    setOriginalFileName(null);  
     setIsDisabledBtn(true);
     setDeletedFile(null);
 
@@ -151,7 +159,7 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
               target='blank'
               className={css.link}         
             >
-              Прикріплений файл
+              {fileName || 'Прикріплений файл'}
             </Link>
             <div
               onClick={handleDeleteFile}

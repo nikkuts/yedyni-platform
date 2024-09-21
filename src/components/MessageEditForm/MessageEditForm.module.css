@@ -64,6 +64,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 8px;
+    width: 240px;
     overflow: hidden;
 }
 
@@ -72,6 +73,9 @@
     font-weight: 500;
     text-decoration: underline;
     color: #3754fd; 
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
 }
 
 .link:hover,  

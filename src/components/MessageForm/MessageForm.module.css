@@ -43,6 +43,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 8px;
+    width: 240px;
     overflow: hidden;
 }
 
@@ -51,6 +52,9 @@
     font-weight: 500;
     text-decoration: underline;
     color: #3754fd; 
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
 }
 
 .link:hover,  
@@ -92,15 +96,15 @@
     border-radius: 50%;
     cursor: pointer;
     background-color: rgb(255, 244, 0);
-  }
-  
-  .primaryBtn:hover,
-  .primaryBtn:focus,
-  .primaryBtn:active {
-    background-color: rgb(255, 228, 0);
-  }
+}
 
-  .primaryBtn[disabled] {
+.primaryBtn:hover,
+.primaryBtn:focus,
+.primaryBtn:active {
+    background-color: rgb(255, 228, 0);
+}
+
+.primaryBtn[disabled] {
     /* Стилі для кнопки, яка має атрибут disabled */
     opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
     cursor: not-allowed; /* Зміна курсора на not-allowed */

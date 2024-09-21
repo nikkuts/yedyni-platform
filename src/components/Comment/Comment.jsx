@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
+import Linkify from 'react-linkify';
+import { componentDecorator } from '../../service/componentDecorator';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from '../../hooks';
 import { updateComment, deleteComment } from '../../redux/exercises/operations';
-import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
+import { ReactComponent as MoreVertical } from '../../icons/more-vertical20.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
 import { ReactComponent as Trash } from '../../icons/trash.svg';
@@ -91,9 +93,14 @@ export const Comment = ({comment, exerciseId}) => {
   return (
     <li>
         {!isActiveTextarea ?
-        <div className={user._id === comment.author._id ? css.containerComment : css.specialBackground}>
-            <p className={css.comment}>{comment.comment}</p>
-            <p className={css.author}>{comment.author.name} <span className={css.date}>{formatDateTime(comment.date)}</span></p>
+        <div className={`${css.containerComment} ${user._id === comment.author._id && css.specialBackground}`}>
+            <span className={css.author}>{comment.author.name}</span>
+            <span className={css.comment}>
+              <Linkify componentDecorator={componentDecorator}>
+                {comment.comment}
+              </Linkify>
+            </span>
+            <span className={css.date}>{formatDateTime(comment.date)}</span>
             {user._id === comment.author._id &&
             <div
                 ref={textMenuRef}
@@ -139,7 +146,6 @@ export const Comment = ({comment, exerciseId}) => {
             </div>
             <Form.Group 
             controlId="formText"
-            className={css.groupTextarea} 
             >
               <Form.Label className={css.userName}>
                   {comment.author.name}
@@ -147,7 +153,7 @@ export const Comment = ({comment, exerciseId}) => {
               <div>
                 <Form.Control 
                   as="textarea" rows={1} 
-                  placeholder="Залишіть коментар" 
+                  placeholder="Написати коментар" 
                   value={textInput} 
                   onChange={handleTextChange}
                   className={css.textarea} 

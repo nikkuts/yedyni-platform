@@ -89,12 +89,6 @@ export const Chat = ({course, onClose}) => {
   useEffect(() => {
     setCurrentEditingMessage(editingMessage);      
   }, [editingMessage]);
-  
-  useEffect(() => {
-    return () => {
-      dispatch(clearMessages());
-    };
-  }, [dispatch]);
 
   useEffect(() => {
     if (!socket.connected) {
@@ -123,6 +117,12 @@ export const Chat = ({course, onClose}) => {
       console.log('socket disconnect'); 
     };
   }, [dispatch, socket]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearMessages());
+    };
+  }, [dispatch]);
 
   return (
     <div className={css.chatContainer}>         

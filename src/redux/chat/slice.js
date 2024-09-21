@@ -25,6 +25,7 @@ const initialState = {
     text: '',
     fileURL: '',
     fileType: '',
+    fileName: '',
   },
   isLoading: false,
   error: null,
@@ -63,6 +64,7 @@ const chatSlice = createSlice({
         text: '',
         fileURL: '',
         fileType: '',
+        fileName: '',
       };
     },
     clearMessages: (state) => {

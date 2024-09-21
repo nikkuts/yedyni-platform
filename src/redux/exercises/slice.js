@@ -26,6 +26,7 @@ const initialState = {
       homework: '',
       fileURL: '',
       fileType: '',
+      fileName: '',
       comments: [],
   },
   notifications: [],

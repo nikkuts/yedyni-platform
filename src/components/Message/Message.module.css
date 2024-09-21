@@ -10,21 +10,22 @@
 
 .specialBackground {
     background-color: beige;
-  }
-
-.comment {
-    color: #555;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 0px;
-    padding-bottom: 10px;
 }
 
 .author {
     color: #555;
     font-size: 14px;
     font-weight: 700;
+}
+
+.comment {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 .disabled {
@@ -108,11 +109,19 @@
     background-color: rgb(245, 245, 245);
 }
 
+.wrapperLink {
+    width: 200px;
+    overflow: hidden;
+}
+
 .link {
     font-size: 14px;
     font-weight: 500;
     text-decoration: underline;
-    color: #3754fd;   
+    color: #3754fd;
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */   
   }
   
   .link:hover,  

@@ -1,7 +1,7 @@
 .form {
   position: relative;
   width: 100%;
-  padding: 20px;
+  padding: 10px 10px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
@@ -9,21 +9,34 @@
   border: 1px solid #d7d2f3;
   border-radius: 20px;
 
+  @media screen and (min-width: 480px) {
+    padding: 20px 20px;
+  }
+
   @media screen and (min-width: 768px) {
     padding: 20px 40px;
   }
 }
 
 .label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 }
 
 .text {
   padding: 15px 0;
-  font-size: 16px;
+  font-size: 14px;
   overflow-wrap: break-word; 
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .icon {
@@ -119,124 +132,132 @@
     color: rgba(0, 0, 0, 0.7); 
 }
 
+.wrapperBtn {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+
+  @media screen and (min-width: 480px) {
+    margin-top: 20px;
+  }
+}
+
+.groupBtn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  width: 240px;
+  overflow: hidden;
+}
+
 .link {
     font-size: 14px;
     font-weight: 500;
     text-decoration: underline;
-    color: #3754fd;   
-  }
-  
-  .link:hover,  
-  .link:focus,
-  .link:active {
-    color: #0d30f5;
-  }
+    color: #3754fd;
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */   
+}
+
+.link:hover,  
+.link:focus,
+.link:active {
+  color: #0d30f5;
+}
 
 .groupFile {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  overflow: hidden;
 }
 
 .file {
-    font-size: 14px;
+    font-size: 12px;
 }
 
-.dangerBtn {
-    display: block;
-    border: 1px solid #000000;
-    border-radius: 3px;
-    width: 120px;
-    height: 24px;
+.trash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.trash:hover,  
+.trash:focus,
+.trash:active {
+    background-color: #ffffff;
+}
+
+.shareBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  width: 110px;
+  height: 30px;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: calc(16/14);
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #37b4fd;
+
+  @media screen and (min-width: 480px) {
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+  
+.shareBtn:hover,
+.shareBtn:focus {
+  background-color: #3793fd;
+}
+
+.primaryBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    width: 110px;
+    height: 30px;
     text-align: center;
     text-overflow: ellipsis;
     font-size: 14px;
-    font-weight: 500;
-    overflow: hidden;
-    outline: none;
-    color: #000000;
-    background-color: rgb(240, 240, 240);
-  }
-  
-  .dangerBtn:hover,
-  .dangerBtn:focus {
-    background-color: rgba(230, 230, 230);
-    cursor: auto;
-  }
-
-  .wrapperBtn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .shareBtn {
-    display: block;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
-    color: #ffffff;
-    background-color: #37b4fd;
-  }
-  
-  .shareBtn:hover,
-  .shareBtn:focus {
-    background-color: #3793fd;
-  }
-
-  .shareBtn[disabled] {
-    /* Стилі для кнопки, яка має атрибут disabled */
-    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
-    cursor: not-allowed; /* Зміна курсора на not-allowed */
-    pointer-events: none; /* Відключення можливості клікати на кнопку */
-    }
-
-.primaryBtn {
-    display: block;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 16px;
     font-weight: 600;
-    line-height: calc(16/14);
+    line-height: calc(14/12);
     overflow: hidden;
     outline: none;
     cursor: pointer;
     color: #000000;
     background-color: rgb(255, 244, 0);
 
-    @media screen and (min-width: 768px) {
-      height: 50px;
-      font-size: 18px;
-  }
-  }
-  
-  .primaryBtn:hover,
-  .primaryBtn:focus {
-    background-color: rgb(228, 228, 0);
-  }
-
-  .primaryBtn[disabled] {
-    /* Стилі для кнопки, яка має атрибут disabled */
-    opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
-    cursor: not-allowed; /* Зміна курсора на not-allowed */
-    pointer-events: none; /* Відключення можливості клікати на кнопку */
+    @media screen and (min-width: 480px) {
+      width: 150px;
+      height: 40px;
+      font-size: 16px;
     }
+}
+  
+.primaryBtn:hover,
+.primaryBtn:focus {
+  background-color: rgb(228, 228, 0);
+}
+
+.primaryBtn[disabled] {
+  /* Стилі для кнопки, яка має атрибут disabled */
+  opacity: 0.5; /* Наприклад, зниження прозорості кнопки */
+  cursor: not-allowed; /* Зміна курсора на not-allowed */
+  pointer-events: none; /* Відключення можливості клікати на кнопку */
+}

@@ -18,7 +18,7 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
   const dispatch = useDispatch();
   const {user} = useAuth();
   const token = useSelector(selectToken);
-  const {_id, text, fileURL, fileType, date, sender } = message; 
+  const {_id, text, fileURL, fileType, fileName, date, sender } = message; 
 
   const [openedImageIndex, setOpenedImageIndex] = useState(null);
   const [isLoadedImage, setIsLoadedImage] = useState(false);
@@ -77,23 +77,25 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
     <>
       <div className={`${css.containerMessage} ${user._id === sender._id && css.specialBackground}`}>
         <span className={`${css.author} ${user._id === sender._id && css.disabled}`}>{sender.name}</span>
-        <p className={css.comment}>
+        <span className={css.comment}>
           <Linkify componentDecorator={componentDecorator}>
             {text}
           </Linkify>
-        </p>
-        {fileURL && fileURL !== '' && fileType && fileType !== '' && (
+        </span>
+        {fileURL && fileURL !== '' && (
           <>
             {fileType.startsWith('image') && (
               <>
               {!isLoadedImage && 
-                <Link
-                  to={fileURL}
-                  target='_blank'
-                  className={css.link}         
-                >
-                  Прикріплений файл
-                </Link>
+                <div className={css.wrapperLink}>
+                  <Link
+                    to={fileURL}
+                    target='_blank'
+                    className={css.link}         
+                  >
+                    {fileName || 'Прикріплений файл'}
+                  </Link>
+                  </div>
               }
               <Link 
                 onClick={() => handleClickImage(_id)}
@@ -127,13 +129,15 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
             )}
             
             {!fileType.startsWith('image') && !fileType.startsWith('audio') && (
-              <Link
-                to={fileURL}
-                target='_blank'
-                className={css.link}         
-              >
-                Прикріплений файл
-              </Link>
+              <div className={css.wrapperLink}>
+                <Link
+                  to={fileURL}
+                  target='_blank'
+                  className={css.link}         
+                >
+                  {fileName || 'Прикріплений файл'}
+                </Link>
+              </div>
             )}
           </>
         )}

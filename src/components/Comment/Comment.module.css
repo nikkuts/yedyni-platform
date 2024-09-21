@@ -13,40 +13,44 @@
 }
 
 .specialBackground {
-    width: 100%;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-    overflow-wrap: break-word;
     background-color: beige;
-
-    @media screen and (min-width: 768px) {
-        padding: 10px 40px;
-    }
-  }
-
-.comment {
-    color: #555;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 0px;
+    border: none;
 }
 
-.author {
+.author { 
     color: #555;
     font-size: 14px;
     font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 0px;
+
+@media screen and (min-width: 768px) {
+    font-size: 16px;
+}
+}
+
+  .comment {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+    }
 }
 
 .date {
+    display: block;
     color: #555;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
-    padding-left: 10px;
+    text-align: right;
+
+    @media screen and (min-width: 768px) {
+        font-size: 14px;
+    }
 }
 
 .icon {
@@ -54,7 +58,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 5px;
+    top: 2px;
     right: 5px;
     width: 34px;
     height: 34px;
@@ -119,7 +123,11 @@
 }
 
 .title {
-    font-size: 24px;
+    font-size: 20px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 24px;
+    }
   }
 
 .form {
@@ -131,21 +139,23 @@
     border: 1px solid #d7d2f3;
     border-radius: 20px;
 
-    @media screen and (min-width: 768px) {
-        padding: 15px 40px;
+    @media screen and (min-width: 480px) {
+        padding: 10px 20px;
     }
-}
 
-.groupTextarea {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    @media screen and (min-width: 768px) {
+        padding: 20px 20px;
+    }
 }
 
 .userName {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
+
+    @media screen and (min-width: 768px) {
+        font-size: 18px;
+    }
 }
 
 .textarea {
@@ -154,11 +164,16 @@
     min-height: 45px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid #dfdddd;
     border-radius: 20px;
     outline: none;
+
+    @media screen and (min-width: 768px) {
+        margin-top: 20px;
+    }
 }
 
 .textarea::placeholder {
@@ -173,28 +188,39 @@
 
 .wrapperBtn {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: row-reverse;
     gap: 10px;
-  }
+    margin-top: 10px;
+
+    @media screen and (min-width: 768px) {
+        margin-top: 20px;
+    }
+}
 
 .primaryBtn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
+    width: 110px;
+    height: 30px;
     text-align: center;
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: calc(16/14);
+    line-height: calc(14/12);
     overflow: hidden;
     outline: none;
     cursor: pointer;
     color: #000000;
     background-color: rgb(255, 244, 0);
+
+    @media screen and (min-width: 480px) {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+    }
   }
   
   .primaryBtn:hover,
@@ -210,23 +236,30 @@
     }
 
   .cancelBtn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 10px;
-    width: 150px;
-    height: 40px;
+    width: 110px;
+    height: 30px;
     text-align: center;
     text-overflow: ellipsis;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: calc(16/14);
+    line-height: calc(14/12);
     overflow: hidden;
     outline: none;
     border: 1px solid #dfdddd;
     cursor: pointer;
     color: #000000;
     background-color: #ffffff;
+
+    @media screen and (min-width: 480px) {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+    }
   }
   
   .cancelBtn:hover,

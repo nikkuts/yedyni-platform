@@ -110,7 +110,23 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
+    overflow: hidden;
+
+    @media screen and (min-width: 1200px) {
+      gap: 10px;
+    }
+  }
+
+  .name {
+    font-size: 14px;
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
+
+    @media screen and (min-width: 1200px) {
+      font-size: 16px;
+    }
   }
 
   .menu {

@@ -23,6 +23,7 @@
   .userInfo {
     padding: 16px;
     border-bottom: 1px solid #a3c5d3;
+    overflow: hidden;
 
     @media screen and (max-width: 767px) {
       display: none;
@@ -33,11 +34,17 @@
     font-weight: 700;
     font-size: 18px;
     color: #ff9900;
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
   }
 
   .userEmail {
     padding-top: 10px;
     font-weight: 500;
+    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
+    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
+    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
   }
 
   .userLevel {

@@ -15,10 +15,11 @@ import css from './MessageEditForm.module.css';
 export const MessageEditForm = ({socket, initialMessage, onSubmit, onCancel}) => {
   const dispatch = useDispatch(); 
   const token = useSelector(selectToken);
-  const {_id, text, fileURL, fileType } = initialMessage; 
+  const {_id, text, fileURL, fileType, fileName } = initialMessage; 
 
   const [textInput, setTextInput] = useState(text);
   const [fileInput, setFileInput] = useState(null);
+  const [originalFileName, setOriginalFileName] = useState(null);
   const [deletedFile, setDeletedFile] = useState(null);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
   const fileInputRef = useRef(null);
@@ -58,6 +59,7 @@ export const MessageEditForm = ({socket, initialMessage, onSubmit, onCancel}) =>
     }
 
     setFileInput(file);
+    setOriginalFileName(file.name);
     setIsDisabledBtn(false);
   };
 
@@ -81,21 +83,26 @@ export const MessageEditForm = ({socket, initialMessage, onSubmit, onCancel}) =>
       text: textInput,
       fileURL,
       fileType,
+      fileName,
     };
 
     if (deletedFile) {
       data.deletedFile = deletedFile;
       data.fileURL = '';
       data.fileType = '';
+      data.fileName = '';
     }
 
     if (fileInput) {
       const formData = new FormData();
       formData.append('file', fileInput);
+      formData.append('originalname', originalFileName);
 
       const response = await dispatch(uploadFile(formData)).unwrap();
+      
       data.fileURL = response.fileURL;
       data.fileType = response.fileType;
+      data.fileName = response.fileName;
     } 
  
     socket.emit('message', data);
@@ -145,7 +152,7 @@ export const MessageEditForm = ({socket, initialMessage, onSubmit, onCancel}) =>
               target='blank'
               className={css.link}         
             >
-              Прикріплений файл
+              {fileName || 'Прикріплений файл'}
             </Link>
             <div
               onClick={handleDeleteFile}

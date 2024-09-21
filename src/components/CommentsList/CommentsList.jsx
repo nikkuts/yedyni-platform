@@ -69,8 +69,7 @@ export const CommentsList = () => {
       <h2 className={css.title}>Коментарі</h2>
       <Form onSubmit={handleSubmit} className={css.form}>
         <Form.Group 
-          controlId="formText"
-          className={css.groupTextarea} 
+          controlId="formText" 
         >
           <Form.Label className={css.userName}>
             {user.name}
@@ -78,7 +77,7 @@ export const CommentsList = () => {
           <div>
             <Form.Control 
               as="textarea" rows={1} 
-              placeholder="Залишіть коментар" 
+              placeholder="Написати коментар" 
               value={textInput} 
               onChange={handleTextChange}
               className={css.textarea} 
@@ -87,14 +86,16 @@ export const CommentsList = () => {
               <div className={css.text}>Коментар не може бути порожнім і може вміщати до 300 символів</div>
             } 
           </div>
-          <Button 
-            variant="primary"
-            type="submit"
-            disabled={isDisabledBtn}
-            className={css.primaryBtn}
-          >
-            Відправити
-          </Button>   
+          <div className={css.wrapperBtn}>
+            <Button 
+              variant="primary"
+              type="submit"
+              disabled={isDisabledBtn}
+              className={css.primaryBtn}
+            >
+              Відправити
+            </Button> 
+          </div>  
         </Form.Group>  
       </Form>
       <ul className={css.list}>
