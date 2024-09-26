@@ -1,10 +1,16 @@
+.container {
+  max-width: 480px;
+  height: 0;
+}
+
 .chatContainer {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px);
+  height: 100vh;
   max-width: 480px;
   margin: 0 auto;
   overflow: hidden;
+  /* margin-top: 80px; */
 }
 
 .chatHeader { 
@@ -54,7 +60,7 @@
 
 .messagesContainer {
   flex: 1;
-  margin-top: 144px;
+  margin-top: 154px;
   overflow-y: scroll; /* Зберігає можливість прокрутки */
   scrollbar-width: none; /* Приховує прокрутку в Firefox */
 }

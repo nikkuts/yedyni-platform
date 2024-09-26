@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { CommentsList } from '../CommentsList/CommentsList';
 import { addExercise, updateExercise, deleteHomework, deleteFile } from '../../redux/exercises/operations';
 import { selectExercise } from '../../redux/exercises/selectors';
-import { openChat, shareMessage } from '../../redux/chat/slice';
+import { openChat, setEditingMessage } from '../../redux/chat/slice';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
@@ -166,7 +166,7 @@ export const HomeworkForm = ({courseId, lessonId}) => {
       data.fileName = fileName;
     }
 
-    dispatch(shareMessage(data));
+    dispatch(setEditingMessage(data));
     dispatch(openChat());
   };
 

@@ -2,10 +2,9 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { io } from 'socket.io-client';
 import { Message } from '../Message/Message';
-import { MessageEditForm } from '../MessageEditForm/MessageEditForm';
 import { MessageForm } from '../MessageForm/MessageForm';
 import { getMessages } from '../../redux/chat/operations';
-import { addMessage, updateMessage, deleteMessage, clearMessages } from '../../redux/chat/slice';
+import { addMessage, updateMessage, deleteMessage, setEditingMessage, clearMessages } from '../../redux/chat/slice';
 import { selectMessages, selectFirstMessageDate } from '../../redux/chat/selectors';
 import { selectIsLoading } from '../../redux/chat/selectors';
 import { Comment } from 'react-loader-spinner';
@@ -22,36 +21,20 @@ export const Chat = ({course, onClose}) => {
   const messages = useSelector(selectMessages);
   const firstMessageDate = useSelector(selectFirstMessageDate);
 
-  const [editingMessage, setEditingMessage] = useState(null);
-  const [currentEditingMessage, setCurrentEditingMessage] = useState(editingMessage);
   const [page, setPage] = useState(1);
-
   const messagesContainerRef = useRef(null);
-  const formRef = useRef(null);
-  const messageRef = useRef(null);
 
   const handleSentMessage = () => {
     if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTo({ top: 0, behavior: 'smooth'});
+      messagesContainerRef.current.scrollTo({
+        behavior: 'smooth',
+        top: 0,
+      });
     }
   };
-  
+
   const handleEditMessage = (message) => {
-    if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-    setEditingMessage(message);
-  };
-
-  const handleSaveMessage = () => {
-    if (messageRef.current) {
-      messageRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    setEditingMessage(null);
-  };
-
-  const handleCancelEdit = () => {
-    setEditingMessage(null);
+    dispatch(setEditingMessage(message));
   };
 
   const queryParams = useMemo(() => ({
@@ -85,10 +68,6 @@ export const Chat = ({course, onClose}) => {
       }
     };
   }, [firstMessageDate]);
-
-  useEffect(() => {
-    setCurrentEditingMessage(editingMessage);      
-  }, [editingMessage]);
 
   useEffect(() => {
     if (!socket.connected) {
@@ -135,39 +114,28 @@ export const Chat = ({course, onClose}) => {
         <h2 className={css.title}>{`${course.wave} хвиля. ${course.title}. Чат підтримки`}</h2>
       </div>
       
-      <div ref={formRef} className={css.formContainer} >
-        {editingMessage && editingMessage === currentEditingMessage ? (
-          <MessageEditForm
-            socket={socket} 
-            initialMessage={editingMessage} 
-            onSubmit={handleSaveMessage}
-            onCancel={handleCancelEdit}  
-          />
-        ) : (
+      <div className={css.formContainer}>    
           <MessageForm
             socket={socket} 
             chat={chatTitle} 
-            onSubmit={handleSentMessage}
-          />
-        )}
+            onSent={handleSentMessage}
+          />      
       </div>
 
       {firstMessageDate && firstMessageDate !== '' && 
-        <ul ref={messagesContainerRef} className={css.messagesContainer}>
-          {messages.length !== 0 && messages.map((message) => (
-            <li 
-              key={message._id}
-              ref={message._id === editingMessage?._id ? messageRef : null}
-            >
-              <Message 
-                socket={socket}
-                message={message}
-                onEdit={() => handleEditMessage(message)}
-                onCancel={handleCancelEdit}
-              />
-            </li>
-          ))}
-        </ul>
+        <div ref={messagesContainerRef} className={css.messagesContainer}>
+          <ul >
+            {messages.length !== 0 && messages.map((message) => (
+              <li key={message._id}>
+                <Message 
+                  socket={socket}
+                  message={message}
+                  onEdit={() => handleEditMessage(message)}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       }
 
       {isLoading && 

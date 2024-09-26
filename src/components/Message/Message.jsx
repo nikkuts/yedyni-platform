@@ -14,7 +14,7 @@ import { ReactComponent as Trash } from '../../icons/trash.svg';
 import { formatDateTime } from '../../service/handleDate';
 import css from './Message.module.css';
 
-export const Message = ({message, socket, onEdit, onCancel}) => {
+export const Message = ({ message, socket, onEdit }) => {
   const dispatch = useDispatch();
   const {user} = useAuth();
   const token = useSelector(selectToken);
@@ -48,7 +48,6 @@ export const Message = ({message, socket, onEdit, onCancel}) => {
     };
 
     socket.emit('message', data);
-    onCancel();
   };
 
   const toggleMenu = () => {

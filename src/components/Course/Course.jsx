@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import { selectIsChatVisible } from '../../redux/chat/selectors';
@@ -27,13 +27,14 @@ export default function Course () {
     const [isChangedCourse, setIsChangedCourse] = useState(false);
     const [openedLessonIndex, setOpenedLessonIndex] = useState(null);
     const [menuVisible, setMenuVisible] = useState(false);
-    const menuRef = useRef();
 
-    const toggleMenu = () => {
+    const toggleMenu = (e) => {
         setMenuVisible((prevVisible) => !prevVisible);
     };
 
-    const handleClickCalendar = (index) => {
+    const handleClickCalendar = (index, e) => {
+        e.stopPropagation();  // Зупиняємо спливання події
+
         setOpenedLessonIndex(index);
         dispatch(toogleModal());
     };
@@ -47,24 +48,6 @@ export default function Course () {
         dispatch(getCourseById(courseId)); 
         setIsChangedCourse(true);     
     }, [dispatch, courseId]);
-
-    useEffect(() => {
-        const menuElement = menuRef.current;
-
-        const handleClickOutside = (e) => {
-            if (menuElement && !menuElement.contains(e.target)) {
-                setMenuVisible(false);
-              }
-        };
-
-        document.addEventListener('click', handleClickOutside);
-
-        return () => {
-            if (menuElement) {
-                document.removeEventListener('click', handleClickOutside);
-            }
-        };
-    }, []);
     
     return (
         <>
@@ -108,59 +91,61 @@ export default function Course () {
                                 </li>
                             </ul>
                             <div
-                                ref={menuRef}
                                 onClick={toggleMenu}
                                 className={css.menu}
+                            >                      
+                            <div 
+                                className={css.menuBtn} 
+                                aria-expanded={menuVisible}
                             >
-                                <div className={css.menuBtn} aria-expanded={menuVisible}>
-                                    <span>Меню курсу</span>
-                                    <ChevronsRight />
-                                </div>
-                                <nav className={`${css.courseMenu} ${menuVisible ? css.active : ''}`}>
-                                    <ul className={css.courseList}>
-                                        {currentCourse.lessons.map((lesson, index) => (
-                                            <li 
-                                                key={lesson._id}
-                                                className={css.item}
-                                            >
-                                                <div className={css.tooltipWrapper}>
-                                                <Link
-                                                    to={lesson.day} 
-                                                    className={
-                                                        `${css.link} 
-                                                        ${(user.status === 'user' && 
-                                                            new Date(lesson.scheduledDate) > today) && 
-                                                            css.disabled}`
-                                                    }
-                                                >
-                                                    День {lesson.day}. {lesson.theme}
-                                                </Link>
-                                                {new Date(lesson.scheduledDate) > today && 
-                                                    <span className={css.tooltip}>{`Урок ${lesson.day} заплановано ${formatDate(lesson.scheduledDate)}`}</span>
+                                <span>Меню курсу</span>
+                                <ChevronsRight />
+                            </div>
+                            <nav className={`${css.courseMenu} ${menuVisible ? css.active : ''}`}>
+                                <ul className={css.courseList}>
+                                    {currentCourse.lessons.map((lesson, index) => (
+                                        <li 
+                                            key={lesson._id}
+                                            className={css.item}
+                                        >
+                                            <div className={css.tooltipWrapper}>
+                                            <Link
+                                                to={lesson.day} 
+                                                className={
+                                                    `${css.link} 
+                                                    ${(user.status === 'user' && 
+                                                        new Date(lesson.scheduledDate) > today) && 
+                                                        css.disabled}`
                                                 }
-                                                </div>
+                                            >
+                                                День {lesson.day}. {lesson.theme}
+                                            </Link>
+                                            {new Date(lesson.scheduledDate) > today && 
+                                                <span className={css.tooltip}>{`Урок ${lesson.day} заплановано ${formatDate(lesson.scheduledDate)}`}</span>
+                                            }
+                                            </div>
 
-                                                {(user.status === "moderator" || user.status === "admin") && (
-                                                    <>
-                                                    <div  
-                                                        onClick={() => handleClickCalendar(index)} 
-                                                        className={css.calendar}
-                                                    >
-                                                        <Calendar />
-                                                    </div>
-                                                        { openedLessonIndex === index && 
-                                                            <ScheduleModal
-                                                                courseId={courseId}
-                                                                lesson={lesson}
-                                                                closeModal={handleCloseModal}
-                                                            />
-                                                        }  
-                                                    </>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </nav>  
+                                            {(user.status === "moderator" || user.status === "admin") && (
+                                                <>
+                                                <div 
+                                                    onClick={(e) => handleClickCalendar(index, e)} 
+                                                    className={css.calendar}
+                                                >
+                                                    <Calendar />
+                                                </div>
+                                                    { openedLessonIndex === index && 
+                                                        <ScheduleModal
+                                                            courseId={courseId}
+                                                            lesson={lesson}
+                                                            closeModal={handleCloseModal}
+                                                        />
+                                                    }  
+                                                </>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </nav>  
                             </div>
                             <Suspense fallback={null}>
                                 <Outlet /> 

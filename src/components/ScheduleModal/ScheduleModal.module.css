@@ -10,7 +10,7 @@
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1200;
   }
-    
+
   .form {
     display: flex;
     flex-direction: column;

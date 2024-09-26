@@ -5,23 +5,27 @@ import imageCompression from 'browser-image-compression';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { uploadFile } from '../../redux/chat/operations';
-import { clearSharedMessage } from '../../redux/chat/slice';
-import { selectSharedMessage } from '../../redux/chat/selectors';
+import { clearEditingMessage } from '../../redux/chat/slice';
+import { selectEditingMessage } from '../../redux/chat/selectors';
 import { selectToken } from '../../redux/auth/selectors';
+import { ReactComponent as Close } from '../../icons/x20.svg';
 import { ReactComponent as Trash } from '../../icons/trash.svg';
 import { ReactComponent as Send } from '../../icons/send.svg';
 import css from './MessageForm.module.css';
 
-export const MessageForm = ({socket, chat, onSubmit}) => {
+export const MessageForm = ({ socket, chat, onSent }) => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken); 
-  const {text, fileURL, fileType, fileName} = useSelector(selectSharedMessage);
+  const editingMessage = useSelector(selectEditingMessage);
+  const {_id, text, fileURL, fileType, fileName} = editingMessage;
 
-  const [textInput, setTextInput] = useState(text);
+  const [textInput, setTextInput] = useState('');
   const [fileInput, setFileInput] = useState(null);
   const [originalFileName, setOriginalFileName] = useState(null);
   const [deletedFile, setDeletedFile] = useState(null);
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
+  
+  const textInputRef = useRef(null);
   const fileInputRef = useRef(null);
 
   const handleTextChange = (e) => {
@@ -74,12 +78,21 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
     }
   };
 
+  const handleCancelEdit = () => {
+    setTextInput('');
+    setFileInput(null);
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
+    dispatch(clearEditingMessage());
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     const data = {
       token,
-      chat,
       text: textInput,
       fileURL,
       fileType,
@@ -87,6 +100,7 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
     };
 
     if (deletedFile) {
+      data.deletedFile = deletedFile;
       data.fileURL = '';
       data.fileType = '';
       data.fileName = '';
@@ -104,6 +118,13 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
       data.fileName = response.fileName;
     }
 
+    if (_id) {
+      data.messageId = _id;
+    } else {
+      data.chat = chat;
+      onSent();
+    }
+
     socket.emit('message', data);
 
     setTextInput('');
@@ -113,13 +134,16 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
     setDeletedFile(null);
 
     if (text) {
-      dispatch(clearSharedMessage());
+      dispatch(clearEditingMessage());
     }
 
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
     }
-    onSubmit();
+
+    if (textInputRef.current) {
+      textInputRef.current.focus();
+    }
   };
 
   const handleKeyDown = e => {
@@ -130,18 +154,37 @@ export const MessageForm = ({socket, chat, onSubmit}) => {
   };
 
   useEffect(() => {
-    if (text && text !== '' && text.trim().length <= 500) {
+    if (text) {
+      setTextInput(text);
+    }
+
+    if (text !== '' && text.trim().length <= 500) {
       setIsDisabledBtn(false);
     }
   }, [text]);
 
+  useEffect(() => {
+    if (textInputRef.current) {
+      textInputRef.current.focus();
+    }
+  }, []);
+
   return (
     <Form onSubmit={handleSubmit} className={css.form}>
+      {text !== '' &&
+        <div
+          onClick={handleCancelEdit}  
+          className={css.close}
+        >
+          <Close />
+        </div>
+      }
       <Form.Group 
         controlId="formText"
         className={css.groupTextarea} 
       >
         <Form.Control 
+          ref={textInputRef}
           as="textarea" 
           rows={1} 
           placeholder="Написати повідомлення" 

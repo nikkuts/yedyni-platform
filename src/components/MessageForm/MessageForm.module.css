@@ -1,10 +1,40 @@
-.form {
+/* .form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
     padding: 10px;
     background-color: #f1f1f1;
+} */
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    padding: 5px 10px;
+    padding-top: 30px;
+    background-color: #f1f1f1;
+}
+
+.close {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 3px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close:hover,  
+.close:focus,
+.close:active {
+    background-color: #ffffff;
 }
 
 .groupTextarea {

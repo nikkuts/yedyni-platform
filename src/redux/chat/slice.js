@@ -21,7 +21,7 @@ const initialState = {
   isChatVisible: false,
   messages: [],
   firstMessageDate: '',
-  sharedMessage: {
+  editingMessage: {
     text: '',
     fileURL: '',
     fileType: '',
@@ -56,11 +56,11 @@ const chatSlice = createSlice({
       const index = state.messages.findIndex(message => message._id === action.payload._id);
       state.messages.splice(index,1);
     },
-    shareMessage(state, action) {
-      state.sharedMessage = {...state.sharedMessage, ...action.payload};
+    setEditingMessage(state, action) {
+      state.editingMessage = {...state.editingMessage, ...action.payload};
     },
-    clearSharedMessage(state) {
-      state.sharedMessage = {
+    clearEditingMessage(state) {
+      state.editingMessage = {
         text: '',
         fileURL: '',
         fileType: '',
@@ -132,8 +132,8 @@ export const {
   addMessage, 
   updateMessage, 
   deleteMessage,
-  shareMessage,
-  clearSharedMessage, 
+  setEditingMessage,
+  clearEditingMessage, 
   clearMessages 
 } = chatSlice.actions;
 export const chatReducer = chatSlice.reducer;

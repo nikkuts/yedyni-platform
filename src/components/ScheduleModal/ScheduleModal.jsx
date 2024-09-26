@@ -51,44 +51,46 @@ useEffect(() => {
       onClick={onBackdropClose}
       className={css.overlay}
     >
-      <Form onSubmit={handleSave} className={css.form}>
-        <Form.Group 
-            controlId="formDate"
-            className={css.groupInputDate} 
+      <div onClick={(e) => e.stopPropagation()}>
+        <Form onSubmit={handleSave} className={css.form}>
+          <Form.Group 
+              controlId="formDate"
+              className={css.groupInputDate} 
+              >
+              <Form.Label className={css.label}>
+                Запланувати відкриття уроку {lesson.day}
+              </Form.Label>
+              <DatePicker 
+                  className={css.inputDate}
+                  selected={dateInput}
+                  onChange={handleDateInputChange}
+                  minDate={new Date()}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  dateFormat="Pp"
+                  placeholderText="Виберіть дату та час"
+                  locale="uk" 
+              />
+          </Form.Group>
+          <div className={css.wrapperBtn}>
+            <Button 
+              variant="primary"
+              type="submit"
+              disabled={!dateInput}
+              className={css.primaryBtn}
             >
-            <Form.Label className={css.label}>
-              Запланувати відкриття уроку {lesson.day}
-            </Form.Label>
-            <DatePicker 
-                className={css.inputDate}
-                selected={dateInput}
-                onChange={handleDateInputChange}
-                minDate={new Date()}
-                showTimeSelect
-                timeFormat="HH:mm"
-                timeIntervals={15}
-                dateFormat="Pp"
-                placeholderText="Виберіть дату та час"
-                locale="uk" 
-            />
-        </Form.Group>
-        <div className={css.wrapperBtn}>
-          <Button 
-            variant="primary"
-            type="submit"
-            disabled={!dateInput}
-            className={css.primaryBtn}
-          >
-            Зберегти
-          </Button>
-          <Button
-            onClick={closeModal} 
-            className={css.cancelBtn}
-          >
-            Скасувати
-          </Button>
-        </div>        
-      </Form>
+              Зберегти
+            </Button>
+            <Button
+              onClick={closeModal} 
+              className={css.cancelBtn}
+            >
+              Скасувати
+            </Button>
+          </div>        
+        </Form>
+      </div>
     </div>
   );
 };

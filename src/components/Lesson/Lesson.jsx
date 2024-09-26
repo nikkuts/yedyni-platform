@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import {  useSelector, useDispatch } from 'react-redux';
-import { Suspense } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { LessonMenu } from '../LessonMenu/LessonMenu';
 import { selectCourse } from '../../redux/courses/selectors';
@@ -19,7 +18,6 @@ export default function Lesson () {
 
     const [isChangedLesson, setIsChangedLesson] = useState(false);
     const [menuVisible, setMenuVisible] = useState(false);
-    const menuRef = useRef();
     
     const toggleMenu = () => {
         setMenuVisible((prevVisible) => !prevVisible);
@@ -35,24 +33,6 @@ export default function Lesson () {
         dispatch(getDiary({courseId, lessonId})); 
         setIsChangedLesson(true);     
     }, [dispatch, courseId, lessonId, currentLesson]);
-
-    useEffect(() => {
-        const menuElement = menuRef.current;
-
-        const handleClickOutside = (e) => {
-            if (menuElement && !menuElement.contains(e.target)) {
-                setMenuVisible(false);
-              }
-        };
-
-        document.addEventListener('click', handleClickOutside);
-
-        return () => {
-            if (menuElement) {
-                document.removeEventListener('click', handleClickOutside);
-            }
-        };
-    }, []);
 
     return (
         <> 
@@ -78,9 +58,8 @@ export default function Lesson () {
                 </>
                 :
                 <div
-                ref={menuRef}
-                onClick={toggleMenu}
-                className={css.menu}
+                    onClick={toggleMenu}
+                    className={css.menu}
                 >
                     <div className={css.menuBtn} aria-expanded={menuVisible}>
                         <span>Меню уроку</span>

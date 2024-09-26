@@ -78,10 +78,6 @@
   cursor: pointer;
 }
 
-.menu {
-
-}
-
 .menuBtn {
   display: flex;
   align-items: center;
@@ -111,6 +107,8 @@
 }
 
 .courseList {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 
   @media screen and (min-width: 768px) {
@@ -130,8 +128,9 @@
 }
 
 .link {
+  position: relative;
   display: block;
-  width: 100%;
+  width: 460px;
   padding: 10px;
   font-size: 14px;
   font-weight: 500;
@@ -155,6 +154,16 @@
   background-color: beige;
 }
 
+.link::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff; 
+}
+
 .disabled {
   opacity: 0.5; 
   cursor: not-allowed; 
@@ -171,7 +180,7 @@
   justify-content: center;
   align-items: center;
   top: 3px;
-  right: 3px;
+  right: 0;
   width: 30px;
   height: 30px;
   cursor: pointer;

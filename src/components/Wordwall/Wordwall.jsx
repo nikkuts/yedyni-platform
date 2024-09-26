@@ -1,17 +1,9 @@
-import { useCallback, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import { toogleModal } from '../../redux/modal/modalSlice';
+import { useEffect } from "react";
 import css from './Wordwall.module.css';
 
-export const Wordwall = ({exercise}) => {
-    const dispatch = useDispatch()
+export const Wordwall = ({exercise, closeModal}) => {
 
-    const closeModal = useCallback(
-        () => dispatch(toogleModal()),
-        [dispatch]
-    );
-
-    const onBackdropClose = e => {
+    const onBackdropClose = (e) => {
         if (e.currentTarget === e.target) {
             closeModal();
         }
