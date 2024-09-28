@@ -17,7 +17,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken); 
   const editingMessage = useSelector(selectEditingMessage);
-  const {_id, text, fileURL, fileType, fileName} = editingMessage;
+  const { _id = null, text = '', fileURL = '', fileType = '', fileName = '' } = editingMessage || {};
 
   const [textInput, setTextInput] = useState('');
   const [fileInput, setFileInput] = useState(null);
@@ -33,7 +33,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
     setTextInput(eText);
     const newText = eText.trim();
 
-    if (newText !== '' && newText.length <= 500) {
+    if (newText.length <= 500) {
         setIsDisabledBtn(false);
     } else {
         setIsDisabledBtn(true);
@@ -81,6 +81,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
   const handleCancelEdit = () => {
     setTextInput('');
     setFileInput(null);
+    setIsDisabledBtn(true);
 
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
@@ -133,7 +134,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
     setIsDisabledBtn(true);
     setDeletedFile(null);
 
-    if (text) {
+    if (editingMessage) {
       dispatch(clearEditingMessage());
     }
 
@@ -154,9 +155,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
   };
 
   useEffect(() => {
-    if (text) {
-      setTextInput(text);
-    }
+    setTextInput(text);
 
     if (text !== '' && text.trim().length <= 500) {
       setIsDisabledBtn(false);
@@ -171,7 +170,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
 
   return (
     <Form onSubmit={handleSubmit} className={css.form}>
-      {text !== '' &&
+      {editingMessage &&
         <div
           onClick={handleCancelEdit}  
           className={css.close}

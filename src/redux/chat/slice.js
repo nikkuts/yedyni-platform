@@ -21,12 +21,7 @@ const initialState = {
   isChatVisible: false,
   messages: [],
   firstMessageDate: '',
-  editingMessage: {
-    text: '',
-    fileURL: '',
-    fileType: '',
-    fileName: '',
-  },
+  editingMessage: null,
   isLoading: false,
   error: null,
 }
@@ -57,15 +52,10 @@ const chatSlice = createSlice({
       state.messages.splice(index,1);
     },
     setEditingMessage(state, action) {
-      state.editingMessage = {...state.editingMessage, ...action.payload};
+      state.editingMessage = action.payload;
     },
     clearEditingMessage(state) {
-      state.editingMessage = {
-        text: '',
-        fileURL: '',
-        fileType: '',
-        fileName: '',
-      };
+      state.editingMessage = null;
     },
     clearMessages: (state) => {
       return { ...initialState };

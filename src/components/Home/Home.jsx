@@ -1,6 +1,6 @@
-import { useEffect, Suspense } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
 import css from './Home.module.css';
@@ -102,9 +102,6 @@ export default function Home () {
             <h2 className={css.sertificate}>
                 Мої сертифікати
             </h2>
-            <Suspense fallback={null}>
-            <Outlet />
-            </Suspense>
         </div>
         }
       </>
