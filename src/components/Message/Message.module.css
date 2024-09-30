@@ -25,7 +25,8 @@
     color: #555;
     font-size: 14px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Зберігає нові рядки, пробіли та інше форматування */
 }
 
 .disabled {

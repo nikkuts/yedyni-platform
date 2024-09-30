@@ -1,107 +1,4 @@
-/* .chatContainer {
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: calc(100vh - 80px);
-  max-width: 480px;
-  margin: 0 auto;
-  overflow: hidden;
-} */
-
 .chatContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  max-width: 480px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.chatHeader { 
-  position: fixed;
-  top: 80px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  padding-left: 5px;
-  height: 40px;
-  background-color: #3754fd;
-  width: calc(100% - 20px);
-  max-width: 480px;
-}
-
-.chevronLeft {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.title {
-  font-weight: 600;
-  font-size: 14px;
-  color: #ffffff;
-  padding-left: 5px;
-  white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
-  overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
-  text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
-}
-
-.messagesContainer {
-  position: fixed; 
-  top: 120px;
-  bottom: 104px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: calc(100% - 20px);
-  max-width: 480px;
-  display: flex;
-  flex-direction: column-reverse;
-  flex: 1;
-  padding-bottom: 10px;
-  overflow-y: scroll; /* Зберігає можливість прокрутки */
-  scrollbar-width: none; /* Приховує прокрутку в Firefox */
-}
-
-.messagesContainer::-webkit-scrollbar {
-  display: none; /* Приховує прокрутку в Chrome, Safari */
-}
-
-.formContainer {
-  position: fixed;
-  bottom: 0px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 1000;
-  width: calc(100% - 20px);
-  max-width: 480px;
-  height: 104px;
-}
-
-.wrapperLoader {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-  background-color: #fef9f9;
-  z-index: 1300;
-}
-
-
-
-/* .chatContainer {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -158,6 +55,35 @@
 .messagesContainer {
   flex: 1;
   margin-top: 154px;
+  overflow-y: scroll; /* Зберігає можливість прокрутки */
+  scrollbar-width: none; /* Приховує прокрутку в Firefox */
+}
+
+.messagesContainer::-webkit-scrollbar {
+  display: none; /* Приховує прокрутку в Chrome, Safari */ 
+}
+
+.wrapperLoader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Форма знизу */
+
+/* .messagesContainer {
+  position: fixed; 
+  top: 120px;
+  bottom: 104px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: calc(100% - 20px);
+  max-width: 480px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex: 1;
+  padding-bottom: 10px;
   overflow-y: scroll; 
   scrollbar-width: none; 
 }
@@ -166,9 +92,23 @@
   display: none; 
 }
 
+.formContainer {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+  width: calc(100% - 20px);
+  max-width: 480px;
+  height: 104px;
+}
+
 .wrapperLoader {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
+  background-color: #fef9f9;
+  z-index: 1300;
 } */

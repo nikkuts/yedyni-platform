@@ -1,21 +1,5 @@
-/* .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    padding: 10px;
-    background-color: #f1f1f1;
-} */
-
 .form {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 100%;
-    padding: 5px 10px;
-    padding-top: 30px;
-    background-color: #f1f1f1;
 }
 
 .close {
@@ -23,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 3px;
+    top: 2px;
     right: 5px;
     width: 24px;
     height: 24px;
@@ -37,35 +21,37 @@
     background-color: #ffffff;
 }
 
-.groupTextarea {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .textarea {
     display: block;
     width: 100%;
-    min-height: 40px;
-    margin-left: auto;
-    margin-right: auto;
     padding: 10px;
     font-size: 14px;
-    line-height: 1.2;
+    line-height: 1.5;
     border: 1px solid #ffffff;
-    border-radius: 20px;
     outline: none;
-    resize: vertical;
 }
+
+.textarea {
+    min-height: calc(1.5em * 1); /* висота для 1 рядка (em залежить від розміру шрифту) */
+    max-height: calc(1.5em * 10); /* висота для 10 рядків */
+    overflow-y: auto; /* показувати скролл, якщо текст більше ніж 10 рядків */
+    resize: none; /* відключити можливість ручного зміни розміру */
+  }
 
 .textarea::placeholder {
     color: rgba(0, 0, 0, 0.7); 
+}
+
+.upper {
+    padding-top: 20px;
 }
 
 .wrapperBtn {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 5px 10px;
+    background-color: #f1f1f1;
 }
 
 .groupBtn {

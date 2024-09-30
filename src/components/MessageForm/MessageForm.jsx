@@ -32,12 +32,18 @@ export const MessageForm = ({ socket, chat, onSent }) => {
     const eText = e.target.value;
     setTextInput(eText);
     const newText = eText.trim();
-
-    if (newText.length <= 500) {
+    
+    if (
+      (newText.trim() !== '' && newText.length <= 500) || 
+      fileInput || 
+      (newText.trim() === '' && fileURL && !deletedFile)
+    ) {
         setIsDisabledBtn(false);
     } else {
         setIsDisabledBtn(true);
     }
+    
+    textInputRef.current.style.height = `${Math.min(textInputRef.current.scrollHeight, 10 * 1.5 * 14)}px`;
   };
 
   const handleFileChange = async (e) => {
@@ -75,18 +81,32 @@ export const MessageForm = ({ socket, chat, onSent }) => {
 
     if (textInput !== '' && textInput.trim().length <= 500) {
       setIsDisabledBtn(false);
+    } else {
+      setIsDisabledBtn(true);
+    }
+
+    if (textInputRef.current) {
+      textInputRef.current.focus();
     }
   };
 
   const handleCancelEdit = () => {
+    dispatch(clearEditingMessage());
+
     setTextInput('');
     setFileInput(null);
+    setOriginalFileName(null);
+    setDeletedFile(null);
     setIsDisabledBtn(true);
 
     if (fileInputRef.current) {
       fileInputRef.current.value = null;
     }
-    dispatch(clearEditingMessage());
+
+    if (textInputRef.current) {
+      textInputRef.current.style.height = 'auto';
+      textInputRef.current.focus();
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -130,9 +150,9 @@ export const MessageForm = ({ socket, chat, onSent }) => {
 
     setTextInput('');
     setFileInput(null); 
-    setOriginalFileName(null);  
+    setOriginalFileName(null); 
+    setDeletedFile(null); 
     setIsDisabledBtn(true);
-    setDeletedFile(null);
 
     if (editingMessage) {
       dispatch(clearEditingMessage());
@@ -143,22 +163,33 @@ export const MessageForm = ({ socket, chat, onSent }) => {
     }
 
     if (textInputRef.current) {
+      textInputRef.current.style.height = 'auto';
       textInputRef.current.focus();
     }
   };
 
   const handleKeyDown = e => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault(); 
       handleSubmit(e);
     }
   };
 
   useEffect(() => {
-    setTextInput(text);
+    if (text) {
+      setTextInput(text);
 
-    if (text !== '' && text.trim().length <= 500) {
-      setIsDisabledBtn(false);
+      if (text !== '' && text.trim().length <= 500) {
+        setIsDisabledBtn(false);
+      }
+
+      if (textInputRef.current) {
+        setTimeout(() => {
+          textInputRef.current.style.height = 'auto'; 
+          textInputRef.current.style.height = `${Math.min(textInputRef.current.scrollHeight, 10 * 1.5 * 14)}px`;
+          textInputRef.current.focus(); 
+        }, 0);
+      }
     }
   }, [text]);
 
@@ -169,7 +200,10 @@ export const MessageForm = ({ socket, chat, onSent }) => {
   }, []);
 
   return (
-    <Form onSubmit={handleSubmit} className={css.form}>
+    <Form 
+      onSubmit={handleSubmit} 
+      className={css.form}
+    >
       {editingMessage &&
         <div
           onClick={handleCancelEdit}  
@@ -179,8 +213,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
         </div>
       }
       <Form.Group 
-        controlId="formText"
-        className={css.groupTextarea} 
+        controlId="formText" 
       >
         <Form.Control 
           ref={textInputRef}
@@ -190,7 +223,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
           value={textInput} 
           onChange={handleTextChange}
           onKeyDown={handleKeyDown}
-          className={css.textarea} 
+          className={`${css.textarea} ${editingMessage && css.upper}`} 
         />
       </Form.Group>
       <div className={css.wrapperBtn}> 
