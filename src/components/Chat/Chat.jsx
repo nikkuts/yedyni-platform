@@ -21,12 +21,16 @@ export const Chat = ({course, onClose}) => {
   const messages = useSelector(selectMessages);
   const firstMessageDate = useSelector(selectFirstMessageDate);
 
+  const [isVisible, setIsVisible] = useState(false);
   const [page, setPage] = useState(1);
   const messagesContainerRef = useRef(null);
 
   const handleSentMessage = () => {
     if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = 0;
+      messagesContainerRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   };
 
@@ -46,16 +50,24 @@ export const Chat = ({course, onClose}) => {
   }, [dispatch, queryParams]);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true); 
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => { 
     const containerElement = messagesContainerRef.current;
   
-    const handleScroll = () => {
+    const handleScroll = () => {   
       // Перевірка, чи прокрутили вниз до кінця
       if (containerElement.scrollTop + containerElement.clientHeight >= containerElement.scrollHeight) {
        setPage((prevPage) => prevPage + 1); 
      }
    };
   
-    if (containerElement) {
+    if (containerElement) {    
       containerElement.addEventListener('scroll', handleScroll);
     }
   
@@ -64,7 +76,7 @@ export const Chat = ({course, onClose}) => {
         containerElement.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [firstMessageDate]);
+  }, [isVisible]);
   
 
   useEffect(() => {
@@ -102,25 +114,39 @@ export const Chat = ({course, onClose}) => {
   }, [dispatch]);
 
   return ( 
-    <div className={css.chatContainer}>         
-      <div className={css.chatHeader}>
-        <div className={css.chevronLeft}>
-          <ChevronLeft 
-            onClick={() => onClose()}
-          />
+    <>
+    {!isVisible ? (
+      <div className={css.wrapperLoader}>
+        <Comment
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="comment-loading"
+          wrapperStyle={{}}
+          wrapperClass="comment-wrapper"
+          color="#fff"
+          backgroundColor="#3754fd"
+        />
+      </div>
+    ) : (
+      <div className={css.chatContainer}>         
+        <div className={css.chatHeader}>
+          <div className={css.chevronLeft}>
+            <ChevronLeft 
+              onClick={() => onClose()}
+            />
+          </div>
+          <h2 className={css.title}>{`${course.wave} хвиля. ${course.title}. Чат підтримки`}</h2>
         </div>
-        <h2 className={css.title}>{`${course.wave} хвиля. ${course.title}. Чат підтримки`}</h2>
-      </div>
 
-      <div className={css.formContainer}>    
-        <MessageForm
-          socket={socket} 
-          chat={chatTitle} 
-          onSent={handleSentMessage}
-        />      
-      </div>
+        <div className={css.formContainer}>    
+          <MessageForm
+            socket={socket} 
+            chat={chatTitle} 
+            onSent={handleSentMessage}
+          />      
+        </div>
 
-      {firstMessageDate && firstMessageDate !== '' && 
         <div ref={messagesContainerRef} className={css.messagesContainer}>
           <ul>
             {messages.length !== 0 && messages.map((message) => (
@@ -134,23 +160,24 @@ export const Chat = ({course, onClose}) => {
             ))}
           </ul>
         </div>
-      }
 
-      {isLoading && 
-        <div className={css.wrapperLoader}>
-          <Comment
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="comment-loading"
-            wrapperStyle={{}}
-            wrapperClass="comment-wrapper"
-            color="#fff"
-            backgroundColor="#3754fd"
-          />
-        </div>
-      }      
-    </div>
+        {isLoading && 
+          <div className={css.wrapperLoader}>
+            <Comment
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="comment-loading"
+              wrapperStyle={{}}
+              wrapperClass="comment-wrapper"
+              color="#fff"
+              backgroundColor="#3754fd"
+            />
+          </div>
+        }      
+      </div>
+    )}
+    </>
   )
 };
 

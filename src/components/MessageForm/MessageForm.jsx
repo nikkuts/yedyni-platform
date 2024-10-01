@@ -169,9 +169,17 @@ export const MessageForm = ({ socket, chat, onSent }) => {
   };
 
   const handleKeyDown = e => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault(); 
-      handleSubmit(e);
+    const isMobile = window.innerWidth <= 768; // Визначаємо, що це мобільний пристрій за шириною екрану
+  
+    if (e.key === 'Enter') {
+      if (isMobile) {
+        // Додаємо новий рядок на мобільних пристроях
+        return;
+      }
+      if (!e.shiftKey) {
+        e.preventDefault();
+        handleSubmit(e); // Відправляємо повідомлення, якщо користувач не натискає Shift
+      }
     }
   };
 

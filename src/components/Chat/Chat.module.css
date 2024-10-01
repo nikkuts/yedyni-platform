@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 100%;
   max-width: 480px;
   margin: 0 auto;
   overflow: hidden;
@@ -9,7 +10,7 @@
 
 .chatHeader { 
   position: fixed;
-  top: 80px;
+  top: 50px;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1000;
@@ -20,6 +21,10 @@
   background-color: #3754fd;
   width: calc(100% - 20px);
   max-width: 480px;
+
+  @media screen and (min-width: 768px) {
+    top: 80px;
+  }
 }
 
 .chevronLeft {
@@ -44,19 +49,27 @@
 
 .formContainer {
   position: fixed;
-  top: 120px;
+  top: 90px;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1000;
   width: calc(100% - 20px);
   max-width: 480px;
+
+  @media screen and (min-width: 768px) {
+    top: 120px;
+  }
 }
 
 .messagesContainer {
   flex: 1;
-  margin-top: 154px;
+  margin-top: 93px;
   overflow-y: scroll; /* Зберігає можливість прокрутки */
   scrollbar-width: none; /* Приховує прокрутку в Firefox */
+
+  @media screen and (min-width: 768px) {
+    margin-top: 123px;
+  }
 }
 
 .messagesContainer::-webkit-scrollbar {
