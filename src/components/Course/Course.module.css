@@ -1,6 +1,9 @@
 .courseContainer {
-  /* min-height: calc(100vh - 50px); */
-  /* padding-bottom: 50px; */
+  padding-top: 50px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 80px;
+  }
 }
 
 .courseTitle {

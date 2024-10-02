@@ -94,7 +94,6 @@ button {
 .container {
   margin: 0 auto;
   padding: 0 10px;
-  padding-top: 80px;
   max-width: 480px;
   
   @media screen and (min-width: 480px) {

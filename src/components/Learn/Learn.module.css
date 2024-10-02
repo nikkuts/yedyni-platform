@@ -1,5 +1,10 @@
 .learnWrapper {
     padding: 20px;
+    padding-top: 70px;
+
+    @media screen and (min-width: 768px) {
+        padding-top: 100px;
+    }
 }
 
 .title {

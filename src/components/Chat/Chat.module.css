@@ -62,14 +62,9 @@
 }
 
 .messagesContainer {
-  flex: 1;
-  margin-top: 93px;
+  margin-top: 123px;
   overflow-y: scroll; /* Зберігає можливість прокрутки */
   scrollbar-width: none; /* Приховує прокрутку в Firefox */
-
-  @media screen and (min-width: 768px) {
-    margin-top: 123px;
-  }
 }
 
 .messagesContainer::-webkit-scrollbar {
