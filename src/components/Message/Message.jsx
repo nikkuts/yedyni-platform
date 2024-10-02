@@ -171,6 +171,17 @@ export const Message = ({ message, socket, onEdit }) => {
             }
         </div>
         }
+
+        {(user.status === "moderator" || user.status === "admin") &&
+          (user._id !== sender._id) && (
+          <div 
+            onClick={handleDeleteMessage} 
+            className={css.icon}
+          >
+              <Trash />
+          </div>
+        )}
+                                            
         <span className={css.date}>{formatDateTime(date)}</span>
       </div>
     </>

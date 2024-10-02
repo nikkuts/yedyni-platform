@@ -248,7 +248,7 @@ export const MessageForm = ({ socket, chat, onSent }) => {
               onClick={handleDeleteFile}
               className={css.trash}
             >
-              <Trash className={css.trashIcon} />
+              <Trash />
             </div>
           </div>
           :

@@ -1,6 +1,6 @@
 .containerMessage {
     position: relative;
-    width: 100%;
+    width: 80%;
     padding: 10px 20px;
     margin-top: 10px;
     border-radius: 20px;
@@ -9,6 +9,8 @@
 }
 
 .specialBackground {
+    width: 80%;
+    margin-left: auto;
     background-color: beige;
 }
 
