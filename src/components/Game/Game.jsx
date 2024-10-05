@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { toogleModal } from '../../redux/modal/modalSlice';
+import { toggleModal } from '../../redux/modal/modalSlice';
 import { selectModal } from '../../redux/modal/selectors';
-import { Wordwall } from '../Wordwall/Wordwall';
+import { Modal } from '../Modal/Modal';
+import { VideoFrame } from '../VideoFrame/VideoFrame';
 import exercises from "../exercises.json";
 import css from './Game.module.css';
 
 export default function Game () {
   const[exercise, setExercise] = useState(exercises[0]);
   const dispatch = useDispatch();
-  const isModalOpen = useSelector(selectModal);
+  const isOpenModal = useSelector(selectModal);
 
   const handleClickStartGame = () => {
     const randomIndex = Math.floor(Math.random() * exercises.length);
     const randomElement = exercises[randomIndex];
     setExercise(randomElement);
-    dispatch(toogleModal());
+    dispatch(toggleModal());
+  };
+
+  const handleCloseModal = () => {
+    dispatch(toggleModal());
   };
 
     return (
@@ -66,10 +71,10 @@ export default function Game () {
         >
           Почати гру
         </button>
-        { isModalOpen && 
-        <Wordwall
-          exercise={exercise}
-        />
+        { isOpenModal && 
+          <Modal closeModal={handleCloseModal}>
+            <VideoFrame url={exercise} />
+          </Modal>
         }  
       </div>
     );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { updateScheduledDateLesson } from "../../redux/courses/operations";
 import Form from 'react-bootstrap/Form';
@@ -30,67 +30,46 @@ export const ScheduleModal = ({ courseId, lesson, closeModal }) => {
     closeModal();
   };
 
-const onBackdropClose = e => {
-    if (e.currentTarget === e.target) {
-        closeModal();
-    }
-  };
-
-useEffect(() => {
-    const keyDown = e => {
-      if (e.code === 'Escape') {
-        closeModal();
-      }
-    };
-    window.addEventListener('keydown', keyDown);
-    return () => {window.removeEventListener('keydown', keyDown);}
-  }, [closeModal])
-
   return (
-    <div  
-      onClick={onBackdropClose}
-      className={css.overlay}
-    >
-      <div onClick={(e) => e.stopPropagation()}>
-        <Form onSubmit={handleSave} className={css.form}>
-          <Form.Group 
-              controlId="formDate"
-              className={css.groupInputDate} 
-              >
-              <Form.Label className={css.label}>
-                Запланувати відкриття уроку {lesson.day}
-              </Form.Label>
-              <DatePicker 
-                  className={css.inputDate}
-                  selected={dateInput}
-                  onChange={handleDateInputChange}
-                  minDate={new Date()}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  timeIntervals={15}
-                  dateFormat="Pp"
-                  placeholderText="Виберіть дату та час"
-                  locale="uk" 
-              />
-          </Form.Group>
-          <div className={css.wrapperBtn}>
-            <Button 
-              variant="primary"
-              type="submit"
-              disabled={!dateInput}
-              className={css.primaryBtn}
+    <div onClick={(e) => e.stopPropagation()}>
+      <Form onSubmit={handleSave} className={css.form}>
+        <Form.Group 
+            controlId="formDate"
+            className={css.groupInputDate} 
             >
-              Зберегти
-            </Button>
-            <Button
-              onClick={closeModal} 
-              className={css.cancelBtn}
-            >
-              Скасувати
-            </Button>
-          </div>        
-        </Form>
-      </div>
+            <Form.Label className={css.label}>
+              Запланувати відкриття уроку {lesson.day}
+            </Form.Label>
+            <DatePicker 
+                className={css.inputDate}
+                selected={dateInput}
+                onChange={handleDateInputChange}
+                minDate={new Date()}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="Pp"
+                placeholderText="Виберіть дату та час"
+                locale="uk" 
+            />
+        </Form.Group>
+        <div className={css.wrapperBtn}>
+          <Button 
+            variant="primary"
+            type="submit"
+            disabled={!dateInput}
+            className={css.primaryBtn}
+          >
+            Зберегти
+          </Button>
+          <Button
+            onClick={closeModal} 
+            className={css.cancelBtn}
+          >
+            Скасувати
+          </Button>
+        </div>        
+      </Form>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toogleModal } from '../../redux/modal/modalSlice';
+import { toggleModal } from '../../redux/modal/modalSlice';
 import { Link } from 'react-router-dom';
 import { selectCurrentLesson } from '../../redux/exercises/selectors';
-import { Video } from '../Video/Video';
+import { Modal } from '../Modal/Modal';
+import { VideoFrame } from '../VideoFrame/VideoFrame';
 import css from './VideoMaterials.module.css';
 
   export default function VideoMaterials () {
@@ -13,12 +14,12 @@ import css from './VideoMaterials.module.css';
 
     const handleClickVideo = (index) => {
         setOpenedVideoIndex(index);
-        dispatch(toogleModal());
+        dispatch(toggleModal());
     };
     
     const handleCloseModal = () => {
         setOpenedVideoIndex(null);
-        dispatch(toogleModal());
+        dispatch(toggleModal());
     };
 
     return (
@@ -37,10 +38,9 @@ import css from './VideoMaterials.module.css';
                         {title}
                     </Link>
                     {openedVideoIndex === index && 
-                    <Video 
-                        url={url} 
-                        closeModal={handleCloseModal}
-                    /> 
+                        <Modal closeModal={handleCloseModal}>
+                            <VideoFrame url={url} />
+                        </Modal>
                     }  
                     </li>                   
                 ))}   

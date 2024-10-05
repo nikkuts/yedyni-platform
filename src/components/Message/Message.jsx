@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Linkify from 'react-linkify';
 import { componentDecorator } from '../../service/componentDecorator';
 import PropTypes from 'prop-types';
-import { Image } from '../Image/Image';
+import { Modal } from '../Modal/Modal';
 import { selectToken } from '../../redux/auth/selectors';
-import { toogleModal } from '../../redux/modal/modalSlice';
+import { toggleModal } from '../../redux/modal/modalSlice';
 import { useAuth } from '../../hooks';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical20.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
@@ -27,12 +27,12 @@ export const Message = ({ message, socket, onEdit }) => {
 
   const handleClickImage = (index) => {
     setOpenedImageIndex(index);
-    dispatch(toogleModal());
+    dispatch(toggleModal());
   };
 
   const handleCloseModal = () => {
     setOpenedImageIndex(null);
-    dispatch(toogleModal());
+    dispatch(toggleModal());
   };
 
   const handleEditClick = () => {
@@ -83,51 +83,8 @@ export const Message = ({ message, socket, onEdit }) => {
         </span>
         {fileURL && fileURL !== '' && (
           <>
-            {fileType.startsWith('image') && (
-              <>
-              {!isLoadedImage && 
-                <div className={css.wrapperLink}>
-                  <Link
-                    to={fileURL}
-                    target='_blank'
-                    className={css.link}         
-                  >
-                    {fileName || 'Прикріплений файл'}
-                  </Link>
-                  </div>
-              }
-              <Link 
-                onClick={() => handleClickImage(_id)}
-                className={css.wrapperFile}
-                style={{ display: isLoadedImage ? 'block' : 'none' }}        
-              >
-                <img 
-                  src={fileURL} 
-                  onLoad={() => setIsLoadedImage(true)}
-                  alt="Зображення" 
-                  className={css.img} 
-                />
-              </Link>
-              </>
-            )}
-            
-            {openedImageIndex === _id && (
-              <Image 
-                url={fileURL}
-                closeModal={handleCloseModal}
-              />
-            )}
-            
-            {fileType.startsWith('audio') && (
-              <div className={css.wrapperFile}>
-                <audio controls className={css.audio} >
-                  <source src={fileURL} type={fileType} />
-                  Ваш браузер не підтримує відтворення аудіо.
-                </audio>
-              </div>
-            )}
-            
-            {!fileType.startsWith('image') && !fileType.startsWith('audio') && (
+            {((!fileType.startsWith('image') && !fileType.startsWith('audio')) ||
+              !isLoadedImage) && (
               <div className={css.wrapperLink}>
                 <Link
                   to={fileURL}
@@ -138,8 +95,42 @@ export const Message = ({ message, socket, onEdit }) => {
                 </Link>
               </div>
             )}
+
+            {fileType.startsWith('image') && (
+              <Link 
+                onClick={() => handleClickImage(_id)}
+                className={css.wrapperFile}   
+                style={{ display: isLoadedImage ? 'block' : 'none' }}       
+              >
+                <img 
+                  src={fileURL} 
+                  alt={fileName || "Зображення"} 
+                  className={css.img} 
+                  onLoad={() => setIsLoadedImage(true)}
+                />
+              </Link>
+            )}
+            
+            {openedImageIndex === _id && (           
+              <Modal closeModal={handleCloseModal}>
+                <img 
+                    src={fileURL} 
+                    alt={fileName || "Зображення"}
+                />
+              </Modal>            
+            )}
+            
+            {fileType.startsWith('audio') && (
+              <div className={css.wrapperFile}>
+                <audio controls className={css.audio} >
+                  <source src={fileURL} type={fileType} />
+                  Ваш браузер не підтримує відтворення аудіо.
+                </audio>
+              </div>
+            )}
           </>
         )}
+
         {user._id === sender._id &&
         <div
             ref={menuRef}

@@ -6,7 +6,8 @@ import { openChat, closeChat } from '../../redux/chat/slice';
 import { Chat } from '../Chat/Chat';
 import { selectCourse, selectIsLoading } from '../../redux/courses/selectors';
 import { getCourseById } from "../../redux/courses/operations";
-import { toogleModal } from '../../redux/modal/modalSlice';
+import { toggleModal } from '../../redux/modal/modalSlice';
+import { Modal } from '../Modal/Modal';
 import { ScheduleModal } from '../ScheduleModal/ScheduleModal';
 import { useAuth } from '../../hooks';
 import { formatDate } from "../../service/handleDate";
@@ -34,14 +35,13 @@ export default function Course () {
 
     const handleClickCalendar = (index, e) => {
         e.stopPropagation();  // Зупиняємо спливання події
-
         setOpenedLessonIndex(index);
-        dispatch(toogleModal());
+        dispatch(toggleModal());
     };
     
     const handleCloseModal = () => {
         setOpenedLessonIndex(null);
-        dispatch(toogleModal());
+        dispatch(toggleModal());
     };
 
     useEffect(() => {
@@ -133,13 +133,15 @@ export default function Course () {
                                                 >
                                                     <Calendar />
                                                 </div>
-                                                    { openedLessonIndex === index && 
+                                                {openedLessonIndex === index && 
+                                                    <Modal closeModal={handleCloseModal}>
                                                         <ScheduleModal
                                                             courseId={courseId}
                                                             lesson={lesson}
                                                             closeModal={handleCloseModal}
                                                         />
-                                                    }  
+                                                    </Modal>
+                                                }  
                                                 </>
                                             )}
                                         </li>

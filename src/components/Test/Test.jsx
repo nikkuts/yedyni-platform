@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toogleModal } from '../../redux/modal/modalSlice';
+import { toggleModal } from '../../redux/modal/modalSlice';
 import { selectCurrentLesson } from '../../redux/exercises/selectors';
-import { Wordwall } from '../Wordwall/Wordwall';
+import { Modal } from '../Modal/Modal';
+import { VideoFrame } from '../VideoFrame/VideoFrame';
 import css from './Test.module.css';
 
 export default function Test () {
@@ -10,14 +11,14 @@ export default function Test () {
     const currentLesson = useSelector(selectCurrentLesson);
     const [openedTestIndex, setOpenedTestIndex] = useState(null);
 
-    const handleClickStartTest = (index) => {
+    const handleClickStartTest = () => {
       setOpenedTestIndex(currentLesson.day);
-      dispatch(toogleModal());
+      dispatch(toggleModal());
     };
 
     const handleCloseModal = () => {
       setOpenedTestIndex(null);
-      dispatch(toogleModal());
+      dispatch(toggleModal());
     };
 
     return (
@@ -29,12 +30,11 @@ export default function Test () {
         >
           Почати тест
         </button>
-        { openedTestIndex && 
-          <Wordwall
-            exercise={currentLesson.test}
-            closeModal={handleCloseModal}
-          />
-        }  
+        { openedTestIndex &&
+          <Modal closeModal={handleCloseModal}>
+            <VideoFrame url={currentLesson.test} />
+          </Modal>
+        }
       </div>
     )
 }

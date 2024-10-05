@@ -1,0 +1,18 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1500;
+}
+
+.modalСontent {
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto; /* Прокрутка, якщо контент перевищує висоту */
+  }
