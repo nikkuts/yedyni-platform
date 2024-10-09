@@ -40,7 +40,7 @@
   }
 }
 
-.headerMenu {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,12 +54,6 @@
     display: none;
   }
 }
-
-/* .nav {
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-} */
 
 .logo {
   display: flex;

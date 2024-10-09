@@ -10,6 +10,7 @@ import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
 
 const LendingPage = lazy(() => import('../pages/Lending'));
+const ResumeTestPage = lazy(() => import('../pages/ResumeTest'));
 const HomePage = lazy(() => import('./Home/Home'));
 const RegisterPage = lazy(() => import('./RegisterForm/RegisterForm'));
 const LoginPage = lazy(() => import('./LoginForm/LoginForm'));
@@ -64,6 +65,12 @@ export default function App () {
           }
         />
         <Route
+          path="/resume"
+          element={
+            <RestrictedRoute redirectTo="/uk" component={<ResumeTestPage />} />
+          }
+        />
+        <Route
           path="/uk"
           element={
             <PrivateRoute redirectTo="/login" component={<HomeLayout />} />
@@ -90,12 +97,12 @@ export default function App () {
           <Route path="active" element={<NotificationItemPage />} />
           <Route path="clubs" element={<TalkClubsPage />} />
           <Route path="bonus" element={<BonusLayout />} >
-            <Route path="" element={<GratitudesPage />} />
-            <Route path="indicators" element={<IndicatorsPage />} />
+            <Route path="" element={<IndicatorsPage />} />
             <Route path="payments" element={<PaymentsPage />} />
             <Route path="subscriptions" element={<SubscriptionsPage />} />
             <Route path="mark" element={<MarkPage />} />
             <Route path="team" element={<TeamPage />} />
+            <Route path="gratitudes" element={<GratitudesPage />} />
           </Route>
         </Route>
       </Route>

@@ -36,14 +36,6 @@ export const BonusMenu = () => {
                             to=""
                             className={css.bonusLink}
                         >
-                            Подяки
-                        </Link>
-                    </li>
-                    <li>
-                        <Link 
-                            to="indicators"
-                            className={css.bonusLink}
-                        >
                             Показники
                         </Link>
                     </li>
@@ -78,6 +70,14 @@ export const BonusMenu = () => {
                             className={css.bonusLink}
                         >
                             Команда
+                        </Link>
+                    </li>
+                    <li>
+                        <Link 
+                            to="gratitudes"
+                            className={css.bonusLink}
+                        >
+                            Подяки
                         </Link>
                     </li>
                     {/* <li>

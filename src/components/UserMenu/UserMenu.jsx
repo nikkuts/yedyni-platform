@@ -46,10 +46,8 @@ export const UserMenu = () => {
           <span className={css.textLogo}>ЄДИНІ</span>
         </Link>
         <div className={css.menuBar}>
-          <div className={css.headerMenu}>
-            <nav className={css.nav}>
-              <Navigation />
-            </nav>
+          <div className={css.nav}>
+            <Navigation />
             <button type="button"
               onClick={() => navigate("donat")} 
               className={css.button}
