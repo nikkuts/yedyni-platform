@@ -20,21 +20,24 @@ export default function Gratitudes () {
             <span className={css.th2}>Подарунок</span>
           </li>
           {subGratitudes.map(({typeDonation, fromDonation, gift}) => (
-          <li className={css.tr}>
-            <span className={css.tdChild1}>{fromDonation}</span>
-            <span className={css.tdChild2}>{gift}</span>
-            <button 
-              type="button"
-              onClick={() => {
-                localStorage.setItem('typeDonation', typeDonation);
-                localStorage.setItem('sumDonation', fromDonation);
-                navigate("/uk/donat");
-              }}  
-              className={css.button}
+            <li
+              key={`${typeDonation}-${fromDonation}`}
+              className={css.tr}
             >
-              Обрати
-            </button>
-          </li>
+              <span className={css.tdChild1}>{fromDonation}</span>
+              <span className={css.tdChild2}>{gift}</span>
+              <button 
+                type="button"
+                onClick={() => {
+                  localStorage.setItem('typeDonation', typeDonation);
+                  localStorage.setItem('sumDonation', fromDonation);
+                  navigate("/uk/donat");
+                }}  
+                className={css.button}
+              >
+                Обрати
+              </button>
+            </li>
           ))}       
         </ul>
         <h2 className={css.titleList}>Подяки за разовий донат</h2>
@@ -44,21 +47,24 @@ export default function Gratitudes () {
             <span className={css.th2}>Подарунок</span>
           </li>
           {onceGratitudes.map(({typeDonation, fromDonation, gift}) => (
-          <li className={css.tr}>
-            <span className={css.tdChild1}>{fromDonation}</span>
-            <span className={css.tdChild2}>{gift}</span>
-            <button 
-              type="button"
-              onClick={() => {
-                localStorage.setItem('typeDonation', typeDonation);
-                localStorage.setItem('sumDonation', fromDonation);
-                navigate("/uk/donat");
-              }}    
-              className={css.button}
+            <li
+              key={`${typeDonation}-${fromDonation}`}
+              className={css.tr}
             >
-              Обрати
-            </button>
-          </li>
+              <span className={css.tdChild1}>{fromDonation}</span>
+              <span className={css.tdChild2}>{gift}</span>
+              <button 
+                type="button"
+                onClick={() => {
+                  localStorage.setItem('typeDonation', typeDonation);
+                  localStorage.setItem('sumDonation', fromDonation);
+                  navigate("/uk/donat");
+                }}    
+                className={css.button}
+              >
+                Обрати
+              </button>
+            </li>
           ))}       
         </ul>
         <p className={css.description}>Завдяки Вашому внеску більше українців опанують мову, згуртуються та звільняться від впливу росії! А українська відновиться після 4 століть утисків! 💙💛</p>

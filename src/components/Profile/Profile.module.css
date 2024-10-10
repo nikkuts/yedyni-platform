@@ -1,23 +1,19 @@
-.menu {
-    position: absolute;
-    display: block;
-    width: 250px;
-    top: 80px;
-    right: 0;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-    z-index: 100;
-  }
-
   .containerProfile {
-    min-height: calc(100vh - 50px);
-    padding: 30px;
+    padding-left: 20px;
+    padding-top: 70px;
+    
+    @media screen and (min-width: 768px) {
+      padding-top: 100px;
+    }
 }
 
 .title {
-    font-size: 24px;
+    font-size: 22px;
     text-align: left;
+
+    @media screen and (min-width: 768px) {
+        font-size: 24px;
+    }
   }
 
   .userInfo {

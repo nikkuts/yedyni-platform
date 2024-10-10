@@ -12,7 +12,7 @@ export default function NotificationsList () {
   return (  
     <div className={css.containerNotifications}>
         <h1 className={css.title}>Сповіщення</h1>
-        <ul>
+        <ul className={css.list}>
             {notifications.map(({_id, owner, comments, course, lessonId, updatedAt}) => (
                 <li key={_id}>
                   {owner ?
