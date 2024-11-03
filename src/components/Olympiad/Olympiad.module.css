@@ -1,4 +1,5 @@
 .container {
+    width: 100%;
     padding-top: 80px;
     padding-bottom: 40px;
     
@@ -8,14 +9,96 @@
 }
 
 .title {
+    font-size: 28px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 70px;
+    overflow-wrap: break-word;
+
+    @media screen and (min-width: 768px) {
+        font-size: 32px;
+    }
 }
 
 .subtitle {
+    font-size: 18px;
     text-align: center;
     margin-bottom: 50px;
+    overflow-wrap: break-word;
+
+    @media screen and (min-width: 768px) {
+        font-size: 20px;
+    }
+}
+
+.listGame {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 340px;
+    min-height: 150px;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    border: 1px solid #d7d2f3;
+    border-radius: 20px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+.numberItem {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ff8800;
+
+    @media screen and (min-width: 768px) {
+        font-size: 32px;
+    }
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: calc(16/14);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    cursor: pointer;
+    color: #000000;
+    background-color: rgb(255, 244, 0);
+
+    @media screen and (min-width: 220px) {
+        width: 200px;
+    }
+}
+
+.button:hover,
+.button:focus {
+    background-color: rgb(228, 228, 0);
 }
 
 .num {
@@ -62,93 +145,10 @@
     padding: 10px;
 }
 
-.rules {
-    margin-top: 70px;
-}
-
-.startBtn {
-    display: block;
-    margin: auto;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 0 20px;
-    width: auto;
-    height: 50px;
-    text-align: center;
-    text-overflow: ellipsis;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
-    color: #ffffff;
-    background-color: #3754fd;
-  }
-  
-  .startBtn:hover,
-  .startBtn:focus {
-    background-color: #0d30f5;
-  }
-
-  .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 50px;
-    margin: auto;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: calc(16/14);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    outline: none;
-    cursor: pointer;
-    color: #000000;
-    background-color: rgb(255, 244, 0);
-  }
-  
-  .button:hover,
-  .button:focus {
-    background-color: rgb(228, 228, 0);
-  }
-
-  .listGame {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.item {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 340px;
-    min-height: 150px;
-    padding: 10px;
-    text-align: center;
-    color: #333;
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 500;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-}
-
-.numberItem {
-    font-size: 32px;
-    font-weight: 700;
-    color: #ff8800;  
-}
-
 .text {
     color: #333;
     font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    overflow-wrap: break-word;
 }

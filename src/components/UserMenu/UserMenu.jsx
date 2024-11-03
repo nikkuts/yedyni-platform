@@ -58,7 +58,6 @@ export const UserMenu = () => {
           <div 
             ref={officeRef}
             onClick={toggleMenu}
-            className={css.office}
           >
             <ul className={css.officeMenu}>
               <li className={css.officeUser}>

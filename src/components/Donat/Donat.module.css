@@ -1,6 +1,15 @@
 .containerDonat {
-    min-height: calc(100vh - 50px);
-    padding: 40px 70px;
+    padding-top: 80px;
+    padding-bottom: 40px;
+  
+    @media screen and (min-width: 768px) {
+      padding-top: 130px;
+    }
+
+        @media screen and (min-width: 1200px) {
+          padding-left: 70px;
+          padding-right: 70px;
+        }
 }
 
 .titleDonat {

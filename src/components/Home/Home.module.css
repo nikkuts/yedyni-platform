@@ -1,4 +1,5 @@
 .wrapperHome {
+    width: 100%;
     padding-top: 80px;
 
     @media screen and (min-width: 768px) {
@@ -11,6 +12,7 @@
     font-weight: 500;
     text-align: center;
     margin-bottom: 40px;
+    overflow-wrap: break-word;
 
     @media screen and (min-width: 768px) {
         font-size: 40px;
@@ -47,7 +49,11 @@
 .points {
     position: absolute;
     left: 165px;
-    font-size: 20px;
+    font-size: 18px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 20px;
+    }
 }
 
 .description {
@@ -56,6 +62,7 @@
     font-weight: 500;
     line-height: 1.5;
     padding: 40px 0px;
+    overflow-wrap: break-word;
 
     @media screen and (min-width: 1200px) {
         padding: 40px 70px;
@@ -68,6 +75,7 @@
     font-size: 18px;
     line-height: calc(18/16);
     letter-spacing: 0.01em;
+    overflow-wrap: break-word;
 }
 
 .sertificate {

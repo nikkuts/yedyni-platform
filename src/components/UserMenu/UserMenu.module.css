@@ -18,6 +18,7 @@
 }
 
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,10 +72,6 @@
   color: #0d5ef5;
 }
   
-  .office {
-    position: relative;
-  }
-
   .officeMenu {
     display: flex;
     justify-content: space-between;
