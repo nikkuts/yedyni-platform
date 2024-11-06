@@ -1,8 +1,14 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks";
 
-export const PrivateRoute = ({component: Component, redirectTo = '/'}) => {
-    const {isRefreshing, isLoggedIn} = useAuth();
-    const shouldRedirect = !isRefreshing && !isLoggedIn;
-    return shouldRedirect ? <Navigate to={redirectTo} /> : Component; 
+export const PrivateRoute = ({redirectTo}) => {
+    const location = useLocation();
+    const { isLoggedIn } = useAuth();
+    
+    if (!isLoggedIn) {
+      localStorage.setItem('previousLocation', location.pathname); 
+    }
+
+    return isLoggedIn ? <Outlet /> : <Navigate to={redirectTo} replace />;
 };
+

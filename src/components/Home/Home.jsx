@@ -1,19 +1,12 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { getIndicators } from '../../redux/partners/operations';
 import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
 import css from './Home.module.css';
 
 export default function Home () {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const indicators = useSelector(selectIndicators);
   const isLoading = useSelector(selectIsLoading);
-
-    useEffect(() => {
-        dispatch(getIndicators());
-    }, [dispatch]);
 
     return (
       <>
