@@ -15,9 +15,9 @@ export const Navigation = () => {
         <Link className={css.link} to="game">
           Паляниця
         </Link>
-        <Link className={css.link} to="olympiad">
+        {/* <Link className={css.link} to="olympiad">
           Олімпіада
-        </Link>
+        </Link> */}
       </nav>
     </>
   );

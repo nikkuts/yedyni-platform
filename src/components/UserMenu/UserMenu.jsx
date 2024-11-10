@@ -79,7 +79,11 @@ export const UserMenu = () => {
             <div className={css.menu}>
               <Menu />
             </div>
-            {menuVisible && <OfficeMenu />}
+            {menuVisible &&
+              <div className={css.overlay}>
+                <OfficeMenu />
+              </div>
+            }
           </div>
         </div>
       </header>

@@ -1,6 +1,5 @@
 import CourseCover from "../CourseCover/CourseCover";
 import { useAuth } from '../../hooks';
-// import courses from "../courses.json";
 import css from './Learn.module.css';
 
 export default function Learn () {

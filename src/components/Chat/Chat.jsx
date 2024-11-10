@@ -4,18 +4,21 @@ import { io } from 'socket.io-client';
 import { Message } from '../Message/Message';
 import { MessageForm } from '../MessageForm/MessageForm';
 import { getMessages } from '../../redux/chat/operations';
-import { addMessage, updateMessage, deleteMessage, setEditingMessage, clearMessages } from '../../redux/chat/slice';
-import { selectMessages, selectFirstMessageDate } from '../../redux/chat/selectors';
+import { addMessage, updateMessage, deleteMessage, setEditingMessage, clearMessages, closeChat } from '../../redux/chat/slice';
+import { selectCourseTitle, selectCourseWave, selectMessages, selectFirstMessageDate } from '../../redux/chat/selectors';
 import { selectIsLoading } from '../../redux/chat/selectors';
 import { Comment } from 'react-loader-spinner';
 import { ReactComponent as ChevronLeft } from '../../icons/chevron-left.svg';
 import {AXIOS_BASE_URL} from '../../constants';
 import css from './Chat.module.css';
 
-export const Chat = ({course, onClose}) => {
+export const Chat = () => {
   const socket = useMemo(() => io(AXIOS_BASE_URL, {transports: ['websocket']}), []);
-  const dispatch = useDispatch();
-  const chatTitle = `${course.title}-${course.wave}`; 
+  const dispatch = useDispatch(); 
+
+  const courseTitle = useSelector(selectCourseTitle);
+  const courseWave = useSelector(selectCourseWave);
+  const chatTitle = `${courseTitle}-${courseWave}`;
 
   const isLoading = useSelector(selectIsLoading);
   const messages = useSelector(selectMessages);
@@ -133,10 +136,10 @@ export const Chat = ({course, onClose}) => {
         <div className={css.chatHeader}>
           <div className={css.chevronLeft}>
             <ChevronLeft 
-              onClick={() => onClose()}
+              onClick={() => dispatch(closeChat())}
             />
           </div>
-          <h2 className={css.title}>{`${course.wave} хвиля. ${course.title}. Чат підтримки`}</h2>
+          <h2 className={css.title}>{`${courseWave} хвиля. ${courseTitle}. Чат підтримки`}</h2>
         </div>
 
         <div className={css.formContainer}>    

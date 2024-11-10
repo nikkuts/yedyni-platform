@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { 
-    getCourseById,
-    updateScheduledDateLesson,
+  getCourseById,
+  updateNextWaveCourse,
+  updateScheduledDateLesson,
 } from "./operations";
 
 const handlePending = state => {
@@ -31,6 +32,16 @@ const coursesSlice = createSlice({
       state.error = null;
     })
     .addCase(getCourseById.rejected, handleRejected)
+    .addCase(updateNextWaveCourse.pending, handlePending)
+    .addCase(updateNextWaveCourse.fulfilled, (state, action) => {
+      state.course = {
+        ...state.course,
+        ...action.payload
+      };
+      state.isLoading = false;
+      state.error = null;
+    })
+    .addCase(updateNextWaveCourse.rejected, handleRejected)
     .addCase(updateScheduledDateLesson.pending, handlePending)
     .addCase(updateScheduledDateLesson.fulfilled, (state, action) => {
       const lessonIndex = state.course.lessons.findIndex(

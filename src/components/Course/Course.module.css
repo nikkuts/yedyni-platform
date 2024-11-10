@@ -17,6 +17,17 @@
   }
 }
 
+.button {
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  @media screen and (min-width: 480px) {
+    margin-left: 20px;
+  }
+}
+
 .courseWave {
   display: flex;
   align-items: center;
@@ -155,16 +166,6 @@
 .link:active {
   color: #0d30f5;
   background-color: beige;
-}
-
-.link::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  background-color: #ffffff; 
 }
 
 .disabled {

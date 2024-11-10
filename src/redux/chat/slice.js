@@ -19,6 +19,8 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   isChatVisible: false,
+  courseTitle: null,
+  courseWave: null,
   messages: [],
   firstMessageDate: '',
   editingMessage: null,
@@ -30,7 +32,9 @@ const chatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
-    openChat(state) {
+    openChat(state, action) {
+      state.courseTitle = action.payload.title;
+      state.courseWave = action.payload.wave;
       state.isChatVisible = true;
     },
     closeChat(state) {

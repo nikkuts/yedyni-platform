@@ -1,17 +1,25 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
+import { getIndicators } from '../../redux/partners/operations';
 import css from './Home.module.css';
 
-export default function Home () {
-  const navigate = useNavigate();
-  const indicators = useSelector(selectIndicators);
-  const isLoading = useSelector(selectIsLoading);
+export default function Home() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const indicators = useSelector(selectIndicators);
+    const isLoading = useSelector(selectIsLoading);
 
-    return (
-      <>
-        <div>{isLoading && <b>Завантаження даних...</b>}</div>
-        {indicators &&     
+    useEffect(() => {
+        dispatch(getIndicators());
+    }, [dispatch]);
+
+    if (isLoading) {
+        return <div><b>Завантаження даних...</b></div>
+    }
+
+    return (     
         <div className={css.wrapperHome}>
             <h1 className={css.titleHome}>
                 Мій українськомовний слід разом із Єдиними
@@ -81,7 +89,7 @@ export default function Home () {
                     <span className={css.tdchild1}>Завершений курс учасником моєї команди</span>
                     <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
                 </li>
-                <li className={css.tr}>
+                {/* <li className={css.tr}>
                     <span className={css.tdchild1}>Участь у олімпіаді</span>
                     <span className={css.tdchild2}>сума призових балів</span>
                     <button type="button"
@@ -90,13 +98,11 @@ export default function Home () {
                         >
                         Детальніше
                     </button>
-                </li>
+                </li> */}
             </ul>
             <h2 className={css.sertificate}>
                 Мої сертифікати
             </h2>
         </div>
-        }
-      </>
     );
   };

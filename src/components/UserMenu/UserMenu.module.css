@@ -148,3 +148,17 @@
   .button:focus {
     background-color: rgb(228, 228, 0);
   }
+
+    .overlay {
+      position: fixed;
+      top: 50;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #fef9f9cc;
+      z-index: 1000;
+
+      @media screen and (min-width: 768px) {
+        top: 80;
+      }
+    }

@@ -5,7 +5,7 @@ import axios from 'axios';
 import {AXIOS_BASE_URL, API_PAY_ENDPOINT} from '../../constants';
 import { getNewLevelSupport } from '../../service/getNewLevelSupport';
 import { getIndicators } from '../../redux/partners/operations';
-import { selectIndicators } from '../../redux/partners/selectors';
+import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
 import { ReactComponent as CheckSquare } from '../../icons/check-square.svg';
 import { ReactComponent as Square } from '../../icons/square.svg';
 import css from './Donat.module.css';
@@ -13,14 +13,16 @@ import css from './Donat.module.css';
 axios.defaults.baseURL = AXIOS_BASE_URL;
 
 export default function Donat () {
-  const apiPayEndpoint = API_PAY_ENDPOINT;
+  // const apiPayEndpoint = API_PAY_ENDPOINT;
 
   const [checkboxSubscription, setCheckboxSubscription] = useState(true);
   const [checkboxOnce, setCheckboxOnce] = useState(false);
   const [checkboxOfertaAgreed, setCheckboxOfertaAgreed] = useState(false);
   const [currentAmount, setCurrentAmount] = useState('');
   
-  const {totalTime, totalDonat} = useSelector(selectIndicators);
+  const isLoading = useSelector(selectIsLoading);
+  const indicators = useSelector(selectIndicators);
+  const {totalTime, totalDonat} = indicators;
   const dispatch = useDispatch();
 
   const handleCurrentAmount = (e) => {
@@ -90,7 +92,7 @@ export default function Donat () {
         // Створення форми та автоматичне надсилання
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = apiPayEndpoint;
+        form.action = API_PAY_ENDPOINT;
         form.acceptCharset = 'utf-8';
     
         // Додавання прихованих полів
@@ -148,6 +150,10 @@ export default function Donat () {
     };
   }, []);
 
+  if (isLoading) {
+    return <div><b>Завантаження даних...</b></div>
+  }
+
   return (
     <div className={css.containerDonat}>
       <h1 className={css.titleDonat}>
@@ -158,32 +164,32 @@ export default function Donat () {
         від впливу росії
       </h1>
       <h2 className={css.decriptionDonat}>
-        Кожні 40 гривень Вашої підтримки 
-        надають проєкту можливість допомогти 
-        1 українцеві на місяць перейти на українську! 
+        Кожні 40 гривень Вашої підтримки
+        надають проєкту можливість допомогти
+        1 українцеві на місяць перейти на українську!
       </h2>
       <form onSubmit={handleSubmit} className={css.formDonat}>
         <ul className={css.listForm}>
           <li className={css.checkBox}>
             <ul>
               <li className={css.checkBox}>
-                <div 
-                  onClick={toggleCheckboxType} 
+                <div
+                  onClick={toggleCheckboxType}
                 >
-                {checkboxSubscription ? <CheckSquare/> : <Square/>} 
+                  {checkboxSubscription ? <CheckSquare /> : <Square />}
                 </div>
                 <label className={css.text}>
-                  Щомісячний внесок 
+                  Щомісячний внесок
                 </label>
               </li>
               <li className={css.checkBox}>
-                <div 
-                  onClick={toggleCheckboxType} 
+                <div
+                  onClick={toggleCheckboxType}
                 >
-                {checkboxOnce ? <CheckSquare/> : <Square/>} 
+                  {checkboxOnce ? <CheckSquare /> : <Square />}
                 </div>
                 <label className={css.text}>
-                  Разовий внесок 
+                  Разовий внесок
                 </label>
               </li>
             </ul>
@@ -224,23 +230,23 @@ export default function Donat () {
             </textarea>
           </li>
           <li>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className={css.button}>
               Підтримати
             </button>
           </li>
           <li className={css.checkBox}>
-            <div 
-              onClick={toggleCheckboxOferta} 
+            <div
+              onClick={toggleCheckboxOferta}
             >
-              {checkboxOfertaAgreed ? <CheckSquare/> : <Square/>} 
+              {checkboxOfertaAgreed ? <CheckSquare /> : <Square />}
             </div>
             <label className={css.text}>
-              Я погоджуюсь з <Link 
-              to="https://yedyni.org/wp-content/uploads/2023/08/dogovir-oferty.pdf"
-              target="_blank"
-              className={css.oferta} 
+              Я погоджуюсь з <Link
+                to="https://yedyni.org/wp-content/uploads/2023/08/dogovir-oferty.pdf"
+                target="_blank"
+                className={css.oferta}
               >
                 Публічною офертою
               </Link>
@@ -249,5 +255,5 @@ export default function Donat () {
         </ul>
       </form>
     </div>
-  );
+  )
 };

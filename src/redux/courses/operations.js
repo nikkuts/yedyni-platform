@@ -17,6 +17,20 @@ export const getCourseById = createAsyncThunk(
   }
 );
 
+export const updateNextWaveCourse = createAsyncThunk(
+  "courses/updateNextWaveCourse",
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.patch("/api/courses/next", credentials);
+      return response.data; 
+    } 
+    catch (error) {
+      alert(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const updateScheduledDateLesson = createAsyncThunk(
   "courses/updateScheduledDateLesson",
   async (credentials, thunkAPI) => {

@@ -17,82 +17,82 @@ export default function Indicators () {
   const isLoading = useSelector(selectIsLoading);
   // const isModalOpen = useSelector(selectModal);
 
-    useEffect(() => {
-        dispatch(getIndicators());
-    }, [dispatch]);
+  useEffect(() => {
+      dispatch(getIndicators());
+  }, [dispatch]);
+  
+  if (isLoading) {
+    return <div><b>Завантаження даних...</b></div>
+  }
 
-    return (
-      <>
-      <div>{isLoading && <b>Завантаження даних...</b>}</div>
-      {indicators &&
-      <div className={css.containerBonus}>
-        <div className={css.tableIndicators}>
-          <table className={css.table}>
-            <tbody>
-              <tr className={css.tr}>
-                  <td className={css.tdChild1}>Мій українськомовний слід, балів</td>
-                  <td className={css.tdChild2}>{indicators.ukrainianMark}</td>
-                  <td className={css.tdChild3}>
-                    {/* <button type="button"
-                      onClick={() => navigate("mark")}  
+  return (
+    <div className={css.containerBonus}>
+      <div className={css.tableIndicators}>
+        <table className={css.table}>
+          <tbody>
+            <tr className={css.tr}>
+                <td className={css.tdChild1}>Мій українськомовний слід, балів</td>
+                <td className={css.tdChild2}>{indicators.ukrainianMark}</td>
+                <td className={css.tdChild3}>
+                  {/* <button type="button"
+                    onClick={() => navigate("mark")}  
+                    className={css.button}
+                  >
+                    Детальніше
+                  </button> */}
+                  <Link 
+                      onClick={() => dispatch(setCurrentRange())} 
+                      to="/uk/bonus/mark"
                       className={css.button}
-                    >
+                  >
                       Детальніше
-                    </button> */}
-                    <Link 
-                        onClick={() => dispatch(setCurrentRange())} 
-                        to="/uk/bonus/mark"
-                        className={css.button}
-                    >
-                        Детальніше
-                    </Link>
-                    {/* <button type="button"
-                      onClick={() => dispatch(toogleModal())} 
-                      className={css.button}
-                    >
-                      Вивести
-                    </button>
-                    { isModalOpen && 
-                    <Withdrawal />
-                    }   */}
-                  </td>
-              </tr>
-              <tr className={css.tr}>
-                  <td className={css.tdChild1}>Скільки українців прямо зараз переходять на українську завдяки моїм внескам на підтримку проєкту</td>
-                  <td className={css.tdChild2}>{indicators.currentCount}</td>
-              </tr>
-              <tr className={css.tr}>
-                  <td className={css.tdChild1}>Скільки українців вже опанували українську завдяки моїм внескам на підтримку проєкту</td>
-                  <td className={css.tdChild2}>{indicators.pastCount}</td>
-              </tr>
-              <tr className={css.tr}>
-                  <td className={css.tdChild1}>
-                    <div className={css.level}>
-                      <span>
-                        Мій рівень стабільності підтримки проєкту
-                      </span> 
-                      <div className={css.tooltip}>
-                        <Info />
-                      </div>
+                  </Link>
+                  {/* <button type="button"
+                    onClick={() => dispatch(toogleModal())} 
+                    className={css.button}
+                  >
+                    Вивести
+                  </button>
+                  { isModalOpen && 
+                  <Withdrawal />
+                  }   */}
+                </td>
+            </tr>
+            <tr className={css.tr}>
+                <td className={css.tdChild1}>Скільки українців прямо зараз переходять на українську завдяки моїм внескам на підтримку проєкту</td>
+                <td className={css.tdChild2}>{indicators.currentCount}</td>
+            </tr>
+            <tr className={css.tr}>
+                <td className={css.tdChild1}>Скільки українців вже опанували українську завдяки моїм внескам на підтримку проєкту</td>
+                <td className={css.tdChild2}>{indicators.pastCount}</td>
+            </tr>
+            <tr className={css.tr}>
+                <td className={css.tdChild1}>
+                  <div className={css.level}>
+                    <span>
+                      Мій рівень стабільності підтримки проєкту
+                    </span> 
+                    <div className={css.tooltip}>
+                      <Info />
                     </div>
-                  </td>
-                  <td className={css.tdChild2}>{indicators.levelSupport.toFixed(2)}</td>
-                  <td className={css.tdChild3}>
-                    <button type="button"
-                      onClick={() => navigate("/uk/donat")}  
-                      className={css.button}
-                    >
-                      Підтримати
-                    </button>
-                  </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </div>}
-      </>
-    );
-  };
+                  </div>
+                </td>
+                <td className={css.tdChild2}>{indicators.levelSupport.toFixed(2)}</td>
+                <td className={css.tdChild3}>
+                  <button type="button"
+                    onClick={() => navigate("/uk/donat")}  
+                    className={css.button}
+                  >
+                    Підтримати
+                  </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
+    </div>
+  );
+};

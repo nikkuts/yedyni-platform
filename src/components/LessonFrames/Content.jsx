@@ -4,14 +4,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { selectCurrentLesson, selectExercise, selectContent } from '../../redux/exercises/selectors';
 import { HomeworkForm } from '../HomeworkForm/HomeworkForm';
 import { insertContent } from '../../service/insertContent';
+import { useAuth } from '../../hooks';
 
 export default function Content () {
-    const {courseId, lessonId} = useParams();
+    const navigate = useNavigate();
+    const { courseId, lessonId } = useParams();
+    const { user } = useAuth();
+    const contentRef = useRef();
+    
     const currentLesson = useSelector(selectCurrentLesson);
     const content = useSelector(selectContent);
-    const contentRef = useRef();
-    const navigate = useNavigate();
-
     const { homework } = useSelector(selectExercise);
     const [nextHomework, setNextHomework] = useState(homework);
       
@@ -33,6 +35,7 @@ export default function Content () {
         <>
             <div ref={contentRef}></div>
             {courseId === '66e2c70e5122f6140e1ad568' &&
+                user.status === "user" &&
             <>
                 {homework === nextHomework &&
                     <HomeworkForm 

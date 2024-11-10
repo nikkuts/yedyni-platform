@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { CommentsList } from '../CommentsList/CommentsList';
+import { selectCourse } from '../../redux/courses/selectors';
 import { addExercise, updateExercise, deleteHomework, deleteFile } from '../../redux/exercises/operations';
 import { selectExercise } from '../../redux/exercises/selectors';
 import { openChat, setEditingMessage } from '../../redux/chat/slice';
@@ -18,7 +19,8 @@ import { ReactComponent as Trash } from '../../icons/trash.svg';
 import css from './HomeworkForm.module.css';
 
 export const HomeworkForm = ({courseId, lessonId}) => {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
+  const currentCourse = useSelector(selectCourse);
   const {_id, homework, fileURL, fileType, fileName} = useSelector(selectExercise);
 
   const [textInput, setTextInput] = useState(homework);
@@ -167,7 +169,11 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     }
 
     dispatch(setEditingMessage(data));
-    dispatch(openChat());
+    
+    dispatch(openChat({
+        title: currentCourse.title,
+        wave: currentCourse.wave
+    }));
   };
 
 const handleClickOutside = (e) => {

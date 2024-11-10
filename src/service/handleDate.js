@@ -37,6 +37,20 @@ export const formatDate = (date) => {
   const month = ('0' + dateParts[0]).slice(-2); 
   const day = ('0' + dateParts[1]).slice(-2);
 
+  return `${day}-${month}-${year}`;
+};
+
+export const formatDateKyivTime = (date) => {
+  const kyivDate = new Date(date);
+
+  // Форматуємо дату
+  const kyivStringDate = kyivDate.toLocaleDateString('en-US', { timeZone: 'Europe/Kiev' });
+  const dateParts = kyivStringDate.split('/');
+  
+  const year = dateParts[2];
+  const month = ('0' + dateParts[0]).slice(-2); 
+  const day = ('0' + dateParts[1]).slice(-2);
+
   // Форматуємо час (години і хвилини)
   const kyivTime = kyivDate.toLocaleTimeString('en-US', { 
     timeZone: 'Europe/Kiev',

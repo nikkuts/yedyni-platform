@@ -19,7 +19,7 @@ const handleRejected = (state, action) => {
 const partnersSlice = createSlice({
   name: "partners",
   initialState: {
-    indicators: null,
+    indicators: {},
     partner: null,
     history: [],
     isLoading: false,
