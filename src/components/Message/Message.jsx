@@ -18,7 +18,11 @@ export const Message = ({ message, socket, onEdit }) => {
   const dispatch = useDispatch();
   const {user} = useAuth();
   const token = useSelector(selectToken);
-  const {_id, text, fileURL, fileType, fileName, date, sender } = message; 
+  const { _id, text, fileURL, fileType, fileName, date, sender } = message; 
+  
+  const isAdmin = user.status === "admin" ? true : false;
+  const isModerator = user.status === "moderator" ? true : false;
+  const isSender = user._id === sender._id ? true : false;
 
   const [openedImageIndex, setOpenedImageIndex] = useState(null);
   const [isLoadedImage, setIsLoadedImage] = useState(false);
@@ -74,8 +78,8 @@ export const Message = ({ message, socket, onEdit }) => {
 
   return (
     <>
-      <div className={`${css.containerMessage} ${user._id === sender._id && css.specialBackground}`}>
-        <span className={`${css.author} ${user._id === sender._id && css.disabled}`}>{sender.name}</span>
+      <div className={`${css.containerMessage} ${isSender && css.specialBackground}`}>
+        <span className={`${css.author} ${isSender && css.disabled}`}>{sender.name}</span>
         <span className={css.comment}>
           <Linkify componentDecorator={componentDecorator}>
             {text}
@@ -131,7 +135,7 @@ export const Message = ({ message, socket, onEdit }) => {
           </>
         )}
 
-        {user._id === sender._id &&
+        {isSender &&
         <div
             ref={menuRef}
             onClick={toggleMenu} 
@@ -163,8 +167,8 @@ export const Message = ({ message, socket, onEdit }) => {
         </div>
         }
 
-        {(user.status === "moderator" || user.status === "admin") &&
-          (user._id !== sender._id) && (
+        {(isModerator || isAdmin) &&
+          !isSender && (
           <div 
             onClick={handleDeleteMessage} 
             className={css.icon}

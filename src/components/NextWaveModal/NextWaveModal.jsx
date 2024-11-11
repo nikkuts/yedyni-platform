@@ -14,6 +14,7 @@ export const NextWaveModal = ({ courseId, closeModal }) => {
     const [waveInput, setWaveInput] = useState('');
     const [dateInput, setDateInput] = useState(null);
     const [canalInput, setCanalInput] = useState('');
+    const [viberInput, setViberInput] = useState('');
     const [chatInput, setChatInput] = useState('');
 
     const handleDateInput = date => {
@@ -26,6 +27,10 @@ export const NextWaveModal = ({ courseId, closeModal }) => {
 
     const handleCanalInput = (e) => {
         setCanalInput(e.target.value);
+    };
+
+    const handleViberInput = (e) => {
+        setViberInput(e.target.value);
     };
 
     const handleChatInput = (e) => {
@@ -41,6 +46,10 @@ export const NextWaveModal = ({ courseId, closeModal }) => {
         nextStart: dateInput,
         nextCanal: canalInput,
     }
+
+        if (viberInput) {
+            data.nextViber = viberInput;;
+        }
 
         if (chatInput) {
             data.nextChat = chatInput;;
@@ -102,6 +111,20 @@ export const NextWaveModal = ({ courseId, closeModal }) => {
                 className={css.groupInput} 
             >
                 <Form.Label className={css.label}>
+                    Viber 
+                </Form.Label>
+                <Form.Control 
+                    as="input"  
+                    value={viberInput} 
+                    onChange={handleViberInput}
+                    className={css.textarea} 
+                />
+            </Form.Group> 
+            <Form.Group 
+                controlId="formText"
+                className={css.groupInput} 
+            >
+                <Form.Label className={css.label}>
                     Чат 
                 </Form.Label>
                 <Form.Control 
@@ -110,7 +133,7 @@ export const NextWaveModal = ({ courseId, closeModal }) => {
                     onChange={handleChatInput}
                     className={css.textarea} 
                 />
-            </Form.Group>                 
+            </Form.Group>   
             <div className={css.wrapperBtn}>
                 <Button 
                     variant="primary"
