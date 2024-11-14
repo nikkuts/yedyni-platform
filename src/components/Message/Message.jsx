@@ -79,7 +79,7 @@ export const Message = ({ message, socket, onEdit }) => {
   return (
     <>
       <div className={`${css.containerMessage} ${isSender && css.specialBackground}`}>
-        <span className={`${css.author} ${isSender && css.disabled}`}>{sender.name}</span>
+        <span className={`${css.author} ${isSender && css.disabled}`}>{`${sender.first_name} ${sender.last_name}`}</span>
         <span className={css.comment}>
           <Linkify componentDecorator={componentDecorator}>
             {text}

@@ -94,7 +94,7 @@ export const Comment = ({comment, exerciseId}) => {
     <li>
         {!isActiveTextarea ?
         <div className={`${css.containerComment} ${user._id === comment.author._id && css.specialBackground}`}>
-            <span className={css.author}>{comment.author.name}</span>
+            <span className={css.author}>{`${comment.author.first_name} ${comment.author.last_name}`}</span>
             <span className={css.comment}>
               <Linkify componentDecorator={componentDecorator}>
                 {comment.comment}
@@ -148,7 +148,7 @@ export const Comment = ({comment, exerciseId}) => {
             controlId="formText"
             >
               <Form.Label className={css.userName}>
-                  {comment.author.name}
+                  {`${comment.author.first_name} ${comment.author.last_name}`}
               </Form.Label>
               <div>
                 <Form.Control 

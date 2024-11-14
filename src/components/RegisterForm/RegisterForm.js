@@ -6,6 +6,8 @@ import { register } from '../../redux/auth/operations';
 import { ReactComponent as Favicon } from '../../icons/favicon.svg';
 import { ReactComponent as EyeOff } from '../../icons/eye-off.svg';
 import { ReactComponent as Eye } from '../../icons/eye.svg';
+import { ReactComponent as CheckSquare } from '../../icons/check-square.svg';
+import { ReactComponent as Square } from '../../icons/square.svg';
 import bgImage from '../../service/bgimg.jpg';
 import css from './RegisterForm.module.css';
 
@@ -15,18 +17,25 @@ export default function RegisterForm () {
 
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [checkboxTransition, setCheckboxTransition] = useState(true);
+  const [checkboxGrammatical, setCheckboxGrammatical] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const toggleCheckboxCourse = () => {
+    setCheckboxTransition(prev => !prev);
+    setCheckboxGrammatical(prev => !prev);
+  };
+
   const dispatch = useDispatch();
 
   const isNameValid = (name) => {
-    const nameRegex = /^[a-zA-Zа-яА-Я\s]{2,30}$/;
+    const nameRegex = /^[a-zA-Zа-яА-Я\s]{2,20}$/;
 
     if (!nameRegex.test(name)) {
-      alert(`Некоректно введено ім${`'`}я`);
+      alert(`Некоректно введено ім${`'`}я або прізвище`);
       return false;
     }
     return true;
@@ -58,14 +67,16 @@ export default function RegisterForm () {
     const form = e.currentTarget;
     
     if (
-      !isNameValid(form.elements.name.value) ||
+      !isNameValid(form.elements.first_name.value) ||
+      !isNameValid(form.elements.last_name.value) ||
       !isEmailValid(form.elements.email.value) ||
       !isPasswordValid(form.elements.password.value)
       ) {
         return;
     }
     const formData = {
-      name: form.elements.name.value,
+      first_name: form.elements.first_name.value,
+      last_name: form.elements.last_name.value,
       email: form.elements.email.value,
       password: form.elements.password.value,
     };
@@ -73,6 +84,12 @@ export default function RegisterForm () {
 
     if (parseInviterId) {
       formData.inviterId = parseInviterId;
+    }
+
+    if (checkboxTransition) {
+      formData.titleCourse = 'Курс переходу';
+    } else if (checkboxGrammatical) {
+      formData.titleCourse = 'Граматичний курс';
     }
   
     dispatch(
@@ -94,10 +111,18 @@ export default function RegisterForm () {
           <span className={css.textLogo}>ЄДИНІ</span>
         </div>
         <h1 className={css.title}>Реєстрація</h1>
+        <p>
+        <span>Вже маєте акаунт?</span> <Link
+          to={"/login"}
+          className={css.link}
+        >
+          Увійти
+        </Link>
+        </p>
         <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
           <div className={css.wrapperInput}>
             <label className={css.label}>
-              Вкажи пошту
+              Вкажіть вашу пошту
             </label>
             <input 
               type="email" 
@@ -107,17 +132,27 @@ export default function RegisterForm () {
           </div>
           <div className={css.wrapperInput}>
             <label className={css.label}>
-              Ім'я та прізвище
+              Ваше ім'я
             </label>
             <input 
               type="text" 
-              name="name" 
+              name="first_name" 
+              className={css.input}
+            />
+          </div>
+          <div className={css.wrapperInput}>
+            <label className={css.label}>
+              Ваше прізвище
+            </label>
+            <input 
+              type="text" 
+              name="last_name" 
               className={css.input}
             />
           </div>
           <div className={css.wrapperInput}>   
             <label className={css.label}>
-              Придумай пароль
+              Придумайте пароль
             </label>
             <div className={css.passwordInput}>
               <input 
@@ -135,16 +170,35 @@ export default function RegisterForm () {
               </div>
             </div>
           </div>
+          <div className={css.wrapperInput}>
+            <label className={css.label}>
+              Оберіть курс
+            </label>
+            <ul className={css.checkBoxList}>
+              <li className={css.checkBox}>
+                <div
+                  onClick={toggleCheckboxCourse}
+                >
+                  {checkboxTransition ? <CheckSquare /> : <Square />}
+                </div>
+                <label className={css.checkBoxText}>
+                  Курс переходу
+                </label>
+              </li>
+              <li className={css.checkBox}>
+                <div
+                  onClick={toggleCheckboxCourse}
+                >
+                  {checkboxGrammatical ? <CheckSquare /> : <Square />}
+                </div>
+                <label className={css.checkBoxText}>
+                  Граматичний курс
+                </label>
+              </li>
+            </ul>
+          </div>
           <button className={css.button} type="submit">Зареєструватися</button>
         </form>
-        <p>
-        <span className={css.text}>Вже маєш акаунт?</span> <Link
-          to={"/login"}
-          className={css.link}
-        >
-          Увійти
-        </Link>
-        </p>
       </div>
       <img src={bgImage} alt='Обкладинка' className={css.image} />
     </div>

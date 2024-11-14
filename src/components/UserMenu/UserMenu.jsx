@@ -63,7 +63,7 @@ export const UserMenu = () => {
               <li className={css.officeUser}>
                 <User /> 
                 <span className={css.name}>
-                  {user.name}
+                  {user.first_name}
                 </span>
               </li>
               <li 

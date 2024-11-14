@@ -21,7 +21,7 @@ export default function NotificationsList () {
                       to="/uk/active"
                       className={css.link} 
                     >
-                        {owner.name}. {course.title}. День {lessonId} 
+                        {`${owner.first_name} ${owner.last_name}`}. {course.title}. День {lessonId} 
                     </Link>
                   :
                     <Link 
@@ -35,7 +35,7 @@ export default function NotificationsList () {
                         }
                         className={css.link}
                     >
-                        {comments.author.name}. {course.title}. День {lessonId} 
+                        {`${comments.author.first_name} ${comments.author.last_name}`}. {course.title}. День {lessonId} 
                     </Link>
                   }
                     <span className={css.date}>{formatDateTime(owner ? updatedAt : comments.date)}</span>

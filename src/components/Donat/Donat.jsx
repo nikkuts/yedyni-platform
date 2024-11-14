@@ -30,12 +30,12 @@ export default function Donat () {
   }
 
   const toggleCheckboxType = () => {
-    setCheckboxSubscription(!checkboxSubscription);
-    setCheckboxOnce(!checkboxOnce);
+    setCheckboxSubscription(prev => !prev);
+    setCheckboxOnce(prev => !prev);
   };
 
   const toggleCheckboxOferta = () => {
-    setCheckboxOfertaAgreed(!checkboxOfertaAgreed);
+    setCheckboxOfertaAgreed(prev => !prev);
   };
 
   const isAmountValid = (value) => {

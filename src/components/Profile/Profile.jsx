@@ -19,7 +19,8 @@ export default function Profile () {
     <div className={css.containerProfile}>
         <h1 className={css.title}>Профіль</h1>
         <ul className={css.userInfo}>
-            <li className={css.userName}>{user.name}</li>
+          <li className={css.userName}>{user.first_name}</li>
+          <li className={css.userName}>{user.last_name}</li>
             <li className={css.userEmail}>{user.email}</li>
             <li>
               Дата реєстрації: 

@@ -30,7 +30,7 @@ export const OfficeMenu = () => {
             <Navigation />
           </div>
           <ul className={css.userInfo}>
-            <li className={css.userName}>{user.name}</li>
+            <li className={css.userName}>{`${user.first_name} ${user.last_name}`}</li>
             <li className={css.userEmail}>{user.email}</li>
             <li className={css.userLevel}>
               Рівень стабільності підтримки: 

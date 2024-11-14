@@ -72,7 +72,7 @@ export const CommentsList = () => {
           controlId="formText" 
         >
           <Form.Label className={css.userName}>
-            {user.name}
+            {`${user.first_name} ${user.last_name}`}
           </Form.Label>
           <div>
             <Form.Control 
