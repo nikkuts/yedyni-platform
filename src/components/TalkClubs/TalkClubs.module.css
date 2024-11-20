@@ -1,23 +1,40 @@
 .wrapper {
     padding-top: 80px;
-
-    @media screen and (min-width: 768px) {
-        padding-top: 130px;
-    }
+    padding-bottom: 40px;
+    
+        @media screen and (min-width: 768px) {
+            padding-top: 130px;
+        }
 }
 
 .title {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 70px;
+    
+        @media screen and (min-width: 480px) {
+            font-size: 28px;
+        }
+    
+        @media screen and (min-width: 768px) {
+            font-size: 32px;
+        }
 }
 
 .decription {
     color: #555;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin-bottom: 50px;
+    
+        @media screen and (min-width: 480px) {
+            font-size: 18px;
+        }
+    
+        @media screen and (min-width: 768px) {
+            font-size: 20px;
+        }
 }
 
 .listBenefits {
@@ -30,16 +47,36 @@
 .itemBenefit {
     display: flex;
     align-items: center;
-    width: 700px;
-    height: 50px;
+    max-width: 700px;
+    min-height: 50px;
     padding-left: 30px;
+    padding: 10px 10px;
     color: #000000;
     background-color: rgb(240, 240, 240);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     font-weight: 500;
     border: 1px solid #d7d2f3;
     border-radius: 20px;
+
+    @media screen and (min-width: 480px) {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+                @media screen and (min-width: 768px) {
+                    height: 50px;
+                    padding: 10px 30px;
+                    font-size: 16px;
+                }
+}
+
+.text {
+    font-size: 14px;
+
+    @media screen and (min-width: 480px) {
+        font-size: 16px;
+    }
 }
 
 .filterFields {
@@ -52,10 +89,14 @@
 
 .filterFields label {
     font-weight: 400;
-    font-size: 18px;
-    line-height: calc(14/12);
+    font-size: 16px;
     letter-spacing: 0.01em;
+    text-align: center;
     color: #000000;
+
+    @media screen and (min-width: 480px) {
+            font-size: 18px;
+        }
 }
 
 .filterFields input {
@@ -75,8 +116,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    /* margin-bottom: 40px; */
 }
 
 .item {

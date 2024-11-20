@@ -18,48 +18,114 @@
     font-size: 24px;
   }
 }
-  
-  .bonusNav {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 0 20px;
+
+.menu {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.menuBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 15px;
+  background-color: beige;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
-  
-  .bonusLink {
+}
+
+.bonusMenu {
+  display: none;
+
+  @media screen and (min-width: 768px) {
     display: block;
-    width: fit-content;
-    height: 40px;
-    padding: 10px 20px;
-    font-weight: 600;
-    color: #000000;   
   }
-  
-  .bonusLink:hover,  
-  .bonusLink:focus,
-  .bonusLink:active {
-    background-color: beige;
-  }
+}
 
-  .history {
-    position: relative;
-  }
+.bonusMenu.active {
+  display: block;
+  margin-top: 10px;
 
-  .historyMenu {
-    display: flex;
-    justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+  }
+}
+
+.bonusNav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
     width: fit-content;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: transparent;
   }
 
-  .historyMenu:hover,  
-  .historyMenu:focus {
-    background-color: beige;
+  @media screen and (min-width: 1200px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+  
+.bonusLink {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 8px;
   }
 
-  .icon {
-    display: block;
-    width: 24px;
-    height: 24px;
+  @media screen and (min-width: 1200px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
+}
+
+.bonusLink:hover,
+.bonusLink:focus,
+.bonusLink:active {
+  background-color: beige;
+}
+
+.history {
+  position: relative;
+}
+
+.historyMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.historyMenu:hover,  
+.historyMenu:focus {
+  background-color: beige;
+}
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
