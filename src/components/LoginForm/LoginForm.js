@@ -71,7 +71,7 @@ export default function LoginForm () {
           <button className={css.button} type="submit">Увійти</button>
         </form>
         <Link
-          to={"/register"}
+          to={"/recovery"}
           className={css.link}
         >
           Не пам'ятаю пароль

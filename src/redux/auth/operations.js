@@ -39,12 +39,40 @@ export const logIn = createAsyncThunk(
   }
 );
 
+export const recovery = createAsyncThunk(
+  'auth/recovery',
+  async (credentials, thunkAPI) => {
+    try {
+      await axios.post('/api/auth/recovery', credentials);
+      return;
+    } catch (error) {
+      alert(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const reset = createAsyncThunk(
+  'auth/reset',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.post('/api/auth/reset', credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      alert(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const logOut = createAsyncThunk(
   'auth/logOut', 
   async (_, thunkAPI) => {
   try {
     await axios.post('/api/auth/logout');
     clearAuthHeader();
+    return;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

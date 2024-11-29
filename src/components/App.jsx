@@ -14,6 +14,8 @@ const ResumeTestPage = lazy(() => import('../pages/ResumeTest'));
 const HomePage = lazy(() => import('./Home/Home'));
 const RegisterPage = lazy(() => import('./RegisterForm/RegisterForm'));
 const LoginPage = lazy(() => import('./LoginForm/LoginForm'));
+const RecoveryPage = lazy(() => import('./Recovery/Recovery'));
+const ResetPage = lazy(() => import('./Reset/Reset'));
 const ProfilePage = lazy(() => import('./Profile/Profile'));
 const GamePage = lazy(() => import('./Game/Game'));
 const OlympiadPage = lazy(() => import('./Olympiad/Olympiad'));
@@ -73,6 +75,18 @@ export default function App () {
           path="/login"
           element={
             <RestrictedRoute redirectTo="/uk" component={<LoginPage />} />
+          }
+        />
+        <Route
+          path="/recovery"
+          element={
+            <RestrictedRoute redirectTo="/uk" component={<RecoveryPage />} />
+          }
+        />
+        <Route
+          path="/reset/:token"
+          element={
+            <RestrictedRoute redirectTo="/uk" component={<ResetPage />} />
           }
         />
         <Route

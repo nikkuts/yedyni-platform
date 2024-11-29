@@ -52,11 +52,11 @@ export default function RegisterForm () {
   };
 
   const isPasswordValid = (password) => {
-    const passwordRegex = /^[a-zA-Z0-9]{8,30}$/;
+    const passwordRegex = /^[a-zA-Z0-9]{8,24}$/;
     // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
     
     if (!passwordRegex.test(password)) {
-      alert('Пароль має містити від 8 до 30 знаків');
+      alert('Пароль має містити від 8 до 24 знаків');
       return false;
     }
     return true;
@@ -122,7 +122,7 @@ export default function RegisterForm () {
         <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
           <div className={css.wrapperInput}>
             <label className={css.label}>
-              Вкажіть вашу пошту
+              Вкажіть вашу електронну пошту
             </label>
             <input 
               type="email" 
