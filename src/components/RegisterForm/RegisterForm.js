@@ -32,9 +32,10 @@ export default function RegisterForm () {
   const dispatch = useDispatch();
 
   const isNameValid = (name) => {
-    const nameRegex = /^[a-zA-Zа-яА-Я\s]{2,20}$/;
+    const nameRegex = /^[a-zA-Zа-яА-ЯїЇіІєЄґҐ\s]{2,30}$/u;
+    const cleanString = name.replace(/\s+/g, ' ').trim();
 
-    if (!nameRegex.test(name)) {
+    if (!nameRegex.test(cleanString)) {
       alert(`Некоректно введено ім${`'`}я або прізвище`);
       return false;
     }
@@ -67,8 +68,8 @@ export default function RegisterForm () {
     const form = e.currentTarget;
     
     if (
-      // !isNameValid(form.elements.first_name.value) ||
-      // !isNameValid(form.elements.last_name.value) ||
+      !isNameValid(form.elements.first_name.value) ||
+      !isNameValid(form.elements.last_name.value) ||
       !isEmailValid(form.elements.email.value) ||
       !isPasswordValid(form.elements.password.value)
       ) {
