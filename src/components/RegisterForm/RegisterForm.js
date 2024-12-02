@@ -67,8 +67,8 @@ export default function RegisterForm () {
     const form = e.currentTarget;
     
     if (
-      !isNameValid(form.elements.first_name.value) ||
-      !isNameValid(form.elements.last_name.value) ||
+      // !isNameValid(form.elements.first_name.value) ||
+      // !isNameValid(form.elements.last_name.value) ||
       !isEmailValid(form.elements.email.value) ||
       !isPasswordValid(form.elements.password.value)
       ) {
