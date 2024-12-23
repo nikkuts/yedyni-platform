@@ -43,7 +43,7 @@ export const NextWaveModal = ({ courseId, closeModal }) => {
     const data = {
         courseId,
         nextWave: waveInput,
-        nextStart: dateInput,
+        nextStart: dateInput.toISOString(),
         nextCanal: canalInput,
     }
 
