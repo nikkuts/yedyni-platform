@@ -30,6 +30,10 @@ export default function Test () {
         >
           Почати тест
         </button>
+        <div className={css.descriptionTest}>
+          <p>Щоб результат було враховано у ваш загальний показник, будь ласка, після проходження тесту збережіть кількість отриманих балів у вкладці <a href='diary' className={css.link}>"Щоденник"</a>
+          </p>
+        </div>
         { openedTestIndex &&
           <Modal closeModal={handleCloseModal}>
             <VideoFrame url={currentLesson.test} />

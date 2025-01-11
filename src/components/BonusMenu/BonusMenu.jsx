@@ -85,12 +85,12 @@ export const BonusMenu = () => {
                             >
                                 Команда
                             </Link>                    
-                            <Link 
+                            {/* <Link 
                                 to="gratitudes"
                                 className={css.bonusLink}
                             >
                                 Подяки
-                            </Link>
+                            </Link> */}
                         </nav>   
                     </div>
                 </div>
