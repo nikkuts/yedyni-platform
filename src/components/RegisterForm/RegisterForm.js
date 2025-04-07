@@ -53,11 +53,11 @@ export default function RegisterForm () {
   };
 
   const isPasswordValid = (password) => {
-    const passwordRegex = /^[a-zA-Z0-9]{8,24}$/;
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,24}$/;
     // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
     
     if (!passwordRegex.test(password)) {
-      alert('Пароль має містити від 8 до 24 знаків');
+      alert('Пароль може складатися з латинських літер, цифр, знаків довжиною від 8 до 24 символів');
       return false;
     }
     return true;
