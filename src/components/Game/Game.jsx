@@ -62,7 +62,7 @@ export default function Game () {
           </li>
         </ul>
         <p className={css.text}>
-          Підходить усім, хто вміє читати на українській мові
+          Підходить усім, хто вміє читати українською мовою
         </p>
         <button 
           type="button"

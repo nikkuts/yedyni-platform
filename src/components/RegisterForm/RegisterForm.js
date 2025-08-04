@@ -43,7 +43,7 @@ export default function RegisterForm () {
   };
 
   const isEmailValid = (email) => {
-    const emailRegexp = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
+    const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     
     if (!emailRegexp.test(email)) {
       alert('Email невалідний');
