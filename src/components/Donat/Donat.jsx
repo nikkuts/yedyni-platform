@@ -244,7 +244,7 @@ export default function Donat () {
             </div>
             <label className={css.text}>
               Я погоджуюсь з <Link
-                to="https://yedyni.org/wp-content/uploads/2023/08/dogovir-oferty.pdf"
+                to="https://yedyni.org/wp-content/uploads/2025/10/dogovir-publichnoyi-oferty.docx1_.pdf"
                 target="_blank"
                 className={css.oferta}
               >
