@@ -1,75 +1,145 @@
-.title {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-}
+    /* === Обгортка сторінки === */
+    .historyWrapper {
+      @media screen and (min-width: 768px) {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+  
+    /* === Заголовок === */
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+      position: relative;
+      padding-left: 14px;
 
-.tableHistory {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;   
-}
-
-.table {
-    width: auto;
-    border-collapse: collapse;
-    font-size: 14px;
-    line-height: 1.5;
-    text-align: center;
-}
-
-.td, .th {
-    border: 1px solid #a3c5d3;
-    padding: 10px;
-}
-
-.table th:nth-child(1),
-.table td:nth-child(1),
-.table th:nth-child(2),
-.table td:nth-child(2),
-.table th:nth-child(5),
-.table td:nth-child(5),
-.table th:nth-child(6),
-.table td:nth-child(6) {
-  /* Стилі для стовпців 1, 2, 5 та 6 */
-  width: auto; /* Ширина встановлюється автоматично згідно з контентом */
-}
-
-.table th:nth-child(3),
-.table td:nth-child(3) {
-  width: 280px; /* Фіксована ширина для решти стовпців */
-}
-
-.table th:nth-child(4),
-.table td:nth-child(4) {
-  width: 170px; /* Фіксована ширина для решти стовпців */
-}
-
-.table th:nth-child(1),
-.table td:nth-child(1),
-.table th:nth-child(5),
-.table td:nth-child(5),
-.table th:nth-child(6),
-.table td:nth-child(6) {
-  width: 100px; /* Фіксована ширина для решти стовпців */
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.link {
-    text-decoration: underline;
-    color: #3754fd;
-}
-
-.link:hover,  
-.link:focus,
-.link:active {
-    color: #0d30f5;
-    cursor: pointer;
-  }
+      @media screen and (min-width: 768px) {
+        font-size: 22px;
+      }
+    }
+  
+    .title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 2px;
+      background: #0d30f5;
+    }
+  
+    /* === ТАБЛИЦЯ === */
+    .tableWrapper {
+      margin-top: 24px;
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: white;
+    }
+  
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 750px;
+      font-size: 15px;
+    }
+  
+    .table thead {
+      background: #f6f7ff;
+    }
+  
+    .table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 700;
+      color: #1f1f1f;
+      border-bottom: 1px solid #e1e3f3;
+    }
+  
+    .table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #2a363b;
+    }
+  
+    .table tr:nth-child(even) {
+      background: #fafbff;
+    }
+  
+     /* === Адаптив під мобілки — таблиця → картки === */
+     @media (max-width: 767px) {
+  
+       .tableWrapper {
+         overflow-x: hidden;
+         border: none;
+         background: none;
+       }
+  
+       .table {
+         width: 100%;
+         min-width: 0 !important;
+         display: block;
+         overflow-x: hidden;
+       }
+  
+       .table thead {
+         display: none;
+       }
+  
+       .table tbody {
+         display: flex;
+         flex-direction: column;
+         gap: 12px;
+         padding: 0 12px;
+       }
+  
+       .table tr {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+  
+         background: #fff;
+         border: 1px solid #ececec;
+         border-radius: 12px;
+  
+         padding: 14px;
+  
+         width: 100%;
+         max-width: 100%;
+         min-width: 0;
+         overflow-x: hidden;
+       }
+  
+       .table td {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+  
+         border: none;
+         padding: 4px 0;
+  
+         width: 100%;
+         max-width: 100%;
+         min-width: 0;
+  
+         overflow-wrap: break-word;
+         word-break: break-word;
+       }
+  
+       .table td::before {
+         content: attr(data-label);
+         font-size: 12px;
+         font-weight: 600;
+         color: #6b7280;
+         margin-bottom: 2px;
+         width: 100%;
+         text-align: center;
+         min-width: 0;
+       }
+     }
+  

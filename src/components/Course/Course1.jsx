@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, Outlet } from 'react-router-dom';
 import { selectIsChatVisible } from '../../redux/chat/selectors';
-// import { openChat } from '../../redux/chat/slice';
+import { openChat } from '../../redux/chat/slice';
 import { Chat } from '../Chat/Chat';
 import { selectCourse, selectIsLoading } from '../../redux/courses/selectors';
 import { getCourseById } from "../../redux/courses/operations";
@@ -14,6 +14,7 @@ import { ScheduleModal } from '../ScheduleModal/ScheduleModal';
 import { useAuth } from '../../hooks';
 import { formatDate, formatDateKyivTime } from "../../service/handleDate";
 import { ReactComponent as Calendar } from '../../icons/calendar.svg';
+import { ReactComponent as ChevronsRight } from '../../icons/chevrons-right.svg';
 import css from './Course.module.css';
 
 export default function Course () {
@@ -40,19 +41,19 @@ export default function Course () {
         setMenuVisible((prevVisible) => !prevVisible);
     };
 
-    // const handleOpenChatWave = () => {
-    //     dispatch(openChat({
-    //         title: currentCourse.title,
-    //         wave: currentCourse.wave
-    //     }));
-    // };
+    const handleOpenChatWave = () => {
+        dispatch(openChat({
+            title: currentCourse.title,
+            wave: currentCourse.wave
+        }));
+    };
 
-    // const handleOpenChatNextWave = () => {
-    //     dispatch(openChat({
-    //         title: currentCourse.title,
-    //         wave: currentCourse.nextWave
-    //     }));
-    // };
+    const handleOpenChatNextWave = () => {
+        dispatch(openChat({
+            title: currentCourse.title,
+            wave: currentCourse.nextWave
+        }));
+    };
 
     const handleClickCalendar = (index, e) => {
         e.stopPropagation();  // Зупиняємо спливання події
@@ -108,30 +109,26 @@ export default function Course () {
                                 {(!currentCourse.nextWave || !isNewUser || isModerator || isAdmin) && (                          
                                     <ul className={css.courseWave}>
                                         <li className={css.currentWave}>
-                                            <svg className={css.icon} viewBox="0 0 24 24" fill="none">
-                                            <path d="M4 19h16M4 5h16M4 12h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                            </svg>
-                                            <span className={css.numberWave}>{currentCourse.wave}</span> хвиля
+                                        <span className={css.numberWave}>{currentCourse.wave}</span> хвиля
                                         </li>
-
                                         <li className={css.currentWave}>
-                                            <svg className={css.icon} viewBox="0 0 24 24" fill="none">
-                                            <path d="M3 8h18M8 4v4m8-4v4M5 8h14v12H5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                            </svg>
-                                            Старт: {formatDate(currentCourse.start)}
-                                        </li>
-
+                                        Старт: {formatDate(currentCourse.start)}
+                                        </li>               
                                         <li>
                                             <Link
-                                            to={`${currentCourse.canal}`}
-                                            target="blank" 
-                                            className={css.courseBtn}
+                                                to={`${currentCourse.canal}`}
+                                                target='blank' 
+                                                className={css.courseBtn}
                                             >
-                                            <svg className={css.btnIcon} viewBox="0 0 24 24" fill="none">
-                                                <path d="M4 4h16v16H4z" stroke="currentColor" strokeWidth="2"/>
-                                                <path d="M8 12h8M8 16h5M8 8h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                            </svg>
-                                            Чат підтримки
+                                                Канал
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                onClick={handleOpenChatWave}
+                                                className={css.courseBtn}
+                                            >
+                                                Чат
                                             </Link>
                                         </li>
                                     </ul>
@@ -142,30 +139,26 @@ export default function Course () {
                                 (isNewUser || isModerator || isAdmin) && (             
                                     <ul className={css.courseWave}>
                                         <li className={css.currentWave}>
-                                            <svg className={css.icon} viewBox="0 0 24 24" fill="none">
-                                            <path d="M4 19h16M4 5h16M4 12h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                            </svg>
-                                            <span className={css.numberWave}>{currentCourse.nextWave}</span> хвиля
+                                        <span className={css.numberWave}>{currentCourse.nextWave}</span> хвиля
                                         </li>
-
                                         <li className={css.currentWave}>
-                                            <svg className={css.icon} viewBox="0 0 24 24" fill="none">
-                                            <path d="M3 8h18M8 4v4m8-4v4M5 8h14v12H5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                            </svg>
-                                            Старт: {formatDate(currentCourse.nextStart)}
-                                        </li>
-
+                                        Старт: {formatDate(currentCourse.nextStart)}
+                                        </li>               
                                         <li>
                                             <Link
-                                            to={`${currentCourse.nextCanal}`}
-                                            target="blank" 
-                                            className={css.courseBtn}
+                                                to={`${currentCourse.nextCanal}`}
+                                                target='blank' 
+                                                className={css.courseBtn}
                                             >
-                                            <svg className={css.btnIcon} viewBox="0 0 24 24" fill="none">
-                                                <path d="M4 4h16v16H4z" stroke="currentColor" strokeWidth="2"/>
-                                                <path d="M8 12h8M8 16h5M8 8h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                                            </svg>
-                                            Чат підтримки
+                                                Канал
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                onClick={handleOpenChatNextWave}
+                                                className={css.courseBtn}
+                                            >
+                                                Чат
                                             </Link>
                                         </li>
                                     </ul>
@@ -177,18 +170,12 @@ export default function Course () {
                                 className={css.menu}
                             >                      
                                 <div 
-                                    className={`${css.menuBtn} ${menuVisible ? css.active : ''}`} 
+                                    className={css.menuBtn} 
                                     aria-expanded={menuVisible}
-                                    >
+                                >
                                     <span>Меню курсу</span>
-
-                                    <svg className={css.burgerIcon} viewBox="0 0 24 24">
-                                        <path className={css.line1} d="M4 7h16" />
-                                        <path className={css.line2} d="M4 12h16" />
-                                        <path className={css.line3} d="M4 17h16" />
-                                    </svg>
+                                    <ChevronsRight />
                                 </div>
-                                                
                                 <nav className={`${css.courseMenu} ${menuVisible ? css.active : ''}`}>
                                     <ul className={css.courseList}>
                                         {currentCourse.lessons.map((lesson, index) => (

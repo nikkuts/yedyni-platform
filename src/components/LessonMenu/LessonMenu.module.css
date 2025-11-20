@@ -2,52 +2,69 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: fit-content;
-  background-color: #FFFFFF;
-  border-radius: 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eceaf6;
+}
 
-  @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
+  .lessonNavigation {
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: fit-content;
     height: 50px;
-    margin: 0px auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin: 0 auto;
+    padding: 0 20px;
     background-color: transparent;
     border: 1px solid #d7d2f3;
-    border-radius: 20px;
+    border-radius: 25px;
   }
+}
 
-  @media screen and (min-width: 1200px) {
-    padding-left: 30px;
-    padding-right: 30px; 
+@media screen and (min-width: 1200px) {
+  .lessonNavigation {
+    padding: 0 30px;
   }
 }
 
 .lessonNavLink {
   width: 100%;
-  padding: 13px;
+  padding: 14px;
   font-size: 15px;
   font-weight: 600;
-  color: #000000; 
+  color: #2d2d2d;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
 
-  @media screen and (min-width: 768px) {
-    display: inline-block;
-    padding: 10px 15px;
+@media screen and (min-width: 768px) {
+  .lessonNavLink {
+    width: auto;
+    border-radius: 10px;
+    padding: 10px 16px;
     font-size: 16px;
-    border-radius: 8px;
-  }
-
-  @media screen and (min-width: 1200px) {
-    padding-left: 20px;
-    padding-right: 20px; 
   }
 }
 
-.lessonNavLink:hover,  
-.lessonNavLink:focus,
-.lessonNavLink:active {
-background-color: beige;
+@media screen and (min-width: 1200px) {
+  .lessonNavLink {
+    padding: 12px 20px;
+  }
+}
+
+/* Ховер */
+.lessonNavLink:hover {
+  background-color: #f7f4e8;
+}
+
+/* Активна вкладка */
+.active {
+  background-color: #ebe4ff;
+  color: #4f2ecc;
+}
+
+.active:hover {
+  background-color: #e4dcff;
 }

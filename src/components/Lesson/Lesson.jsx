@@ -6,7 +6,6 @@ import { selectCourse } from '../../redux/courses/selectors';
 import { getExercise } from '../../redux/exercises/operations';
 import { getDiary } from '../../redux/diary/operations';
 import { changeLesson, getContent } from '../../redux/exercises/lessonSlice';
-import { ReactComponent as ChevronsRight } from '../../icons/chevrons-right.svg';
 import css from './Lesson.module.css';
 
 export default function Lesson () {
@@ -26,7 +25,9 @@ export default function Lesson () {
     useEffect(() => {
         dispatch(changeLesson(currentLesson));
         if (courseId === '66e2c70e5122f6140e1ad568' || 
-            courseId === '66e2c7885122f6140e1ad56a') {
+            courseId === '66e2c7885122f6140e1ad56a' || 
+            courseId === '673266201c9fedb128321efe'
+        ) {
             dispatch(getContent(currentLesson.content));
         }
         dispatch(getExercise({courseId, lessonId}));
@@ -57,17 +58,23 @@ export default function Lesson () {
                     </div>  
                 </>
                 :
-                <div
-                    onClick={toggleMenu}
-                    className={css.menu}
-                >
-                    <div className={css.menuBtn} aria-expanded={menuVisible}>
+                <div onClick={toggleMenu} className={css.menu}>
+                    <div 
+                        className={`${css.menuBtn} ${menuVisible ? css.active : ''}`} 
+                        aria-expanded={menuVisible}
+                    >
                         <span>Меню уроку</span>
-                        <ChevronsRight />
+
+                        <svg className={css.burgerIcon} viewBox="0 0 24 24">
+                        <path className={css.line1} d="M4 7h16" />
+                        <path className={css.line2} d="M4 12h16" />
+                        <path className={css.line3} d="M4 17h16" />
+                        </svg>
                     </div>
+
                     <nav className={`${css.lessonMenu} ${menuVisible ? css.active : ''}`}>
                         <LessonMenu />
-                    </nav>   
+                    </nav>
                 </div>
                 }
                 <Suspense fallback={null}>

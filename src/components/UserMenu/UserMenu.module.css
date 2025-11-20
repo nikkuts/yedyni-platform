@@ -1,11 +1,11 @@
 .headerContainer {
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translateX(-50%);
   width: 100%;
   max-width: 480px;
   padding: 0 10px;
-  background-color: #fef9f9;
+  background-color: #ffffff;
   z-index: 1200;
 
   @media screen and (min-width: 768px) {
@@ -17,148 +17,161 @@
   }
 }
 
+/* --- HEADER --- */
+
 .header {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
-  border-bottom: 1px solid #d7d2f3;
+  height: 55px;
 
   @media screen and (min-width: 768px) {
     height: 80px;
   }
 }
 
-.menuBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-
-  @media screen and (min-width: 1200px) {
-    gap: 120px;
-  }
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-
-  @media screen and (min-width: 1200px) {
-    gap: 30px;
-  }
-
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-}
+/* --- LOGO --- */
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }
 
 .textLogo {
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
-  font-weight: 700;
-  line-height: calc(20/18);
+  font-weight: 800;
+  line-height: 1;
   color: #0d5ef5;
 }
-  
-  .officeMenu {
+
+/* --- MAIN MENU + DONATE + USER MENU --- */
+
+.menuBar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  @media screen and (min-width: 1200px) {
+    gap: 60px;
+  }
+}
+
+/* --- NAVIGATION (hidden on mobile) --- */
+
+.nav {
+  display: none;
+
+  @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    gap: 35px;
+  }
+}
+
+/* --- DONATE BUTTON --- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color: rgb(255, 244, 0);
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: rgb(228, 228, 0);
+  transform: translateY(-1px);
+}
+
+/* --- USER MENU (desktop only) --- */
+
+.officeMenu {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 150px;
     height: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
-
-    @media screen and (min-width: 1200px) {
-      width: 250px;
-    }
-
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
+    padding: 0 12px;
+    border-radius: 10px;
+    transition: background-color 0.25s ease;
   }
 
-  .officeMenu:hover,  
-  .officeMenu:focus {
-    background-color: beige;
-    cursor: pointer;
+  @media screen and (min-width: 1200px) {
+    width: 250px;
   }
+}
 
-  .officeUser {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 5px;
-    overflow: hidden;
+.officeMenu:hover {
+  background-color: #f4f4f4;
+}
 
-    @media screen and (min-width: 1200px) {
-      gap: 10px;
-    }
+.officeUser {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  @media screen and (min-width: 1200px) {
+    gap: 10px;
   }
+}
 
-  .name {
-    font-size: 14px;
-    white-space: nowrap;         /* Не дозволяє тексту переноситись на новий рядок */
-    overflow: hidden;            /* Ховає текст, що виходить за межі контейнера */
-    text-overflow: ellipsis;     /* Додає три крапки, якщо текст не вміщається */
+.name {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-    @media screen and (min-width: 1200px) {
-      font-size: 16px;
-    }
-  }
-
-  .menu {
-    @media screen and (min-width: 768px) {
-      display: none;
-    }
-  }
-
-  .button {
-    display: inline-block;
-    width: auto;
-    height: 50px;
-    padding: 0 20px;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    text-align: center;
-    text-overflow: ellipsis;
+  @media screen and (min-width: 1200px) {
     font-size: 16px;
-    font-weight: 700;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
-    color: #000000;
-    background-color: rgb(255, 244, 0);
   }
-  
-  .button:hover,
-  .button:focus {
-    background-color: rgb(228, 228, 0);
+}
+
+/* MOBILE MENU DROPDOWN */
+
+.menu {
+  @media screen and (min-width: 768px) {
+    display: none;
   }
+}
 
-    .overlay {
-      position: fixed;
-      top: 50;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #fef9f9cc;
-      z-index: 1000;
+/* OVERLAY FOR MOBILE MENU */
 
-      @media screen and (min-width: 768px) {
-        top: 80;
-      }
-    }
+.overlay {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 55px);
+  background-color: #fef9f9dd;
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+
+  @media screen and (min-width: 768px) {
+    top: 80px;
+  }
+}

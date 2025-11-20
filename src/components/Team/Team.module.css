@@ -1,139 +1,221 @@
+/* ===== Контейнер сторінки ===== */
 .containerTeam {
   min-height: calc(100vh - 50px);
-  padding: 40px 70px;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* ===== Головний заголовок ===== */
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: #3754fd;
+}
+
+/* ===== Блок запрошувального посилання ===== */
 .wrapperRef {
-  display: block;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   padding: 20px;
-  padding-top: 10px;
   border: 1px solid #d7d2f3;
-  border-radius: 20px;
+  border-radius: 16px;
+  background: #fafbff;
 }
 
 .refLink {
+  margin-bottom: 12px;
+  font-size: 18px;
   text-align: left;
-  margin-bottom: 20px;
+  font-weight: 600;
 }
 
+/* ===== Список кроків ===== */
 .listTeam {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
   gap: 20px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 40px 0;
+  flex-wrap: wrap;
 }
 
 .item {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  width: 340px;
-  min-height: 170px;
-  padding: 10px;
-  text-align: center;
-  color: #333;
-  font-size: 16px;
-  line-height: 1.5;
-  font-weight: 500;
+
+  width: 260px;
+  min-height: 160px;
+
+  padding: 16px;
   border: 1px solid #d7d2f3;
-  border-radius: 20px;
+  border-radius: 16px;
+  background: white;
+
+  font-size: 15px;
+  line-height: 1.45;
+  color: #333;
+  text-align: center;
+
+  transition: 0.25s ease;
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .numberItem {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
-  color: #ff8800;  
+  color: #ff8800;
+  margin-bottom: 10px;
 }
 
+/* ===== Блок Команди ===== */
 .wrapperTeam {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
 
-  .wrapperPartner {
-    position: relative;
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 50px;
-    border: 1px solid #a3c5d3;
-    border-radius: 20px;
-  }
+/* ===== Партнер + кнопка Назад ===== */
+.wrapperPartner {
+  position: relative;
+  padding: 20px 40px;
+  border: 1px solid #a3c5d3;
+  border-radius: 16px;
+  background: white;
+  width: fit-content;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
 
-  .btnBack {
-    position: absolute;
-    top: 50%;
-    left: -15px;
-    transform: translateY(-50%) translateX(-100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid #a3c5d3;
-    border-radius: 50%;
-  }
+.btnBack {
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%) translateX(-100%);
+  width: 32px;
+  height: 32px;
 
-  .btnBack:hover,  
-  .btnBack:focus {
-    background-color: beige;
-    cursor: pointer;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  .userInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font-weight: 500;
-  }
+  border: 1px solid #a3c5d3;
+  border-radius: 50%;
+  background: white;
 
-  .title {
-    text-align: center;
-    margin-bottom: 70px;
-  }
+  cursor: pointer;
+  transition: 0.25s ease;
+}
 
-  .subtitle {
-    font-size: 22px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
+.btnBack:hover {
+  background: #eef7ff;
+}
 
-  .userName {
-    font-weight: 700;
-    font-size: 18px;
-    color: #ff9900;
-  }
+/* ===== Інформація користувача ===== */
+.subtitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #333;
+}
 
-  .tableTeam {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+  color: #444;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff9900;
+}
+
+/* ===== Таблиця команди ===== */
+.tableTeam {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 20px;
 }
 
 .table {
-    border-collapse: collapse;
-    font-size: 14px;
-    line-height: 1.5;
-    text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  min-width: 600px;
+
+  font-size: 14px;
+  background: white;
 }
 
-.td, .th {
-    border: 1px solid #a3c5d3;
-    padding: 10px;
-    width: auto;
+.th,
+.td {
+  border: 1px solid #a3c5d3;
+  padding: 10px;
 }
 
-.tr:hover,  
-.tr:focus,
-.tr:active {
-  background-color: beige;
+.tr {
+  transition: 0.25s ease;
+}
+
+.tr:hover {
+  background: #fef7e6;
   cursor: pointer;
+}
+
+/* ===== Мобільна адаптація ===== */
+@media (max-width: 767px) {
+  .containerTeam {
+      padding-top: 0px;
+  }
+
+  .title {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .refLink {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .numberItem {
+    font-size: 26px;
+  }
+
+  .item {
+    width: 100%;
+  }
+
+  .wrapperPartner {
+    padding: 20px 20px;
+  }
+
+  .table {
+    min-width: 100%;
+    font-size: 13px;
+  }
 }

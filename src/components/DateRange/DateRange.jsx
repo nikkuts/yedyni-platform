@@ -38,7 +38,7 @@ export const DateRange = () => {
             <ul className={css.listForm}>
                 <li>
                     <label className={css.label}>
-                        Оберіть початкову дату
+                        З
                     </label>
                     <DatePicker className={css.input}
                         selected={startDate}
@@ -54,7 +54,7 @@ export const DateRange = () => {
                 </li>
                 <li>
                     <label className={css.label}>
-                        Оберіть кінцеву дату
+                        По
                     </label>
                     <DatePicker className={css.input}
                         selected={endDate}

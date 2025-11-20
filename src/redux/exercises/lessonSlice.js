@@ -7,6 +7,10 @@ export const getContent = createAsyncThunk(
   "lesson/getContent",
   async (url, thunkAPI) => {
     try {
+      if (!url || !url.trim()) {
+        return ""; 
+      }
+
       const response = await axios.get(url, {
         responseType: 'text'
       });

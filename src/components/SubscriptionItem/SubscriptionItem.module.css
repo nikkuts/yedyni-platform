@@ -1,22 +1,30 @@
-.td, .th {
-    border: 1px solid #a3c5d3;
-    padding: 10px;
+/* === Статуси === */
+.statusActive {
+    color: #0e7b22;
+    font-weight: 700;
 }
 
-.wrapper {
+.statusCanceled {
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+/* === Обгортка статусу з кнопкою === */
+.statusWrap {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    gap: 4px;
 }
 
-.link {
+/* === Кнопка “скасувати” === */
+.cancelBtn {
     text-decoration: underline;
     color: #3754fd;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.link:hover,  
-.link:focus,
-.link:active {
+.cancelBtn:hover {
     color: #0d30f5;
-    cursor: pointer;
-  }
+}

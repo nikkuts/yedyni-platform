@@ -1,252 +1,217 @@
+/* === Головний стиль: Єдині === */
+
 .wrapperHome {
     width: 100%;
-    padding-top: 80px;
+    padding-top: 90px;
 
     @media screen and (min-width: 768px) {
-        padding-top: 130px;
+        padding-top: 140px;
     }
 }
 
+/* --- Герой-блок (заголовок) --- */
 .titleHome {
-    font-size: 32px;
-    font-weight: 500;
+    font-size: 34px;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 40px;
-    overflow-wrap: break-word;
+    margin-bottom: 25px;
+    line-height: 1.25;
+    color: #0d30f5;
 
     @media screen and (min-width: 768px) {
-        font-size: 40px;
+        font-size: 46px;
+        margin-bottom: 40px;
     }
 }
 
-.num {
-    color: #ff8800;
-    font-weight: 700;
-    color: #0d30f5;
-}
-
+/* --- Бал / українськомовний слід --- */
 .wrapperMark {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
-    outline: none;
+    gap: 8px;
+
+    width: fit-content;
+    margin: 0 auto;
+    padding: 12px 22px;
+
+    background: #ffffff;
+    border: 2px solid #d9e1ff;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(13, 48, 245, 0.1);
 }
 
 .mark {
-    font-size: 28px;
-    font-weight: 700;
-    text-align: center;
-    color: #ff8800;
+    font-size: 40px;
+    font-weight: 800;
+    color: #0d30f5;
 }
 
 .points {
-    position: absolute;
-    left: 165px;
     font-size: 18px;
+    font-weight: 600;
+    color: #444;
+}
 
-    @media screen and (min-width: 768px) {
+/* --- Опис --- */
+.description {
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.6;
+    padding: 35px 10px;
+    text-align: center;
+
+    @media screen and (min-width: 1200px) {
+        padding: 40px 80px;
         font-size: 20px;
     }
 }
 
-.description {
-    color: #000000;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.5;
-    padding: 40px 0px;
-    overflow-wrap: break-word;
-
-    @media screen and (min-width: 1200px) {
-        padding: 40px 70px;
-    }
+.num {
+    font-weight: 800;
+    color: #ffcc00;
 }
 
+/* --- Підзаголовок перед списком --- */
 .titleTable {
     text-align: center;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: calc(18/16);
-    letter-spacing: 0.01em;
-    overflow-wrap: break-word;
-}
-
-.sertificate {
+    font-weight: 700;
     font-size: 22px;
-    text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    line-height: 1.4;
+    color: #0d30f5;
 }
 
+/* --- Список карток досягнень --- */
 .listTrace {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin-bottom: 50px;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #000000;
+    gap: 24px;
+    margin-bottom: 70px;
+    padding: 0 10px;
 
     @media screen and (min-width: 768px) {
-        padding: 10px;
-        border: 1px solid #d7d2f3;
-        border-radius: 20px;
-    }
-
-    @media screen and (min-width: 1200px) {
         padding: 20px;
+        border: 1px solid #e2e6ff;
+        border-radius: 20px;
+        background: #fbfbff;
     }
 }
 
 .trHead {
-    display: flex;
-    align-items: center;
-
-    @media screen and (max-width: 767px) {
-        display: none;
-    }
-}
-
-.tr {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 10px;
-    border: 1px solid #d7d2f3;
-    border-radius: 20px;
+    display: none;
 
     @media screen and (min-width: 768px) {
-        flex-direction: row;
-        gap: 0px;
-        padding: 0px;
-        border: none;
+        display: grid;
+        grid-template-columns: 40% 1fr 170px;
+        align-items: center;
+
+        padding: 0 0 10px 10px;
+        border-bottom: 1px solid #d8d8f5;
+        font-weight: 700;
+        color: #0d30f5;
     }
 }
 
 .th1 {
-    width: 378px;
-
-    @media screen and (min-width: 768px) {
-        width: 378px;
-    }
-
-    @media screen and (min-width: 1200px) {
-        width: 700px;
-    }
+    grid-column: 1;
 }
 
 .th2 {
-    width: 200px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 10px;
+    grid-column: 2;
     text-align: center;
-    font-weight: 700;
-    border-bottom: 1px solid #d7d2f3;
-
-    @media screen and (min-width: 768px) {
-        width: 200px;
-    }
-
-    @media screen and (min-width: 1200px) {
-        width: 220px;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 20px;
-    }
 }
 
-.tdchild1 {
-    width: 100%;
+.th3 {
+    grid-column: 3;
+}
+
+/* --- Картки --- */
+.tr {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 50px;
-    padding: 5px 10px;
-    color: #000000;
-    background-color: rgb(240, 240, 240);
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 500;
-    border-radius: 20px;
+    flex-direction: column;
+    gap: 12px;
 
-    @media screen and (min-width: 480px) {
-        height: 50px;
-        padding: 5px 20px;
-        font-size: 16px;
-    }
+    padding: 20px 15px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #e0e6ff;
+    box-shadow: 0 4px 10px rgba(13, 48, 245, 0.06);
 
     @media screen and (min-width: 768px) {
-        width: 378px;
-        justify-content: flex-start;
-        text-align: left;
-    }
+        display: grid;
+        /* ⬅ Замість flex */
+        grid-template-columns: 40% 1fr 170px;
+        /* ⬅ 3 чіткі колонки */
+        align-items: center;
+        gap: 10px;
 
-    @media screen and (min-width: 1200px) {
-        width: 700px;
+        background: none;
+        border: none;
+        box-shadow: none;
+        padding: 10px 0;
     }
 }
 
-.tdchild2 {
-    width: 200px;
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: center;
+/* 1-й стовпець — назва */
+.tdchild1 {
+    grid-column: 1;
+    width: 100%;
+    font-weight: 600;
     font-size: 16px;
-    line-height: 1.5;
-    font-weight: 700;
+    text-align: center;
+
+    padding: 14px 18px;
+    background-color: #f3f5ff;
+    color: #000;
+    border-radius: 14px;
 
     @media screen and (min-width: 768px) {
-        width: 200px;
+        background: transparent;
+        text-align: left;
+        padding: 0;
     }
+}
 
-    @media screen and (min-width: 1200px) {
-        width: 220px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
+/* 2-й стовпець — кількість балів */
+.tdchild2 {
+    grid-column: 2;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0d30f5;
+    text-align: center;
 }
 
 .bal {
+    font-size: 14px;
+    color: #555;
+
     @media screen and (min-width: 768px) {
         display: none;
     }
 }
 
+/* 3-й стовпець — кнопка */
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
+    grid-column: 3;
+    margin: 0 auto;
+    width: 170px;
     height: 50px;
-    margin: auto;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
+
     font-size: 16px;
     font-weight: 700;
-    line-height: calc(16/14);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    outline: none;
-    cursor: pointer;
-    color: #000000;
-    background-color: rgb(255, 244, 0);
+    color: #000;
 
-    @media screen and (min-width: 1200px) {
-        width: 200px;
-    }
-  }
-  
-  .button:hover,
-  .button:focus {
-    background-color: rgb(228, 228, 0);
-  }
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+
+    background-color: #ffdd00;
+    transition: 0.25s ease;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #ffcc00;
+}

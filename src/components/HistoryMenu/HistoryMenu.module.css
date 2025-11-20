@@ -1,30 +1,50 @@
-.menu {
+/* випадаюче меню історії */
+.historyNav {
     position: absolute;
-    display: block;
-    width: 100%;
-    top: 40px;
-    right: 0;
-    background-color: #FFFFFF;
-    box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
-    border-top: 1px solid #a3c5d3;
+    top: 44px;
+    left: 0;
+
+    width: 220px;
+    background: #fff;
+
+    border-radius: 16px;
+    border: 1px solid #e8e6df;
+
+    padding: 6px 0;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+    animation: fadeSlide 0.25s ease forwards;
     z-index: 100;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .historyLink {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 100%;
-    height: 40px;
-    padding-left: 20px;
+    height: 44px;
+    padding: 0 18px;
+
+    font-size: 15px;
     font-weight: 500;
-    color: #2a363b;   
+    color: #2a363b;
+
+    border-radius: 10px;
+    transition: background 0.2s ease, padding-left 0.2s ease;
 }
-  
-.historyLink:hover,  
-.historyLink:focus,
-.historyLink:active {
-    color: #0d30f5;
-    background-color: rgb(245, 245, 245);
+
+.historyLink:hover {
+    background: #f3f1ea;
+    color: #000;
+    padding-left: 26px;
 }
-  

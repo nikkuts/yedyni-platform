@@ -8,7 +8,7 @@ export const HistoryMenu = () => {
 
   return (  
     <>
-        <ul className={css.menu}>
+        <ul className={css.historyNav}>
             <li>
                 <Link 
                     onClick={() => dispatch(setCurrentRange())} 

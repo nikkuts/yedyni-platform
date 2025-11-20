@@ -36,15 +36,14 @@ export default function Home() {
                 <li className={css.trHead}>
                     <span className={css.th1}></span>
                     <span className={css.th2}>Кількість балів</span>
-                    <span className={css.th3}></span>
                 </li>
                 <li className={css.tr}>
                     <span className={css.tdchild1}>Реєстрація на платформі</span>
                     <span className={css.tdchild2}>40<br/><span className={css.bal}>балів</span></span>
                 </li>
                 <li className={css.tr}>
-                    <span className={css.tdchild1}>Проходження тестувань</span>
-                    <span className={css.tdchild2}>сума набраних балів</span>
+                    <span className={css.tdchild1}>Завершений курс з отриманням сертифікату від проєкту “Єдині”</span>
+                    <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
                     <button type="button"
                         onClick={() => navigate("learn")} 
                         className={css.button}
@@ -52,8 +51,22 @@ export default function Home() {
                         Перейти до курсу
                     </button>
                 </li>
-                {/* <li className={css.tr}>
-                    <span className={css.tdchild1}>Фінансова підтримка ГО “Рух Єдині”</span>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Організація зустрічі розмовного клубу</span>
+                    <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
+                    <button type="button"
+                        onClick={() => navigate("clubs")} 
+                        className={css.button}
+                        >
+                        Детальніше
+                    </button>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Проходження тестувань</span>
+                    <span className={css.tdchild2}>сума набраних балів</span>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Фінансова підтримка проєкту “Єдині”</span>
                     <span className={css.tdchild2}>сума підтримки у гривнях</span>
                     <button type="button"
                         onClick={() => navigate("donat")} 
@@ -61,9 +74,9 @@ export default function Home() {
                         >
                         Підтримати
                     </button>
-                </li> */}
+                </li>
                 <li className={css.tr}>
-                    <span className={css.tdchild1}>Запрошення нового учасника курсу</span>
+                    <span className={css.tdchild1}>Реєстрація на платформі нового учасника у моїй команді</span>
                     <span className={css.tdchild2}>40<br/><span className={css.bal}>балів</span></span>
                     <button type="button"
                         onClick={() => navigate("bonus/team")} 
@@ -72,7 +85,24 @@ export default function Home() {
                         Детальніше
                     </button>
                 </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Завершений курс учасником моєї команди</span>
+                    <span className={css.tdchild2}>400<br/><span className={css.bal}>балів</span></span>
+                </li>
+                {/* <li className={css.tr}>
+                    <span className={css.tdchild1}>Участь у олімпіаді</span>
+                    <span className={css.tdchild2}>сума призових балів</span>
+                    <button type="button"
+                        onClick={() => navigate("olympiad")} 
+                        className={css.button}
+                        >
+                        Детальніше
+                    </button>
+                </li> */}
             </ul>
+            {/* <h2 className={css.sertificate}>
+                Мої сертифікати
+            </h2> */}
         </div>
     );
 };

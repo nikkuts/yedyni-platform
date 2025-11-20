@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { selectCurrentLesson } from '../../redux/exercises/selectors';
 import css from './LessonMenu.module.css';
 
@@ -7,57 +7,84 @@ export const LessonMenu = () => {
     const currentLesson = useSelector(selectCurrentLesson);
 
     return (
-        <>
-            <nav className={css.lessonNavigation}>
-                <Link 
+        <nav className={css.lessonNavigation}>
+            {Boolean(currentLesson.content) && (
+                <NavLink 
                     to=""
-                    className={css.lessonNavLink}
+                    end
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Зміст
-                </Link> 
-                <Link 
+                </NavLink>
+            )}
+
+            {currentLesson.theory && (
+                <NavLink 
                     to="theory"
-                    className={css.lessonNavLink}
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Теорія
-                </Link> 
-                {currentLesson.audio.length > 0 &&
-                <Link 
+                </NavLink>
+            )}
+
+            {currentLesson.audio.length > 0 && (
+                <NavLink 
                     to="audio"
-                    className={css.lessonNavLink}
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Аудіопомічник
-                </Link> 
-                }
-                <Link 
+                </NavLink>
+            )}
+
+            {(currentLesson.practice || currentLesson.practice === "") && (
+                <NavLink 
                     to="practice"
-                    className={css.lessonNavLink}
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Практика
-                </Link> 
-                {currentLesson.video.length > 0 &&
-                <Link 
+                </NavLink>
+            )}
+
+            {currentLesson.video.length > 0 && (
+                <NavLink 
                     to="video"
-                    className={css.lessonNavLink}
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Відео
-                </Link> 
-                }
-                {currentLesson.test !== '' && 
-                <Link
-                    to="test" 
-                    className={css.lessonNavLink}
+                </NavLink>
+            )}
+
+            {currentLesson.test && (
+                <NavLink 
+                    to="test"
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Тестування
-                </Link> 
-                }
-                <Link 
+                </NavLink>
+            )}
+
+            {currentLesson.diary && (
+                <NavLink 
                     to="diary"
-                    className={css.lessonNavLink}
+                    className={({ isActive }) => 
+                        isActive ? `${css.lessonNavLink} ${css.active}` : css.lessonNavLink
+                    }
                 >
                     Щоденник
-                </Link>   
-            </nav>
-        </>           
-    )
-  };
+                </NavLink>
+            )}
+        </nav>
+    );
+};

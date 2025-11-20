@@ -34,39 +34,42 @@ export default function Subscriptions () {
       dispatch(getSubscriptions(queryParams)); 
   }, [dispatch, queryParams]);
 
-    return (
-      <>
-        <div>{isLoading && <b>Завантаження даних...</b>}</div> 
-        <div>
-          <h2 className={css.title}>Історія моїх підписок</h2>
-          <DateRange />
-          <div className={css.tableHistory}>
-              <table className={css.table}>
-                <thead>
+  return (
+    <>
+      <div>{isLoading && <b>Завантаження даних...</b>}</div> 
+      <div className={css.historyWrapper}>
+        <h2 className={css.title}>Історія моїх підписок</h2>
+        <DateRange />
+
+        <div className={css.tableWrapper}>
+          <table className={css.table}>
+              <thead>
                   <tr>
-                      <th className={css.th}>Дата підписки</th>
-                      <th className={css.th}>Сума</th>
-                      <th className={css.th}>Призначення</th>
-                      <th className={css.th}>Коментар</th>
-                      <th className={css.th}>Наступний внесок</th>
-                      <th className={css.th}>Статус підписки</th>
+                      <th>Дата підписки</th>
+                      <th>Сума</th>
+                      <th>Призначення</th>
+                      <th>Коментар</th>
+                      <th>Наступний внесок</th>
+                      <th>Статус</th>
                   </tr>
-                </thead>
-                {subscriptions.length !== 0 && 
-                <tbody>
-                {subscriptions.map(({_id, data, objSub}) => (           
-                    <SubscriptionItem 
-                      key={_id} 
-                      data={data}
-                      objSub={objSub}
-                    />
-                ))}
-                </tbody>
-                }
-              </table>
-            </div>
-            <Pagination/>
+              </thead>
+
+              {subscriptions.length > 0 && (
+                  <tbody>
+                      {subscriptions.map(({ _id, data, objSub }) => (
+                          <SubscriptionItem
+                              key={_id}
+                              data={data}
+                              objSub={objSub}
+                          />
+                      ))}
+                  </tbody>
+              )}
+          </table>
         </div>
-      </>
-    );
-  };
+
+        <Pagination />
+      </div>
+    </>
+  );
+};

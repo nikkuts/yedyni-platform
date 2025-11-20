@@ -34,43 +34,45 @@ export default function Payments () {
       dispatch(getDonats(queryParams));   
   }, [dispatch, queryParams]);
 
-    return (
-      <>
-        <div>{isLoading && <b>Завантаження даних...</b>}</div> 
-        <div>
-          <h2 className={css.title}>Історія моїх внесків</h2>
-          <DateRange />
-          <div className={css.tableHistory}>
-              <table className={css.table}>
+  return (
+    <>
+      <div>{isLoading && <b>Завантаження даних...</b>}</div> 
+      <div className={css.historyWrapper}>
+        <h2 className={css.title}>Історія моїх внесків</h2>
+        <DateRange />
+
+        <div className={css.tableWrapper}>
+            <table className={css.table}>
                 <thead>
-                  <tr>
-                      <th className={css.th}>Дата</th>
-                      <th className={css.th}>Сума</th>
-                      <th className={css.th}>Призначення</th>
-                      <th className={css.th}>Коментар</th>
-                      <th className={css.th}>Тип внеску</th>
-                  </tr>
-                </thead>
-                {donats.length !== 0 && 
-                <tbody>
-                {donats.map(({_id, data}) => (           
-                    <tr 
-                      key={_id}
-                      className={css.tr}
-                    >
-                      <td className={css.td}>{formatDate(data.end_date)}</td>
-                      <td className={css.td}>{data.amount}</td>
-                      <td className={css.td}>{data.description}</td>
-                      <td className={css.td}>{data.info}</td>
-                      <td className={css.td}>{data.action === 'pay' ? 'разовий' : 'щомісячний'}</td>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Сума</th>
+                        <th>Призначення</th>
+                        <th>Коментар</th>
+                        <th>Тип внеску</th>
                     </tr>
-                ))}
-                </tbody>
-                }
-              </table>
-            </div>
-            <Pagination/>
+                </thead>
+
+                {donats.length > 0 && (
+                    <tbody>
+                        {donats.map(({ _id, data }) => (
+                            <tr key={_id}>
+                                <td data-label="Дата">{formatDate(data.end_date)}</td>
+                                <td data-label="Сума">{data.amount}</td>
+                                <td data-label="Призначення">{data.description}</td>
+                                <td data-label="Коментар">{data.info}</td>
+                                <td data-label="Тип внеску">
+                                    {data.action === 'pay' ? 'разовий' : 'щомісячний'}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                )}
+            </table>
         </div>
-      </>
-    );
-  };
+        
+        <Pagination />
+      </div>
+    </>
+  );
+};

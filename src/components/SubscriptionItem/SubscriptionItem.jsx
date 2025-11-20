@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
 import { cancelSubscribe } from "../../redux/payments/operations";
 import { formatDate, getNextPaymentDate } from "../../service/handleDate";
 import css from './SubscriptionItem.module.css';
@@ -7,44 +6,40 @@ import css from './SubscriptionItem.module.css';
 export const SubscriptionItem = ({_id, data, objSub}) => {
   const dispatch = useDispatch();
 
-    return (
-      <>          
-                    <tr 
-                      key={_id}
-                      className={css.tr}
+  return (
+    <>          
+      <tr>
+        <td data-label="Дата підписки">{formatDate(data.end_date)}</td>
+        <td data-label="Сума">{data.amount}</td>
+        <td data-label="Призначення">{data.description}</td>
+        <td data-label="Коментар">{data.info}</td>
+
+        <td data-label="Наступний внесок">
+            {!objSub.isUnsubscribe &&
+                (objSub.lastPaymentDate
+                    ? getNextPaymentDate(objSub.lastPaymentDate)
+                    : "очікування проведення платежу")}
+        </td>
+
+        <td data-label="Статус">
+            {!objSub.isUnsubscribe ? (
+                <span className={css.statusWrap}>
+                    <span className={css.statusActive}>діє</span>
+
+                    <span
+                        className={css.cancelBtn}
+                        onClick={() =>
+                            dispatch(cancelSubscribe({ orderId: data.order_id }))
+                        }
                     >
-                      <td className={css.td}>{formatDate(data.end_date)}</td>
-                      <td className={css.td}>{data.amount}</td>
-                      <td className={css.td}>{data.description}</td>
-                      <td className={css.td}>{data.info}</td>
-                      <td className={css.td}>
-                        {!objSub.isUnsubscribe &&
-                        (
-                        objSub.lastPaymentDate ?
-                        getNextPaymentDate(objSub.lastPaymentDate) :
-                        'очікування проведення платежу'
-                        )
-                        }
-                      </td>
-                      <td className={css.td}>
-                        {
-                        !objSub.isUnsubscribe ? 
-                        <span className={css.wrapper}>
-                          діє 
-                          <Link
-                            onClick={() => {
-                              dispatch(cancelSubscribe({orderId: data.order_id}))
-                            }}
-                            className={css.link}
-                          >
-                            скасувати
-                          </Link>
-                        </span> : 
-                        'скасовано'
-                        }
-                      </td>
-                    </tr>
-            
-      </>
-    );
-  };
+                        скасувати
+                    </span>
+                </span>
+            ) : (
+                <span className={css.statusCanceled}>скасовано</span>
+            )}
+        </td>
+      </tr>
+    </>
+  );
+};

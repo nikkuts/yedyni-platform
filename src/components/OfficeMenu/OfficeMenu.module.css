@@ -2,14 +2,12 @@
     position: fixed;
     display: block;
     width: 100%;
-    top: 50px;
     right: 0;
     background-color: #FFFFFF;
     z-index: 1100;
 
     @media screen and (min-width: 768px) {
       width: 364px;
-      top: 80px;
       box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     }
   }

@@ -2,63 +2,114 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    width: fit-content;
-    padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 25px;
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    margin: 0 auto;
+
+    background-color: #ffffff;
     border: 1px solid #d7d2f3;
-    border-radius: 20px;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(55, 84, 253, 0.06);
 }
 
 .listForm {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 50px;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
 }
 
 .label {
     display: block;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
     text-align: center;
-    margin-bottom: 10px;
 }
 
 .input {
-    display: block;
-    width: 170px;
-    height: 40px;
+    width: 180px;
+    height: 42px;
     padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
     font-size: 15px;
+
     text-align: center;
-    border: 1px solid #dfdddd;
+    border: 1px solid #d7d2f3;
     border-radius: 20px;
+    background-color: #fafaff;
+
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+    border-color: #3754fd;
+    box-shadow: 0 0 0 3px rgba(55, 84, 253, 0.15);
     outline: none;
 }
 
 .button {
-    display: block;
-    border: 1px solid #ffffff;
+    height: 42px;
+    padding: 0 22px;
+
     border-radius: 20px;
-    padding: 0 20px;
-    width: auto;
-    height: 40px;
-    text-align: center;
-    text-overflow: ellipsis;
+    border: none;
     font-size: 16px;
     font-weight: 700;
-    line-height: calc(16/14);
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
-    color: #ffffff;
+
+    color: #fff;
     background-color: #3754fd;
-  }
-  
-  .button:hover,
-  .button:focus {
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.button:hover,
+.button:focus {
     background-color: #0d30f5;
-  }
+}
+
+@media screen and (max-width: 480px) {
+
+    .formDate {
+        padding: 18px;
+        gap: 20px;
+        border-radius: 16px;
+    }
+
+    .listForm {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .input {
+        width: 100%;
+        max-width: 240px;
+        height: 36px;
+        padding: 6px;
+        font-size: 14px;
+        border-radius: 14px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .button {
+        height: 38px;
+        padding: 0 18px;
+        font-size: 15px;
+        border-radius: 16px;
+        margin: 0 auto;
+        display: block;
+    }
+}

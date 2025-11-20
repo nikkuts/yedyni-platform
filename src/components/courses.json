@@ -570,6 +570,264 @@
             }
         ] 
     },
+     { 
+        "id": "id-4", 
+        "title": "Курс з підготовки до держіспиту",
+        "wave": "5",
+        "start": "2025-11-24",
+        "canal": "",
+        "chat": "", 
+        "lessons": [
+            {
+                "day": "1",
+                "theme": "ТЕМА 1 \"Етикетні формули в офіційному мовленні\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709411603/wjj3h5sxevthq6xuidzb.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763492601/1_pcetyf.html",
+                "theory": "https://drive.google.com/file/d/15aI9aKnxZC9MvtVfwvG5oq7-ClaVvY9U/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "2",
+                "theme": "РУБРИКА \"НОРМИ КУЛЬТУРИ МОВИ\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709760175/ikolp8mlfsi3rdrrrjck.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763567747/2_ehrjx4.html",
+                "theory": "https://drive.google.com/file/d/13kK6MyUdsUEnhKbBf5klnhs0hHG8MVXr/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSc9E2MWILmzsseJraxo4GLoNuGlERD62xAkyubF1kAyDozUrQ/viewform?usp=preview"
+            },
+            {
+                "day": "3",
+                "theme": "ТЕМА 2 \"Норми культури мовлення в словосполученнях. Лексична помилкаю Фразеологізми\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984462/z3ym5sjaqro6umclwelg.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763580850/3_bkx8mm.html",
+                "theory": "https://drive.google.com/file/d/1ePz7yR0_Co2TMmtZZzBAYhxMPg4CvMrE/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSdi_0WBGUvHDMtKBKs4vfsg4XcE4rzAxzkQJZL3qhJQ-lYHCg/viewform?usp=publish-editor"
+            },
+            {
+                "day": "4",
+                "theme": "РУБРИКА \"НАГОЛОСИ\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984509/rehqnczyilrtwpbktxj8.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763573745/4_wct9es.html",
+                "theory": "https://drive.google.com/file/d/1EQzjIHQFioQDTh5A1f7UIF54t1zRpybg/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeuHbpfPmsWRbJg7IrmpxWbnHqe-YUX0fx_Js4acJFBnhKhBg/viewform?usp=dialog"
+            },
+            {
+                "day": "5",
+                "theme": "ТЕМА 3 \"Синоніми. Антоніми. Пароніми. Іншомовні слова\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984542/yxyx9th3ym6lc89cc9ii.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763652320/5_cghjzv.html",
+                "theory": "https://drive.google.com/file/d/1NIeDauPObCg6CKZK5QHv4nVxoX91urWp/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSfMwoPjz2H_SGxeOcOyX0Im9B2l2YMzs5tM3P6kfqU3aDQnOQ/viewform?usp=dialog"
+            },
+            {
+                "day": "6",
+                "theme": "ПІДСУМКОВЕ ТЕСТУВАННЯ ТИЖНЯ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984571/vpkqkwsqp36lbrjirmnh.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763574597/6_iakvkl.html",
+                "theory": "",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSdtfA9lKpAJlVpVd3CEMuvpXcMSYzCBKcC5z7SQsXAA5KMQjA/viewform?usp=dialog"
+            },
+            {
+                "day": "7",
+                "theme": "ВИХІДНИЙ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984601/du5khi8dtmzoqmdqvvzt.jpg",
+                "content": "",
+                "theory": "",
+                "test": ""
+            },
+            {
+                "day": "8",
+                "theme": "ТЕМА 4 \"Відмінювання прізвищ, імен та по батькові. Звертання\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710190920/mjk0cvt7zxquomrref13.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763650684/8_xrkcdb.html",
+                "theory": "https://drive.google.com/file/d/1Q8vydB73rUzT7CapXGXMqsiQWmrrD1G8/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSfARJLRlnVXIrCpWzRA8EMQ5AyqbbKZKjMh8Pu_SNl1AmJy6g/viewform?usp=dialog"
+            },
+            {
+                "day": "9",
+                "theme": "РУБРИКА \"НОРМИ КУЛЬТУРИ МОВИ\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710191317/xqceozdy38dzvrcuwsqh.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763572114/9_wkbdqs.html",
+                "theory": "https://drive.google.com/file/d/1Ymnl5WkcSabFbsrdGyl54L9fVyrzBzto/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLScELINhHx99H_KxEUxebMN2iSZ-7LbWXMK38IP5btFc3DC8Ug/viewform?usp=dialog"
+            },
+            {
+                "day": "10",
+                "theme": "ТЕМА 5 \"Правильність уживання слів та форм: прикметник (ступені порівняння)\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710192095/hvufal3buk3adks90f1g.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763651031/10_gbdna6.html",
+                "theory": "https://drive.google.com/file/d/1GG2ZmwA-1pcoLt08GwHv33h4LD8d3TiI/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLScmm5KDeTnr7_CITqVLMrq4utskFiByhx0LNejkJedG9_xtAg/viewform?usp=dialog"
+            },
+            {
+                "day": "11",
+                "theme": "РУБРИКА \"НАГОЛОСИ\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710192541/nep0q8tnnrwyisdu5k4i.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763573987/11_mnk9qs.html",
+                "theory": "https://drive.google.com/file/d/1v1p7ae4DeS6_5vfYRLVeA3d2iVG7a4Ra/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSfuOz4CImOvBNJOJxhssOKhF_d9jnWpGGTBJsDqJLSmIPKWcQ/viewform?usp=dialog"
+            },
+            {
+                "day": "12",
+                "theme": "ТЕМА 6 \"Правильність уживання слів та форм: числівник (відмінювання, узгодження, позначення часу)\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710193025/q96gkcn14hgvorvxn16f.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763651576/12_tjqtto.html",
+                "theory": "https://drive.google.com/file/d/1DzAqG7WEd61elpLHCu25MAye0NKcOiMH/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSdayIM24HiN-dmw5hsAY4sf6X16f64vk79AeU4PTfYaBB0cRA/viewform?usp=dialog"
+            },
+            {
+                "day": "13",
+                "theme": "ПІДСУМКОВЕ ТЕСТУВАННЯ ТИЖНЯ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710193698/xfhbrbtezdyyd6f6jr9t.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763574737/13_fgj3ni.html",
+                "theory": "",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSevjyGWzZ2v-IfwvQ36an2vwC7niwEVq2GYtShXe3CIBtW_Zg/viewform?usp=dialog"
+            },
+            {
+                "day": "14",
+                "theme": "ВИХІДНИЙ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710194206/nztw7nhiim2phfqsyhpm.jpg",
+                "content": "",
+                "theory": "",
+                "test": ""
+            },
+            {
+                "day": "15",
+                "theme": "ТЕМА 7 \"Нормативні дієприкметники\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710701953/pvsaiac5akyjrsu4sc8x.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763652386/15_vs1woi.html",
+                "theory": "https://drive.google.com/file/d/1NSC9aQdCqO2mG2QBnqZM5V8uNxjIKUPy/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeGJ17A7qnRVMiLEBCD3UvMPSvLGyKIgwf9u2ErO3-vtxcv0A/viewform?usp=dialog"
+            },
+            {
+                "day": "16",
+                "theme": "РУБРИКА \"НОРМИ КУЛЬТУРИ МОВИ\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710702592/eatipuihveaidzeyoann.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763572924/16_y6axwx.html",
+                "theory": "https://drive.google.com/file/d/1ESgbCZMvdAKcAHW_-6V0ZkE1eGTWB1XY/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeECPx0eVc1G0NpFk1uluuKSIibtSATQTm9jg3pC2gMbwYh8w/viewform?usp=dialog"
+            },
+            {
+                "day": "17",
+                "theme": "ТЕМА 8 \"Речення: розділові знаки\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710784345/vxez2mrucq0sqfocjmve.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763652694/17_xuic1p.html",
+                "theory": "https://drive.google.com/file/d/1zS_QKCNbN_mZva0LfHq2lPJZjctZWfHb/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLScJus5fO00aq1aE-61BcNVP93nXrAOXBwXXGuizaMucw8Z0HA/viewform?usp=dialog"
+            },
+            {
+                "day": "18",
+                "theme": "РУБРИКА \"НАГОЛОСИ\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710788209/jqisqaq3fqt2qc88awoj.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763574155/18_bwep96.html",
+                "theory": "https://drive.google.com/file/d/14tovqw_5hQ6mslM_UXySXjjZ_hdikWiE/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSdXDnvZDFdSCubjE1RXIKK6IXk3XiGm8FXURUGc6p4se0QSPg/viewform?usp=dialog"
+            },
+            {
+                "day": "19",
+                "theme": "ТЕМА 9 \"Речення: редагування, точність висловлення\"",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710790358/clpif1xqepqfvfhw8yhd.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763652967/19_l57tl4.html",
+                "theory": "https://drive.google.com/file/d/1RRdZW6kJu3Nf_UUMU9LQGR9ePiwzGjJP/preview",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeBKwf1tpqR1k1vrS3YA2JGu02wj9I4MGsQdfCsC08b2dG6_w/viewform?usp=dialog"
+            },
+            {
+                "day": "20",
+                "theme": "ПІДСУМКОВЕ ТЕСТУВАННЯ ТИЖНЯ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710790520/xz8alea9xidjtwal1xhs.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763574901/20_xathyk.html",
+                "theory": "",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSd2YIK7I8tBQGMCX88c9_-qB7csDl-U0IeoOiHfODkp0aMW2w/viewform?usp=dialog"
+            },
+            {
+                "day": "21",
+                "theme": "ВИХІДНИЙ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710791556/lodbxtgbjkeiaoffvzdf.jpg",
+                "content": "",
+                "theory": "",
+                "test": ""
+            },
+            {
+                "day": "22",
+                "theme": "ІНТЕНСИВ: ПОВТОРЕННЯ, УЗАГАЛЬНЕННЯ, ЗАКРІПЛЕННЯ, ПРАКТИКА",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1713368651/q3if0imqly5sbwvouu6z.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763576259/22_mwtbqm.html",
+                "theory": "",
+                "practice": "https://drive.google.com/file/d/1JPcYQwL2Pjk8mxXkryEVVyFlnjU7nGHu/preview",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeEQP0vT3Ek7YIAgJjkRg14jIs5D1O0QCczKrzgoOeZn7JoKA/viewform?usp=dialog"
+            },
+            {
+                "day": "23",
+                "theme": "ІНТЕНСИВ: ПОВТОРЕННЯ, УЗАГАЛЬНЕННЯ, ЗАКРІПЛЕННЯ, ПРАКТИКА",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1713371601/q4l1zezyd267yazu3ogc.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763576644/23_xqkmed.html",
+                "theory": "",
+                "practice": "https://drive.google.com/file/d/1aQsKEGrqlfLP6hL-pOuaol7QyjirdzyL/preview",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSfSZvEBlk3yKi2IpdAHbUe2Z2_DCuZS1WWNf9B1n-tg7Xg-Jg/viewform?usp=dialog"
+            },
+            {
+                "day": "24",
+                "theme": "ІНТЕНСИВ: ПОВТОРЕННЯ, УЗАГАЛЬНЕННЯ, ЗАКРІПЛЕННЯ, ПРАКТИКА",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1713372538/wafkmxievblzupbwte4r.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763577348/24_hgjcmk.html",
+                "theory": "",
+                "practice": "https://drive.google.com/file/d/1WVkoydxOdGqFX9rS7DSbhYQCuzFuEztZ/preview",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeQAfm6MrTbS53IlN33QRO2VpEtvuAQky8WRXYwP26RnHSjkw/viewform?usp=publish-editor"
+            },
+            {
+                "day": "25",
+                "theme": "ІНТЕНСИВ: ПОВТОРЕННЯ, УЗАГАЛЬНЕННЯ, ЗАКРІПЛЕННЯ, ПРАКТИКА",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1713373170/b2fjeg2absidy8lmzf6e.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763577660/25_qtduea.html",
+                "theory": "",
+                "practice": "https://drive.google.com/file/d/1D33G-XPCToiJVujPcAmmt5RC7mNVN-Do/preview",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSfayfnkgPaIqXS3zilH69RwuRz51VBDKQN-KOtdZodc4_pKbg/viewform?usp=publish-editor"
+            },
+            {
+                "day": "26",
+                "theme": "ІНТЕНСИВ: ПОВТОРЕННЯ, УЗАГАЛЬНЕННЯ, ЗАКРІПЛЕННЯ, ПРАКТИКА",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1713373690/q84elbwqbxj5aitsmlqt.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763578128/26_fz2sfn.html",
+                "theory": "",
+                "practice": "https://drive.google.com/file/d/1jhEEky1c-_-EhgFMWFDd5WGTBmMKMEl6/preview",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSef2w8VsuDN3k2imLc5XVkJO7TVyuwOhHYR6zijZOJshNtD-Q/viewform?usp=publish-editor"
+            },
+            {
+                "day": "27",
+                "theme": "ІНТЕНСИВ: ПОВТОРЕННЯ, УЗАГАЛЬНЕННЯ, ЗАКРІПЛЕННЯ, ПРАКТИКА",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1713374561/smwrfoaodjhjn5zhztav.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763578261/27_o5tfrm.html",
+                "theory": "",
+                "practice": "",
+                "test": "https://docs.google.com/forms/d/e/1FAIpQLSeiVkBRgMc52m2Ecg3oOOtj3Wep6BgxLxDmxaxVoNYjpBYPQg/viewform?usp=publish-editor"
+            },
+            {
+                "day": "28",
+                "theme": "ФІНАЛЬНЕ ТЕСТУВАННЯ",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1710791590/gvnizlo1v4jz0krdjkza.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1763578440/28_dschoo.html",
+                "theory": "",
+                "test": ""
+            }
+        ] 
+    },
     { 
         "id": "id-3", 
         "title": "Новий курс",
