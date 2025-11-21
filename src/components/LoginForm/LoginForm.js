@@ -77,7 +77,7 @@ export default function LoginForm () {
           Не пам'ятаю пароль
         </Link>
         <p>
-        <span className={css.text}>Немає акаунту?</span> <Link
+        <span>Немає акаунту?</span> <Link
           to={"/register"}
           className={css.link}
         >

@@ -52,7 +52,7 @@ export default function RecoveryForm () {
                     <input 
                         type="email" 
                         name="email" 
-                        placeholder='Вкажіть вашу електронну пошту'
+                        placeholder='Вкажіть ваш email'
                         className={css.input}
                     />
                 </div>          

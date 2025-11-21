@@ -6,6 +6,8 @@ import { register } from '../../redux/auth/operations';
 import { ReactComponent as Favicon } from '../../icons/favicon.svg';
 import { ReactComponent as EyeOff } from '../../icons/eye-off.svg';
 import { ReactComponent as Eye } from '../../icons/eye.svg';
+import { ReactComponent as CheckSquare } from '../../icons/check-square.svg';
+import { ReactComponent as Square } from '../../icons/square.svg';
 import bgImage from '../../service/bgimg.jpg';
 import css from './RegisterForm.module.css';
 
@@ -15,9 +17,16 @@ export default function RegisterForm () {
 
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [checkboxTransition, setCheckboxTransition] = useState(true);
+  const [checkboxGrammatical, setCheckboxGrammatical] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const toggleCheckboxCourse = () => {
+    setCheckboxTransition(prev => !prev);
+    setCheckboxGrammatical(prev => !prev);
   };
 
   const dispatch = useDispatch();
@@ -44,7 +53,8 @@ export default function RegisterForm () {
   };
 
   const isPasswordValid = (password) => {
-    const passwordRegex = /^[\w!@#$%^&*()+=\-[\]{};':"\\|,.<>/?]{8,24}$/;
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,24}$/;
+    // const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
     
     if (!passwordRegex.test(password)) {
       alert('Пароль може складатися з латинських літер, цифр, знаків довжиною від 8 до 24 символів');
@@ -77,6 +87,12 @@ export default function RegisterForm () {
       formData.inviterId = parseInviterId;
     }
 
+    if (checkboxTransition) {
+      formData.titleCourse = 'Курс переходу';
+    } else if (checkboxGrammatical) {
+      formData.titleCourse = 'Граматичний курс';
+    }
+  
     dispatch(
       register(formData)
     );
@@ -155,7 +171,33 @@ export default function RegisterForm () {
               </div>
             </div>
           </div>
-          
+          <div className={css.wrapperInput}>
+            <label className={css.label}>
+              Оберіть курс
+            </label>
+            <ul className={css.checkBoxList}>
+              <li className={css.checkBox}>
+                <div
+                  onClick={toggleCheckboxCourse}
+                >
+                  {checkboxTransition ? <CheckSquare /> : <Square />}
+                </div>
+                <label className={css.checkBoxText}>
+                  Курс переходу
+                </label>
+              </li>
+              <li className={css.checkBox}>
+                <div
+                  onClick={toggleCheckboxCourse}
+                >
+                  {checkboxGrammatical ? <CheckSquare /> : <Square />}
+                </div>
+                <label className={css.checkBoxText}>
+                  Граматичний курс
+                </label>
+              </li>
+            </ul>
+          </div>
           <button className={css.button} type="submit">Зареєструватися</button>
         </form>
       </div>

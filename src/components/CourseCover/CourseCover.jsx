@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-// import courses from "../courses.json";
 import css from './CourseCover.module.css';
 
 export default function CourseCover ({courseId, title}) {
