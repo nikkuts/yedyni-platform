@@ -11,6 +11,7 @@ import { selectModal } from '../../redux/modal/selectors';
 import { Modal } from '../Modal/Modal';
 import { NextWaveModal } from '../NextWaveModal/NextWaveModal';
 import { ScheduleModal } from '../ScheduleModal/ScheduleModal';
+import { CourseAnnouncement } from '../CourseAnnouncement/CourseAnnouncement';
 import { useAuth } from '../../hooks';
 import { formatDate, formatDateKyivTime } from "../../service/handleDate";
 import { ReactComponent as Calendar } from '../../icons/calendar.svg';
@@ -83,6 +84,11 @@ export default function Course () {
                     ) : (
                         <>
                             <h2 className={css.courseTitle}>{currentCourse.title}</h2>
+                            <CourseAnnouncement
+                                userStatus={user.status}
+                                courseId={courseId}
+                                announcement={currentCourse.announcement}
+                            />
                             <>
                                 {isAdmin && (
                                     <>

@@ -1,0 +1,139 @@
+.box {
+    width: 100%;
+    background: #f7faff;
+    border: 1px solid #e0e5ff;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0px 4px 12px rgba(13, 48, 245, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.box:hover {
+    box-shadow: 0px 6px 16px rgba(13, 48, 245, 0.08);
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #0d30f5;
+}
+
+.text {
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    color: #1c1c1e;
+}
+
+.text a {
+    color: #0d30f5;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.text a:hover {
+    text-decoration-thickness: 2px;
+}
+
+/* ADMIN TEXTAREA */
+.textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #cdd7ff;
+    resize: vertical;
+    font-size: 16px;
+    line-height: 1.4;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+    border-color: #0d30f5;
+    outline: none;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.editBtn,
+.saveBtn,
+.cancelBtn {
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: 0.25s ease;
+}
+
+/* Редагувати */
+.editBtn {
+    background: #0d30f5;
+    color: #fff;
+}
+
+.editBtn:hover {
+    background: #001ecb;
+}
+
+/* Зберегти */
+.saveBtn {
+    background: #00b150;
+    color: #fff;
+}
+
+.saveBtn:hover {
+    background: #008d41;
+}
+
+.saveBtn:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+/* Скасувати */
+.cancelBtn {
+    background: #e6e6e6;
+    color: #000;
+}
+
+.cancelBtn:hover {
+    background: #d4d4d4;
+}
+
+/* ADAPTIVE */
+@media screen and (max-width: 768px) {
+    .box {
+        padding: 16px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .text,
+    .textarea {
+        font-size: 15px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .editBtn,
+    .saveBtn,
+    .cancelBtn {
+        width: 100%;
+        text-align: center;
+    }
+}
