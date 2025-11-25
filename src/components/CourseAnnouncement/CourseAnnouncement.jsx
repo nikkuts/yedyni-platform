@@ -30,7 +30,8 @@ export const CourseAnnouncement = ({ userStatus, courseId, announcement }) => {
   // ====================
   //     ADMIN VIEW
   // ====================
-  if (userStatus === "admin" || "moderator") {
+  if (userStatus === "admin" || userStatus === "moderator") {
+  
     return (
       <div className={css.box}>
         <h3 className={css.title}>Оголошення</h3>
@@ -88,19 +89,19 @@ export const CourseAnnouncement = ({ userStatus, courseId, announcement }) => {
   // ====================
   //     USER VIEW
   // ====================
-  if (userStatus === "user") {
-    if (!announcement || announcement.trim() === "") return null;
+    if (userStatus === "user") {
+        if (!announcement || announcement.trim() === "") return null;
 
-    return (
-      <div className={css.box}>
-        <h3 className={css.title}>Оголошення</h3>
-        <p
-            className={css.text}
-            dangerouslySetInnerHTML={{ __html: convertLinks(announcement) }}
-        />
-      </div>
-    );
-  }
+        return (
+        <div className={css.box}>
+            <h3 className={css.title}>Оголошення</h3>
+            <p
+                className={css.text}
+                dangerouslySetInnerHTML={{ __html: convertLinks(announcement) }}
+            />
+        </div>
+        );
+    }
 
   return null;
 }
