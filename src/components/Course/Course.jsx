@@ -130,7 +130,7 @@ export default function Course () {
                                         <li>
                                             <Link
                                             to={`${currentCourse.canal}`}
-                                            target="blank" 
+                                            target="_blank" 
                                             className={css.courseBtn}
                                             >
                                             <svg className={css.btnIcon} viewBox="0 0 24 24" fill="none">
