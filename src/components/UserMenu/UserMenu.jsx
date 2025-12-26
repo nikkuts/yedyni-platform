@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import {
   Link,
-  // useNavigate
+  useNavigate
 } from 'react-router-dom';
 import { Navigation } from '../Navigation/Navigation';
 import { OfficeMenu } from '../OfficeMenu/OfficeMenu';
@@ -15,7 +15,7 @@ import css from './UserMenu.module.css';
 import '../../index.css';
 
 export const UserMenu = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const {user} = useAuth();
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -51,12 +51,12 @@ export const UserMenu = () => {
         <div className={css.menuBar}>
           <div className={css.nav}>
             <Navigation />
-            {/* <button type="button"
+            <button type="button"
               onClick={() => navigate("donat")} 
               className={css.button}
             >
               Підтримати
-            </button> */}
+            </button>
           </div>      
           <div 
             ref={officeRef}

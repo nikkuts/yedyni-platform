@@ -2,7 +2,7 @@ import { useEffect, Suspense } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
   Link,
-  // useNavigate,
+  useNavigate,
   Outlet
 } from 'react-router-dom';
 import { getIndicators } from '../../redux/partners/operations';
@@ -11,12 +11,12 @@ import { setCurrentRange } from "../../redux/payments/rangeSlice";
 // import { toogleModal } from '../../redux/modal/modalSlice';
 // import { selectModal } from '../../redux/modal/selectors';
 // import { Withdrawal } from '../Withdrawal/Withdrawal';
-// import { ReactComponent as Info } from '../../icons/info.svg';
+import { ReactComponent as Info } from '../../icons/info.svg';
 import css from './Indicators.module.css';
 
 export default function Indicators () {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const indicators = useSelector(selectIndicators);
   const isLoading = useSelector(selectIsLoading);
   // const isModalOpen = useSelector(selectModal);
@@ -70,7 +70,7 @@ export default function Indicators () {
                 <td className={css.tdChild1}>Скільки українців вже опанували українську завдяки моїм внескам на підтримку проєкту</td>
                 <td className={css.tdChild2}>{indicators.pastCount}</td>
             </tr>
-            {/* <tr className={css.tr}>
+            <tr className={css.tr}>
                 <td className={css.tdChild1}>
                   <div className={css.level}>
                     <span>
@@ -90,7 +90,7 @@ export default function Indicators () {
                     Підтримати
                   </button>
                 </td>
-            </tr> */}
+            </tr>
           </tbody>
         </table>
       </div>

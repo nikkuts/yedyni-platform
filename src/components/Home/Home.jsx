@@ -52,7 +52,7 @@ export default function Home() {
                         Перейти до курсу
                     </button>
                 </li>
-                {/* <li className={css.tr}>
+                {<li className={css.tr}>
                     <span className={css.tdchild1}>Фінансова підтримка ГО “Рух Єдині”</span>
                     <span className={css.tdchild2}>сума підтримки у гривнях</span>
                     <button type="button"
@@ -61,7 +61,7 @@ export default function Home() {
                         >
                         Підтримати
                     </button>
-                </li> */}
+                </li>}
                 <li className={css.tr}>
                     <span className={css.tdchild1}>Запрошення нового учасника курсу</span>
                     <span className={css.tdchild2}>40<br/><span className={css.bal}>балів</span></span>

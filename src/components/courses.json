@@ -829,6 +829,79 @@
         ] 
     },
     { 
+        "id": "id-5", 
+        "title": "7 експрес-уроків ділової української мови",
+        "wave": "1",
+        "start": "2026-02-01",
+        "canal": "",
+        "chat": "", 
+        "lessons": [
+            {
+                "day": "1",
+                "theme": "Урок 1. Г чи Ґ?",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709411603/wjj3h5sxevthq6xuidzb.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766594336/1_robw5z.html",
+                "theory": "https://drive.google.com/file/d/1bDCijyd5AZleiCXCm2rXHd5MwdqpCeu3/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "2",
+                "theme": "Урок 2. Наголоси, які вас здивують",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709760175/ikolp8mlfsi3rdrrrjck.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766594540/2_uqxffu.html",
+                "theory": "https://drive.google.com/file/d/1gRo-DMUUkeIluHVrPMuzEb6pa659SdYW/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "3",
+                "theme": "Урок 3. Нежить минув чи нежить минула? Рід та число іменників",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984462/z3ym5sjaqro6umclwelg.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766594775/3_qut8yp.html",
+                "theory": "https://drive.google.com/file/d/1UEYsRLduiJWRZIA9Ld8fDC0Ac03JQeU1/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "4",
+                "theme": "Урок 4. Не лише цифри!",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984509/rehqnczyilrtwpbktxj8.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766594905/4_qtfhdg.html",
+                "theory": "https://drive.google.com/file/d/180ImLsmtDT7bN2xWaRChSfGWK3Od3oyh/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "5",
+                "theme": "Урок 5. І хто придумав ці великі літери?",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984542/yxyx9th3ym6lc89cc9ii.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766594940/5_oqyivw.html",
+                "theory": "https://drive.google.com/file/d/1qRPhQb2A0kUk-az9_5k_ipSiN8-4gEwP/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "6",
+                "theme": "Урок 6. Словничок для ділових людей",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984571/vpkqkwsqp36lbrjirmnh.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766594974/6_jl4thp.html",
+                "theory": "https://drive.google.com/file/d/1aul9LpUlneSAT4pX4RCVrwfY2krQ0dLz/preview",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "7",
+                "theme": "Урок 7. Телефонувати, писати чи завітати в гості?",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984601/du5khi8dtmzoqmdqvvzt.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1766595007/7_u7oclj.html",
+                "theory": "https://drive.google.com/file/d/1zt6mnrFVXeOumD3b96A39M6CT5dAliJT/preview",
+                "practice": "",
+                "test": ""
+            }
+        ] 
+    },
+    { 
         "id": "id-3", 
         "title": "Новий курс",
         "wave": "1",

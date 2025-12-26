@@ -24,12 +24,7 @@ export default function Lesson () {
 
     useEffect(() => {
         dispatch(changeLesson(currentLesson));
-        if (courseId === '66e2c70e5122f6140e1ad568' || 
-            courseId === '66e2c7885122f6140e1ad56a' || 
-            courseId === '673266201c9fedb128321efe'
-        ) {
-            dispatch(getContent(currentLesson.content));
-        }
+        dispatch(getContent(currentLesson.content));
         dispatch(getExercise({courseId, lessonId}));
         dispatch(getDiary({courseId, lessonId})); 
         setIsChangedLesson(true);     
