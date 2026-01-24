@@ -48,7 +48,7 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   const isTextValid = (text) => {
     const newText = text.trim();
     if (newText === '' || newText.length > 3000) {
-      alert('Поле повинно бути заповненим і містити не більше 3000 символів.');
+      alert('Поле повинно бути заповненим і містити не більше 30000 символів.');
       return false;
     }
     return true;
@@ -95,7 +95,7 @@ export const HomeworkForm = ({courseId, lessonId}) => {
       deleteFile(data)
     );
 
-    if (textInput !== '' && textInput.trim().length <= 3000) {
+    if (textInput !== '' && textInput.trim().length <= 30000) {
       setIsDisabledBtn(false);
     }
   };
