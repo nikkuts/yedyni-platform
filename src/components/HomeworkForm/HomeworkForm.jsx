@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { CommentsList } from '../CommentsList/CommentsList';
-import { selectCourse } from '../../redux/courses/selectors';
+// import { selectCourse } from '../../redux/courses/selectors';
 import { addExercise, updateExercise, deleteHomework, deleteFile } from '../../redux/exercises/operations';
 import { selectExercise } from '../../redux/exercises/selectors';
-import { openChat, setEditingMessage } from '../../redux/chat/slice';
+// import { openChat, setEditingMessage } from '../../redux/chat/slice';
 import { ReactComponent as MoreVertical } from '../../icons/more-vertical.svg';
 import { ReactComponent as Close } from '../../icons/x.svg';
 import { ReactComponent as Edit } from '../../icons/edit.svg';
@@ -20,8 +20,14 @@ import css from './HomeworkForm.module.css';
 
 export const HomeworkForm = ({courseId, lessonId}) => {
   const dispatch = useDispatch();
-  const currentCourse = useSelector(selectCourse);
-  const {_id, homework, fileURL, fileType, fileName} = useSelector(selectExercise);
+  // const currentCourse = useSelector(selectCourse);
+  const {
+    _id,
+    homework,
+    fileURL,
+    // fileType,
+    fileName
+  } = useSelector(selectExercise);
 
   const [textInput, setTextInput] = useState(homework);
   const [fileInput, setFileInput] = useState(null);
@@ -133,48 +139,55 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     setIsActiveTextarea(false);
   };
 
+  const shareHomework = () => {
+    if (!homework.trim()) {
+    alert('Спочатку збережіть домашню роботу.');
+    return;
+    }
+    
+    const currentURL = window.location.href;
+
+    let textToSend = homework.trim();
+
+    if (fileURL) {
+      textToSend += `\n\n📎 Файл: ${fileName || ''}\n${fileURL}`;
+    }
+
+    const telegramShareLink =
+      `https://t.me/share/url?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(textToSend)}`;
+
+    window.open(telegramShareLink, '_blank');
+  };
+
   // const shareHomework = () => {
   //   if (homework === '') {
   //     alert('Спочатку збережіть домашню роботу.');
   //     return;
   //   }
 
+  //   const data = {
+  //     text: homework,
+  //   };
+
   //   if (fileURL && fileURL !== '') {
-  //     window.open(`https://t.me/share/url?url=${fileURL}&text=${encodeURIComponent(homework)}`);
-  //   } else {
-  //     window.open(`https://t.me/share/url?url=${BASE_CLIENT_URL}${currentURL}&text=${encodeURIComponent(homework)}`);
+  //     data.fileURL = fileURL;
+  //   } 
+
+  //   if (fileType && fileType !== '') {
+  //     data.fileType = fileType;
+  //   } 
+
+  //   if (fileName && fileName !== '') {
+  //     data.fileName = fileName;
   //   }
-  // };
 
-  const shareHomework = () => {
-    if (homework === '') {
-      alert('Спочатку збережіть домашню роботу.');
-      return;
-    }
-
-    const data = {
-      text: homework,
-    };
-
-    if (fileURL && fileURL !== '') {
-      data.fileURL = fileURL;
-    } 
-
-    if (fileType && fileType !== '') {
-      data.fileType = fileType;
-    } 
-
-    if (fileName && fileName !== '') {
-      data.fileName = fileName;
-    }
-
-    dispatch(setEditingMessage(data));
+  //   dispatch(setEditingMessage(data));
     
-    dispatch(openChat({
-        title: currentCourse.title,
-        wave: currentCourse.wave
-    }));
-  };
+  //   dispatch(openChat({
+  //       title: currentCourse.title,
+  //       wave: currentCourse.wave
+  //   }));
+  // };
 
 const handleClickOutside = (e) => {
     if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {

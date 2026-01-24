@@ -55,4 +55,17 @@ export const insertContent = ({
             navigate(`/uk/learn/${courseId}/${lessonId}/diary`);
         });
     }
+
+    // 🔹 Додаємо відкриття зовнішніх посилань у новій вкладці
+    const links = elem.querySelectorAll('a[href]');
+    
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+
+        // якщо це зовнішнє посилання
+        if (href && href.startsWith('http')) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
 };
