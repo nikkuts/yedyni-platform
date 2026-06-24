@@ -190,15 +190,15 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   // };
 
 const handleClickOutside = (e) => {
-    if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {
-    setMenuVisible(false);
-    }
+  if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {
+  setMenuVisible(false);
+  }
 };
 
 const toggleMenu = () => {
-    setMenuVisible((prevVisible) => !prevVisible);
+  setMenuVisible((prevVisible) => !prevVisible);
 };
-
+  
 useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     return () => {
