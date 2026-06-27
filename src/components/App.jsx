@@ -11,6 +11,7 @@ import { PrivateRoute } from "./PrivateRoute";
 
 const LendingPage = lazy(() => import('../pages/Lending'));
 const ResumeTestPage = lazy(() => import('../pages/ResumeTest'));
+const TipsPage = lazy(() => import('../pages/TipsPage/TipsPage'));
 const HomePage = lazy(() => import('./Home/Home'));
 const RegisterPage = lazy(() => import('./RegisterForm/RegisterForm'));
 const LoginPage = lazy(() => import('./LoginForm/LoginForm'));
@@ -18,7 +19,6 @@ const RecoveryPage = lazy(() => import('./Recovery/Recovery'));
 const ResetPage = lazy(() => import('./Reset/Reset'));
 const ProfilePage = lazy(() => import('./Profile/Profile'));
 const GamePage = lazy(() => import('./Game/Game'));
-const OlympiadPage = lazy(() => import('./Olympiad/Olympiad'));
 const DonatPage = lazy(() => import('./Donat/Donat'));
 const GratitudesPage = lazy(() => import('./Gratitudes/Gratitudes'));
 const IndicatorsPage = lazy(() => import('./Indicators/Indicators'));
@@ -118,7 +118,7 @@ export default function App () {
               </Route>
             </Route>
             <Route path="game" element={<GamePage />} />
-            <Route path="olympiad" element={<OlympiadPage />} />
+            <Route path="tips" element={<TipsPage />} />
             <Route path="donat" element={<DonatPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="notifications" element={<NotificationsPage />} />

@@ -51,13 +51,15 @@ export const UserMenu = () => {
         <div className={css.menuBar}>
           <div className={css.nav}>
             <Navigation />
-            <button type="button"
-              onClick={() => navigate("donat")} 
-              className={css.button}
-            >
-              Підтримати
-            </button>
-          </div>      
+          </div>
+
+          <button type="button"
+            onClick={() => navigate("donat")} 
+            className={css.button}
+          >
+            Підтримати
+          </button>   
+          
           <div 
             ref={officeRef}
             onClick={toggleMenu}

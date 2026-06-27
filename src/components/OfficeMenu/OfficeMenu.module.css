@@ -6,14 +6,14 @@
     background-color: #FFFFFF;
     z-index: 1100;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1200px) {
       width: 364px;
       box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
     }
   }
 
   .nav {
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1200px) {
       display: none;
     }
   }
@@ -23,7 +23,7 @@
     border-bottom: 1px solid #a3c5d3;
     overflow: hidden;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 1199px) {
       display: none;
     }
   }

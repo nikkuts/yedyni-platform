@@ -32,6 +32,15 @@ export const Navigation = () => {
       >
         Паляниця
       </NavLink>
+
+      <NavLink 
+        className={({ isActive }) => 
+          isActive ? `${css.link} ${css.active}` : css.link
+        } 
+        to="tips"
+      >
+        Корисні поради
+      </NavLink>
     </nav>
   );
 };

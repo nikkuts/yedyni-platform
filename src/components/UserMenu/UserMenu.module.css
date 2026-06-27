@@ -71,13 +71,9 @@
 .nav {
   display: none;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1200px) {
     display: flex;
     align-items: center;
-    gap: 20px;
-  }
-
-  @media screen and (min-width: 1200px) {
     gap: 35px;
   }
 }
@@ -97,6 +93,10 @@
   cursor: pointer;
   background-color: rgb(255, 244, 0);
   transition: background-color 0.25s ease, transform 0.2s ease;
+
+  @media screen and (max-width: 300px) {
+    display: none;
+  }
 }
 
 .button:hover,

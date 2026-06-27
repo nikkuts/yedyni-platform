@@ -6,20 +6,14 @@
   overflow: hidden;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1200px) {
   .nav {
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: fit-content;
-    padding: 8px 20px;
-    background-color: transparent;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .nav {
     padding: 10px 30px;
+    background-color: transparent;
   }
 }
 
@@ -35,7 +29,7 @@
   transition: all 0.25s ease;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1200px) {
   .link {
     width: auto;
     padding: 10px 18px;
@@ -48,7 +42,7 @@
   background-color: #f5f5ff;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1199px) {
   .link:hover {
     background-color: #f7f4e8;
   }
@@ -60,7 +54,7 @@
   background-color: #eae5ff;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1200px) {
   .active:hover {
     background-color: #ddd4ff;
   }
