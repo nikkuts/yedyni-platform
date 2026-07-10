@@ -59,7 +59,7 @@ export default function App () {
     }
   }, [isRefreshing, isLoggedIn, navigate]);
 
-  return !isRefreshing ? (
+  return isRefreshing ? (
     <b>Оновлення користувача...</b>
   ) : ( 
     <Routes>
