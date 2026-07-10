@@ -1164,6 +1164,79 @@
         ] 
     },
     { 
+        "id": "id-7", 
+        "title": "Думай українською",
+        "wave": "1",
+        "start": "2026-08-01",
+        "canal": "",
+        "chat": "", 
+        "lessons": [
+            {
+                "day": "1",
+                "theme": "Урок 1. Обирай українське",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709411603/wjj3h5sxevthq6xuidzb.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1783095540/1_chlcgi.html",
+                "theory": "https://drive.google.com/file/d/1_NwDnG4VukHuh-1RMxAXoh9G-n_0j4lP/preview",
+                "practice": "https://drive.google.com/file/d/1fls3ffpolXUikNv5LSs9hd8g-kCl0U8E/preview",
+                "test": ""
+            },
+            {
+                "day": "2",
+                "theme": "Урок 2. Україно, як до тебе звертатися?",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709760175/ikolp8mlfsi3rdrrrjck.jpg",
+                "content": "https://res.cloudinary.com/dtxeib3rn/raw/upload/v1783698165/2_fgscd6.html",
+                "theory": "",
+                "practice": "https://drive.google.com/file/d/1lz8uQycIChNSwt5Crz7qlvzhaBCCxJnm/preview",
+                "test": ""
+            },
+            {
+                "day": "3",
+                "theme": "Урок 3. Мова статична чи динамічна?",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984462/z3ym5sjaqro6umclwelg.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "4",
+                "theme": "Урок 4. Суржик чи діалект?",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984509/rehqnczyilrtwpbktxj8.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "5",
+                "theme": "Урок 5. Українська лайка",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984542/yxyx9th3ym6lc89cc9ii.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "6",
+                "theme": "Урок 6. Вимірюємо рівень мовної свідомості",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984571/vpkqkwsqp36lbrjirmnh.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "test": ""
+            },
+            {
+                "day": "7",
+                "theme": "Урок 7. Цитуй українською!",
+                "image": "https://res.cloudinary.com/dwnbra6yc/image/upload/v1709984601/du5khi8dtmzoqmdqvvzt.jpg",
+                "content": "",
+                "theory": "",
+                "practice": "",
+                "test": ""
+            }
+        ] 
+    },
+    { 
         "id": "id-3", 
         "title": "Новий курс",
         "wave": "1",

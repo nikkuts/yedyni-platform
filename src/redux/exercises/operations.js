@@ -34,6 +34,20 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
     }
   );
 
+  export const updateRating = createAsyncThunk(
+    "exercises/updateRating",
+    async (credentials, thunkAPI) => {
+      try {
+        const response = await axios.patch("/api/exercises/rating", credentials);
+        return response.data; 
+      } 
+      catch (error) {
+        alert(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  );
+  
   export const updateExercise = createAsyncThunk(
     "exercises/updateExercise",
     async (credentials, thunkAPI) => {

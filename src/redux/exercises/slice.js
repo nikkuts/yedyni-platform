@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { 
     getExercise,
-    addExercise,
+  addExercise,
+    updateRating,
     updateExercise,
     deleteHomework,
     deleteFile,
@@ -23,10 +24,12 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   exercise: {
+      _id: '',
       homework: '',
       fileURL: '',
       fileType: '',
       fileName: '',
+      rating: null,
       comments: [],
   },
   notifications: [],
@@ -54,6 +57,13 @@ const exercisesSlice = createSlice({
       state.exercise = action.payload;
     })
     .addCase(addExercise.rejected, handleRejected)
+    .addCase(updateRating.pending, handlePending)
+    .addCase(updateRating.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.exercise = { ...state.exercise, ...action.payload};
+    })
+    .addCase(updateRating.rejected, handleRejected)
     .addCase(updateExercise.pending, handlePending)
     .addCase(updateExercise.fulfilled, (state, action) => {
       state.isLoading = false;

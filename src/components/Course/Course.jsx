@@ -32,10 +32,10 @@ export default function Course () {
     const [openedLessonIndex, setOpenedLessonIndex] = useState(null);
     const [menuVisible, setMenuVisible] = useState(false);
 
-    const isAdmin = user.status === "admin" ? true : false;
-    const isModerator = user.status === "moderator" ? true : false;
+    const isAdmin = user.status === "admin";
+    const isModerator = user.status === "moderator";
     const isNewUser = user.status === 'user' &&
-        (user.createdAt > currentCourse.addedNextWave) ? true : false;
+        (user.createdAt > currentCourse.addedNextWave);
 
     const toggleMenu = (e) => {
         setMenuVisible((prevVisible) => !prevVisible);

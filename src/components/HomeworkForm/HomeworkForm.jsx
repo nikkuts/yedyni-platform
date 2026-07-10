@@ -26,12 +26,14 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     homework,
     fileURL,
     // fileType,
-    fileName
+    fileName,
+    rating
   } = useSelector(selectExercise);
 
   const [textInput, setTextInput] = useState(homework);
   const [fileInput, setFileInput] = useState(null);
   const [originalFileName, setOriginalFileName] = useState(null);
+
   const [isDisabledBtn, setIsDisabledBtn] = useState(true);
   const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -188,7 +190,7 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   //       wave: currentCourse.wave
   //   }));
   // };
-
+  
 const handleClickOutside = (e) => {
   if (textMenuRef.current && !textMenuRef.current.contains(e.target)) {
   setMenuVisible(false);
@@ -350,6 +352,23 @@ useEffect(() => {
           </div>        
         </Form>
       }
+
+      {_id &&
+        <>
+          <div className={css.groupInputRating}>
+            <div className={css.label}>
+              Оцінка:
+            </div>
+            <div className={css.inputRating}>
+              {rating ?? "—"}
+              </div>
+              <div className={css.label}>
+                з 12
+            </div>
+          </div>
+        </>
+      }
+
       {_id && <CommentsList />}
     </>
   ) 

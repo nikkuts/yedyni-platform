@@ -21,7 +21,7 @@ export default function NotificationsList () {
                       to="/uk/active"
                       className={css.link} 
                     >
-                        {`${owner.first_name} ${owner.last_name}`}. {course.title}. День {lessonId} 
+                        {`${owner.first_name} ${owner.last_name}`}. {course.title}. Урок {lessonId} 
                     </Link>
                   :
                     <Link 
@@ -35,7 +35,7 @@ export default function NotificationsList () {
                         }
                         className={css.link}
                     >
-                        {`${comments.author.first_name} ${comments.author.last_name}`}. {course.title}. День {lessonId} 
+                        {`${comments.author.first_name} ${comments.author.last_name}`}. {course.title}. Урок {lessonId} 
                     </Link>
                   }
                     <span className={css.date}>{formatDateTime(owner ? updatedAt : comments.date)}</span>
@@ -45,40 +45,3 @@ export default function NotificationsList () {
     </div>
   );
 };
-
-// export default function NotificationsList () {
-//   const dispatch = useDispatch();
-//   const notifications = useSelector(selectNotifications);
-
-//   return (  
-//     <div className={css.containerNotifications}>
-//         <h1 className={css.title}>Сповіщення</h1>
-//         <ul className={css.listNotifications}>
-//             {notifications.map(({_id, owner, comments, courseId, lessonId, updatedAt}) => (
-//                 <li key={_id}>
-//                   {owner ?
-//                     <Link 
-//                       onClick={() => dispatch(getExerciseById(_id))}
-//                       to="/uk/active"
-//                       className={css.link} 
-//                     >
-//                         {owner.name}. {courseId === 'id-1' ? 'Курс переходу' : 'Граматичний курс'}. День {lessonId} 
-//                     </Link>
-//                   :
-//                     <Link 
-//                         onClick={() => dispatch(updateCommentStatus({
-//                           exerciseId: _id,
-//                         }))}
-//                         to={courseId === 'id-1' ? `/uk/learn/${courseId}/${lessonId}` : `/uk/learn/${courseId}/${lessonId}/practice`}
-//                         className={css.link}
-//                     >
-//                         {comments.author.name}. {courseId === 'id-1' ? 'Курс переходу' : 'Граматичний курс'}. День {lessonId} 
-//                     </Link>
-//                   }
-//                     <span className={css.date}>{formatDateTime(owner ? updatedAt : comments.date)}</span>
-//                 </li>
-//             ))}
-//         </ul>
-//     </div>
-//   );
-// };

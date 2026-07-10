@@ -4,8 +4,6 @@ export const AXIOS_BASE_URL = 'https://server.yedyni.org';
 
 // export const AXIOS_BASE_URL = 'http://localhost:3000';
 
-// export const AXIOS_BASE_URL = 'https://yedyni-platform-backend.onrender.com';
-
 export const API_PAY_ENDPOINT = 'https://www.liqpay.ua/api/3/checkout';
 
 export const BASE_AMOUNT_SUPPORT = 40;
