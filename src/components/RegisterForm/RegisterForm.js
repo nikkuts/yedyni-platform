@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import {AXIOS_BASE_URL} from '../../constants';
 import { register } from '../../redux/auth/operations';
 import { ReactComponent as Favicon } from '../../icons/favicon.svg';
 import { ReactComponent as EyeOff } from '../../icons/eye-off.svg';
@@ -9,18 +11,25 @@ import { ReactComponent as Eye } from '../../icons/eye.svg';
 import bgImage from '../../service/bgimg.jpg';
 import css from './RegisterForm.module.css';
 
-export default function RegisterForm () {
-  const [searchParams] = useSearchParams();
-  const inviterId = searchParams.get("x");
+axios.defaults.baseURL = AXIOS_BASE_URL;
 
-  const [password, setPassword] = useState('');
+export default function RegisterForm() {
+  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const contactId = searchParams.get("contactId");
+
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+  });
+  const [isLoadingContact, setIsLoadingContact] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  const dispatch = useDispatch();
 
   const isNameValid = (name) => {
     const nameRegex = /^[a-zA-Zа-яА-ЯїЇіІєЄґҐ\s]{2,30}$/u;
@@ -83,10 +92,35 @@ export default function RegisterForm () {
   };
 
   useEffect(() => {
-    if (inviterId) {
-      window.localStorage.setItem("inviterId", JSON.stringify(inviterId));
-    }
-  }, [inviterId]);
+    if (!contactId) return;
+    
+    const fetchContact = async () => {
+      try {
+        setIsLoadingContact(true);
+
+        const { data } = await axios.get(
+          `/api/contacts/${contactId.toString()}`
+        );
+
+        setFormData(prev => ({
+          ...prev,
+          first_name: data.first_name ?? "",
+          last_name: data.last_name ?? "",
+          email: data.email ?? "",
+        }));
+      } catch (error) {
+        console.error("Помилка отримання контакту:", error);
+      } finally {
+        setIsLoadingContact(false);
+      }
+    };
+
+    fetchContact();
+  }, [contactId]);
+
+  if (contactId && isLoadingContact) {
+    return <b>Завантаження даних...</b>;
+  }
 
   return (
     <div className={css.wrapper}>
@@ -111,7 +145,8 @@ export default function RegisterForm () {
             </label>
             <input 
               type="email" 
-              name="email" 
+              name="email"
+              value={formData.email}
               className={css.input}
             />
           </div>
@@ -122,6 +157,7 @@ export default function RegisterForm () {
             <input 
               type="text" 
               name="first_name" 
+              value={formData.first_name}
               className={css.input}
             />
           </div>
@@ -132,6 +168,7 @@ export default function RegisterForm () {
             <input 
               type="text" 
               name="last_name" 
+              value={formData.last_name}
               className={css.input}
             />
           </div>
@@ -142,9 +179,12 @@ export default function RegisterForm () {
             <div className={css.passwordInput}>
               <input 
                 type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} 
                 name="password"
+                value={formData.password}
+                onChange={(e) => setFormData(prev => ({
+                  ...prev,
+                  password: e.target.value ?? "",
+                }))}
                 className={css.input} 
               />
               <div 

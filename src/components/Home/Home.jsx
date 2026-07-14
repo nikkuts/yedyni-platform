@@ -43,13 +43,23 @@ export default function Home() {
                     <span className={css.tdchild2}>40<br/><span className={css.bal}>балів</span></span>
                 </li>
                 <li className={css.tr}>
-                    <span className={css.tdchild1}>Проходження тестувань</span>
-                    <span className={css.tdchild2}>сума набраних балів</span>
+                    <span className={css.tdchild1}>Виконання домашніх завдань</span>
+                    <span className={css.tdchild2}>сума отриманих оцінок</span>
                     <button type="button"
                         onClick={() => navigate("learn")} 
                         className={css.button}
                         >
-                        Перейти до курсу
+                        Навчатись
+                    </button>
+                </li>
+                <li className={css.tr}>
+                    <span className={css.tdchild1}>Проходження тестувань</span>
+                    <span className={css.tdchild2}>сума набраних балів</span>
+                    <button type="button"
+                        onClick={() => navigate("game")} 
+                        className={css.button}
+                        >
+                        Тренуватись
                     </button>
                 </li>
                 {<li className={css.tr}>
@@ -69,7 +79,7 @@ export default function Home() {
                         onClick={() => navigate("bonus/team")} 
                         className={css.button}
                         >
-                        Детальніше
+                        Запросити
                     </button>
                 </li>
             </ul>
