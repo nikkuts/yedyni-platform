@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { logOut } from '../../redux/auth/operations';
 import { useAuth } from '../../hooks';
 import { getIndicators } from '../../redux/partners/operations';
-import { selectIndicators } from '../../redux/partners/selectors';
+import { selectIndicators, selectIsLoading } from '../../redux/partners/selectors';
 import { getNotifications } from '../../redux/exercises/operations';
 import { selectCountNotifications } from '../../redux/exercises/selectors';
 import { ReactComponent as LogOut } from '../../icons/log-out.svg';
@@ -16,11 +16,16 @@ export const OfficeMenu = () => {
   const {user} = useAuth();
   const {levelSupport} = useSelector(selectIndicators);
   const countNotifications = useSelector(selectCountNotifications);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(getIndicators());
     dispatch(getNotifications()); 
   }, [dispatch]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (  
     <>
