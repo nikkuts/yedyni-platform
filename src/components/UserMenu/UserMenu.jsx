@@ -21,14 +21,14 @@ export const UserMenu = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const officeRef = useRef();
 
+  const toggleMenu = () => {
+    setMenuVisible((prevVisible) => !prevVisible);
+  };
+
   const handleClickOutside = (e) => {
     if (officeRef.current && !officeRef.current.contains(e.target)) {
       setMenuVisible(false);
     }
-  };
-
-  const toggleMenu = () => {
-    setMenuVisible((prevVisible) => !prevVisible);
   };
 
   useEffect(() => {

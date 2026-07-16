@@ -24,7 +24,7 @@ export const OfficeMenu = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return null;
+    return <div><b>Завантаження даних...</b></div>;
   }
 
   return (  
@@ -39,7 +39,11 @@ export const OfficeMenu = () => {
             <li className={css.userEmail}>{user.email}</li>
             <li className={css.userLevel}>
               Рівень стабільності підтримки: 
-              <span className={css.userLevelNum}> {levelSupport.toFixed(2)}</span>
+              <span className={css.userLevelNum}>
+                {typeof levelSupport === "number"
+                  ? levelSupport.toFixed(2)
+                  : "..."}
+              </span>
             </li>
           </ul>
         </li>
