@@ -94,7 +94,7 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
     "exercises/addComment",
     async (credentials, thunkAPI) => {
       try {
-        const response = await axios.post("/api/exercises/comment", credentials);
+        const response = await axios.post("/api/exercises/comment/create", credentials);
         return response.data; 
       } 
       catch (error) {
@@ -108,7 +108,8 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
     "exercises/updateComment",
     async (credentials, thunkAPI) => {
       try {
-        const response = await axios.patch("/api/exercises/comment", credentials);
+        const response = await axios.patch(
+          "/api/exercises/comment/edit", credentials);
         return response.data; 
       } 
       catch (error) {
@@ -124,7 +125,7 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
       const searchParams = new URLSearchParams(params);
       try {
         const response = await axios.patch(
-          `/api/exercises/status?${searchParams.toString()}`);
+          `/api/exercises/comment-status?${searchParams.toString()}`);
         return response.data; 
       } 
       catch (error) {
@@ -133,17 +134,20 @@ axios.defaults.baseURL = AXIOS_BASE_URL;
       }
     }
   );
-
+  
   export const deleteComment = createAsyncThunk(
     "exercises/deleteComment",
-    async (params, thunkAPI) => {
-      const searchParams = new URLSearchParams(params);
+    async (credentials, thunkAPI) => {
       try {
         const response = await axios.delete(
-          `/api/exercises/comment?${searchParams.toString()}`);
-        return response.data; 
-      } 
-      catch (error) {
+          "/api/exercises/comment/delete",
+          {
+            data: credentials,
+          }
+        );
+
+        return response.data;
+      } catch (error) {
         alert(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
       }

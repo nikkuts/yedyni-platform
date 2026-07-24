@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { 
     getExercise,
-  addExercise,
+    addExercise,
     updateRating,
     updateExercise,
     deleteHomework,

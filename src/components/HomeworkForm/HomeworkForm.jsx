@@ -25,7 +25,6 @@ export const HomeworkForm = ({courseId, lessonId}) => {
     _id,
     homework,
     fileURL,
-    // fileType,
     fileName,
     rating
   } = useSelector(selectExercise);
@@ -34,9 +33,9 @@ export const HomeworkForm = ({courseId, lessonId}) => {
   const [fileInput, setFileInput] = useState(null);
   const [originalFileName, setOriginalFileName] = useState(null);
 
-  const [isDisabledBtn, setIsDisabledBtn] = useState(true);
-  const [isActiveTextarea, setIsActiveTextarea] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [isActiveTextarea, setIsActiveTextarea] = useState(false);
+  const [isDisabledBtn, setIsDisabledBtn] = useState(true);
 
   const textMenuRef = useRef();
   const fileInputRef = useRef(null);
@@ -333,7 +332,7 @@ useEffect(() => {
                 onClick={handleDeleteFile}
                 className={css.trash}
               >
-                <Trash className={css.trashIcon} />
+                <Trash/>
               </div>
             </div>
             :
